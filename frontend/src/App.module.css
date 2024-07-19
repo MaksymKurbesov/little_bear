@@ -1,0 +1,38 @@
+.progress-gradient {
+  background: linear-gradient(to right, #90ef89, #d692dd, #726edd);
+}
+
+.game-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  font-weight: bold;
+  height: 100vh;
+  max-width: 36rem;
+  width: 100%;
+  color: white;
+}
+
+.top-glow {
+  box-shadow: 0 -26px 20px rgba(243, 186, 47, 0.3);
+}
+
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  animation: blink 1s infinite;
+}
+
+.point {
+  position: relative;
+  top: -20px;
+  z-index: 99;
+}
+
