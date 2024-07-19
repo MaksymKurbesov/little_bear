@@ -30,7 +30,7 @@ const Header = ({ userData }) => {
               alt="Dollar Coin"
               className="w-[18px] h-[18px]"
             />
-            +{profitPerHour}K
+            +{profitPerHour}
           </p>
         </div>
 

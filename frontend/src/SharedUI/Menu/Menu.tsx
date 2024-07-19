@@ -10,21 +10,25 @@ const Menu = () => {
     <ul className={styles.menu}>
       <li>
         <NavLink to={"/"}>
-          <Mine className="w-8 h-8 mx-auto" /> Mine
+          <Mine className="w-5 h-5 mx-auto" /> Mine
         </NavLink>
       </li>
       <li>
         <NavLink to={"/referrals"}>
-          <Friends className="w-8 h-8 mx-auto" /> Referrals
+          <Friends className="w-5 h-5 mx-auto" /> Referrals
         </NavLink>
       </li>
       <li>
         <NavLink to={"/news"}>
-          <Coins className="w-8 h-8 mx-auto" /> News
+          <Coins className="w-5 h-5 mx-auto" /> News
         </NavLink>
       </li>
       <li>
-        <img src={hamsterCoin} alt="Airdrop" className="w-8 h-8 mx-auto" />
+        <img
+          src={hamsterCoin}
+          alt="Airdrop"
+          className={`${styles["hamster-icon"]} w-5 h-5 mx-auto`}
+        />
         <p>Exchange</p>
       </li>
     </ul>

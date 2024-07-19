@@ -114,12 +114,12 @@ const Main = () => {
             <img
               src={dailyReward}
               alt="Daily Reward"
-              className="mx-auto w-12 h-12"
+              className="mx-auto w-7 h-7"
             />
-            <p className="text-[10px] text-center text-white mt-1">
+            <p className="text-[8px] text-center text-white mt-2">
               Daily reward
             </p>
-            <p className="text-[10px] font-medium text-center text-gray-400 mt-2">
+            <p className="text-[10px] font-medium text-center text-gray-400">
               {dailyRewardTimeLeft}
             </p>
           </div>
@@ -128,12 +128,12 @@ const Main = () => {
             <img
               src={dailyCipher}
               alt="Daily Cipher"
-              className="mx-auto w-12 h-12"
+              className="mx-auto w-7 h-7"
             />
-            <p className="text-[10px] text-center text-white mt-1">
+            <p className="text-[8px] text-center text-white mt-2">
               Daily cipher
             </p>
-            <p className="text-[10px] font-medium text-center text-gray-400 mt-2">
+            <p className="text-[10px] font-medium text-center text-gray-400">
               {dailyCipherTimeLeft}
             </p>
           </div>
@@ -142,12 +142,12 @@ const Main = () => {
             <img
               src={dailyCombo}
               alt="Daily Combo"
-              className="mx-auto w-12 h-12"
+              className="mx-auto w-7 h-7"
             />
-            <p className="text-[10px] text-center text-white mt-1">
+            <p className="text-[8px] text-center text-white mt-2">
               Daily combo
             </p>
-            <p className="text-[10px] font-medium text-center text-gray-400 mt-2">
+            <p className="text-[10px] font-medium text-center text-gray-400">
               {dailyComboTimeLeft}
             </p>
           </div>

@@ -8,7 +8,7 @@
   color: white;
   backdrop-filter: blur(10px);
   font-size: 12px;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 .menu li {
@@ -16,10 +16,30 @@
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  padding: 20px;
+  padding: 10px;
   cursor: pointer;
 }
 
 .menu li p {
   text-align: center;
+}
+
+@media screen and (max-width: 376px) {
+  .menu {
+    padding: 0 10px;
+  }
+
+  .menu li {
+    padding: 10px;
+  }
+
+  .menu svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hamster-icon {
+    width: 20px;
+    height: 20px;
+  }
 }
