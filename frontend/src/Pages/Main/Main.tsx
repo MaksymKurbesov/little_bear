@@ -15,6 +15,10 @@ import { db } from "../../main";
 const pointsToAdd = 11;
 
 const Main = () => {
+  const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
+  const [dailyCipherTimeLeft, setDailyCipherTimeLeft] = useState("");
+  const [dailyComboTimeLeft, setDailyComboTimeLeft] = useState("");
+
   const [earnedPoints, setEarnedPoints] = useState(0);
   const [clickedPoints, setClickedPoints] = useState(0);
   const [clicks, setClicks] = useState<{ id: number; x: number; y: number }[]>(
@@ -24,18 +28,18 @@ const Main = () => {
   const { userData } = useOutletContext();
   const userDataRef = useRef(userData);
 
-  const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
-  const [dailyCipherTimeLeft, setDailyCipherTimeLeft] = useState("");
-  const [dailyComboTimeLeft, setDailyComboTimeLeft] = useState("");
-
   const handleAnimationEnd = (id: number) => {
     setClicks((prevClicks) => prevClicks.filter((click) => click.id !== id));
   };
 
+  console.log(clickedPoints, "main if");
+
   useEffect(() => {
-    const sendPointsToServer = async (clickedPoints) => {
-      if (clickedPoints > 0) {
-        try {
+    const sendPointsToServer = async () => {
+      try {
+        if (clickedPoints > 0) {
+          console.log("sending data...");
+
           const userRef = doc(db, "users", userData?.username);
           await runTransaction(db, async (transaction) => {
             const doc = await transaction.get(userRef);
@@ -45,23 +49,19 @@ const Main = () => {
 
             const newCount = doc.data().points + clickedPoints;
             transaction.update(userRef, { points: newCount });
-
-            setClickedPoints(0);
           });
-        } catch (e) {}
-      }
+
+          setClickedPoints(0);
+        }
+      } catch (e) {}
     };
 
     const interval = setInterval(() => {
-      sendPointsToServer(clickedPoints);
+      sendPointsToServer();
     }, 3000); // Отправка данных каждые 5 секунд
 
     return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
-  }, []);
-
-  // const debouncedSendPointsToServer = debounce(() => {
-  //   sendPointsToServer(earnedPoints, userData.username);
-  // }, 2000);
+  }, [clickedPoints]);
 
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
@@ -78,8 +78,6 @@ const Main = () => {
     setEarnedPoints((prevState) => prevState + pointsToAdd);
     setClickedPoints((prevState) => prevState + pointsToAdd);
     setClicks([...clicks, { id: Date.now(), x: e.pageX, y: e.pageY }]);
-
-    // debouncedSendPointsToServer(earnedPoints, userDataRef.current.username);
   };
 
   useEffect(() => {
