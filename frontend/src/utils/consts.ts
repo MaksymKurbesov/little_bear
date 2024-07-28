@@ -11,15 +11,40 @@ const levelNames = [
   "Lord", // From 1,000,000,000 coins to ∞
 ];
 
-const levelMinPoints = [
-  0, // Bronze
-  5000, // Silver
-  25000, // Gold
-  100000, // Platinum
-  1000000, // Diamond
-  2000000, // Epic
-  10000000, // Legendary
-  50000000, // Master
-  100000000, // GrandMaster
-  1000000000, // Lord
+export const LEVELS_BY_POINTS: { [key: number]: string } = {
+  0: "Bronze", // From 0 to 4999 coins
+  5000: "Silver", // From 5000 coins to 24,999 coins
+  25000: "Gold", // From 25,000 coins to 99,999 coins
+  100000: "Platinum", // From 25,000 coins to 99,999 coins
+  1000000: "Diamond", // From 25,000 coins to 99,999 coins
+  2000000: "Epic", // From 25,000 coins to 99,999 coins
+  10000000: "Legendary", // From 25,000 coins to 99,999 coins
+  50000000: "Master", // From 25,000 coins to 99,999 coins
+  100000000: "GrandMaster", // From 25,000 coins to 99,999 coins
+};
+
+export const DAILY_REWARDS = [
+  `500`,
+  `1K`,
+  `2.5K`,
+  `5K`,
+  `15K`,
+  `25K`,
+  `100K`,
+  `500K`,
+  `1M`,
+  `5M`,
 ];
+
+export const DAILY_REWARDS_BY_DAY: { [key: string]: number } = {
+  0: 500,
+  1: 1000,
+  2: 2500,
+  3: 5000,
+  4: 15000,
+  5: 25000,
+  6: 100000,
+  7: 500000,
+  8: 1000000,
+  9: 5000000,
+};

@@ -1,0 +1,166 @@
+.friends {
+  display: flex;
+  flex-direction: column;
+  background: var(--gray);
+  flex-grow: 1;
+  padding: 20px 10px;
+  font-family: "RobotoCondensed", 'sans-serif';
+  font-weight: 400;
+}
+
+.friends h1 {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 35px;
+}
+
+.awards-list li {
+  display: flex;
+  align-items: center;
+  background: var(--orange-opacity);
+  padding: 10px;
+  gap: 15px;
+  border-radius: 15px;
+}
+
+
+.gift-info {
+  width: 100%;
+}
+
+.gift-info h3 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.coin-icon {
+  box-shadow: 0 0 7px #ffffff;
+  border-radius: 50%;
+}
+
+.description {
+  font-size: 12px;
+}
+
+
+.description span:nth-child(1) {
+  color: var(--orange);
+}
+
+
+.description span:nth-child(2){
+  opacity: 0.65;
+}
+
+.text-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+
+.friends-list-wrapper {
+  margin-bottom: 50px;
+}
+
+.friends-list-wrapper h2 {
+  font-size: 14px;
+  margin-bottom: 15px;
+  opacity: 0.55;
+}
+
+.no-invited {
+  background: rgba(255, 182, 41, 0.05);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+}
+
+.friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+
+.friends-list li {
+  display: grid;
+  grid-template-columns: 20px 1fr 35px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.friends-list .table-headers {
+  font-size: 16px;
+  background: none;
+  font-weight: 600;
+
+}
+
+.friends-list li p:nth-child(2) {
+  text-align: center;
+}
+
+.friends-list li p:nth-child(3) {
+  text-align: right;
+}
+
+.invite-buttons {
+  position: sticky;
+  bottom: 15px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: auto;
+}
+
+
+
+.invite-friend-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 48px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--orange);
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.invite-friend-button img {
+  filter: invert(1);
+}
+
+.copy-button {
+  height: 48px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: var(--orange);
+}
+
+.copy-button img {
+  filter: invert(1);
+}

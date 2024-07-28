@@ -1,0 +1,13 @@
+.tasks {
+  padding: 20px 10px;
+  background: var(--gray);
+  flex-grow: 1;
+  font-weight: 400;
+  font-family: RobotoCondensed;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 15px;
+}

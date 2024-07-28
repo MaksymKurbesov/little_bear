@@ -1,3 +1,7 @@
+import { LEVELS_BY_POINTS } from "./consts.ts";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../main.tsx";
+
 export const calculateTimeLeft = (targetHour: number) => {
   const now = new Date();
   const target = new Date(now);
@@ -37,5 +41,44 @@ export const throttle = (func, limit) => {
       inThrottle = true;
       setTimeout(() => (inThrottle = false), limit);
     }
+  };
+};
+
+export const getRank = (points: number): string => {
+  let rank: string = "Bronze"; // Default rank
+
+  const thresholds: number[] = Object.keys(LEVELS_BY_POINTS)
+    .map(Number)
+    .sort((a, b) => b - a);
+  for (const threshold of thresholds) {
+    if (points >= threshold) {
+      rank = LEVELS_BY_POINTS[threshold];
+      break;
+    }
+  }
+
+  return rank;
+};
+
+export const registerUser = async (nickname: string) => {
+  const userRef = doc(db, "users", nickname);
+  const userSnap = await getDoc(userRef);
+
+  if (!userSnap.exists()) {
+    const registeredUser = generateUserData(nickname);
+
+    await setDoc(userRef, registeredUser);
+    setUserData(registeredUser);
+  }
+};
+
+export const generateUserData = (username: string) => {
+  return {
+    username: username,
+    points: 0,
+    profitPerHour: 0,
+    status: "Bronze",
+    consecutiveDays: 0,
+    lastClaimedDate: "",
   };
 };

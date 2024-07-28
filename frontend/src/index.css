@@ -2,8 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --orange-opacity: rgba(255, 218, 141, 0.1);
+  --gray: #1c1f24;
+  --orange: #eca843;
+}
+
+@font-face {
+  font-family: "Neue";
+  src:
+          local("Neue"),
+          url("./assets/NeuePower-Heavy.otf") format("opentype")
+}
+@font-face {
+  font-family: "NeueBold";
+  src:
+          local("Neue"),
+          url("./assets/NeuePower-Ultra.otf") format("opentype")
+}
+
+
+@font-face {
+  font-family: "RobotoCondensed";
+  font-weight: 300;
+  src:
+          url("./assets/RobotoCondensed-Light.ttf") format("truetype")
+}
+
+@font-face {
+  font-family: "RobotoCondensed";
+  font-weight: 400;
+  src:
+          url("./assets/RobotoCondensed-Regular.ttf") format("truetype")
+}
+
+@font-face {
+  font-family: "RobotoCondensed";
+  font-weight: 500;
+  src:
+          url("./assets/RobotoCondensed-SemiBold.ttf") format("truetype")
+}
+
 body {
-    font-family: sans-serif;
+    font-family: "Neue", sans-serif;
+}
+
+
+.page-title {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 500;
+  font-family: RobotoCondensed;
 }
 
 @keyframes float {
@@ -15,19 +64,5 @@ body {
     100% {
         opacity: 0;
         transform: translateY(-50px);
-    }
-}
-
-@keyframes blink {
-    0% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
     }
 }

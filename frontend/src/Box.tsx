@@ -1,13 +1,31 @@
-import { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { useRef, useState } from "react";
+import { useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/scene.gltf')
+  const { nodes, materials } = useGLTF("/scene.gltf");
+  const lightRef = useRef();
+
+  const [lightPosition, setLightPosition] = useState([0, 3, 4]);
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime();
+    const x = Math.sin(time) * 5;
+    const y = 3 + Math.cos(time) * 2;
+    const z = 3;
+    setLightPosition([x, y, z]);
+    lightRef.current.position.set(x, y, z);
+  });
+
   return (
     <group {...props} dispose={null}>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <group rotation={[-Math.PI / 2, 0, 0]} scale={0.5}>
+      {/*<ambientLight />*/}
+      <pointLight ref={lightRef} position={lightPosition} intensity={5.5} />
+      <group
+        rotation={[-Math.PI / 2, 0, 0]}
+        scale={0.5}
+        position={[0, 0.9, -0.5]}
+      >
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <mesh
             // castShadow
@@ -69,7 +87,7 @@ export function Model(props) {
         </group>
       </group>
     </group>
-  )
+  );
 }
 
-useGLTF.preload('/scene.gltf')
+useGLTF.preload("/scene.gltf");

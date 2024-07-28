@@ -1,0 +1,38 @@
+.airdrop {
+  flex-grow: 1;
+  padding: 20px;
+  background: var(--gray);
+}
+
+.airdrop h2 {
+  margin-bottom: 20px;
+}
+
+.airdrop h3 {
+  font-size: 20px;
+}
+
+.airdrop p, .airdrop ul {
+  opacity: 0.45;
+  margin-bottom: 30px;
+}
+
+.countdown {
+  font-size: 30px;
+  opacity: 1 !important;
+}
+
+.countdown p {
+  opacity: 1;
+}
+
+.countdown span {
+  font-size: 10px;
+}
+
+.take-airdrop-button {
+  background: gray;
+  width: 100%;
+  padding: 20px 0;
+  border-radius: 15px;
+}
