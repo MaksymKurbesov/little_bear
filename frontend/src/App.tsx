@@ -80,7 +80,7 @@ const App = () => {
   useEffect(() => {
     tg.ready();
 
-    if (!user.username) return;
+    if (!user?.username) return;
 
     fetchUserData();
   }, []);
