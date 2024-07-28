@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 
 const token = `7230742106:AAE70XxKI-3vpo3wU4ANL6jyZaw8AZtEK9M`;
-const webAppUrl = `https://5ac7-85-159-2-110.ngrok-free.app`;
+const webAppUrl = `https://little-bear-rho.vercel.app/`;
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, { polling: true });
 
