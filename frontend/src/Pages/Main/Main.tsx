@@ -97,26 +97,6 @@ const Main = () => {
 
   return (
     <div className={styles["main"]}>
-      {/*<div className={`${styles["main-wrapper"]}`}>*/}
-      {/*<div className={styles["daily-reward"]}>*/}
-      {/*  <NavLink to={"/daily-reward"}>*/}
-      {/*    <div className={styles["daily-reward-wrapper"]}>*/}
-      {/*      <div className={styles["dot"]}></div>*/}
-      {/*      <img*/}
-      {/*        src={dailyReward}*/}
-      {/*        alt="Daily Reward"*/}
-      {/*        className="mx-auto w-7 h-7"*/}
-      {/*      />*/}
-      {/*      <div>*/}
-      {/*        <p className="text-[8px] text-center text-white">Daily reward</p>*/}
-      {/*        <p className="text-[10px] font-medium text-center text-gray-400">*/}
-      {/*          {dailyRewardTimeLeft}*/}
-      {/*        </p>*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
-      {/*  </NavLink>*/}
-      {/*</div>*/}
-
       <div className="flex justify-center">
         <div className={styles["points"]}>
           <img

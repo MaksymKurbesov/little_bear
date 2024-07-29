@@ -4,10 +4,15 @@ import { Outlet, useLocation } from "react-router-dom";
 import Menu from "./SharedUI/Menu/Menu";
 import { useEffect, useState } from "react";
 import { useTelegram } from "./hooks/useTelegram";
-import { setDoc, doc, getDoc, DocumentData } from "firebase/firestore";
-import { db } from "./main";
-import { formatISO } from "date-fns";
-import { generateUserData } from "./utils/helpers.ts";
+import {
+  setDoc,
+  doc,
+  getDoc,
+  DocumentData,
+  onSnapshot,
+} from "firebase/firestore";
+import { db, userService } from "./main";
+import { generateUserData, getLittleBearId } from "./utils/helpers.ts";
 
 const levelThresholds = [0, 100, 300, 600, 1000, 8500, 15000];
 
@@ -24,14 +29,23 @@ const App = () => {
   const progressPercentage = (pointsSinceLastLevel / pointsToNextLevel) * 100;
 
   useEffect(() => {
-    //   if (!userData) return;
-    //
-    //   const points = userData.points;
-    //
-    //   if (points >= maxPoints) {
-    //     setPoints(points - maxPoints); // Переносим излишек очков на следующий уровень
-    //   }
-    //
+    const fetchUser = async () => {
+      const userData = await userService.getUser(user.username);
+
+      if (userData) {
+        setUserData(userData);
+        setPoints(userData.points);
+      } else {
+        const registeredUser = generateUserData(user.username, user.id);
+        await userService.addUser(registeredUser);
+        setUserData(registeredUser);
+      }
+
+      await userService.checkDailyReward(user.username, setUserData);
+    };
+
+    fetchUser();
+
     const newLevel = levelThresholds.findIndex(
       (threshold) => points < threshold,
     );
@@ -39,50 +53,20 @@ const App = () => {
     setLevel(newLevel > 0 ? newLevel - 1 : levelThresholds.length - 1);
   }, [points]);
 
-  const fetchUserData = async () => {
-    const userRef = doc(db, "users", user?.username);
-    const userSnap = await getDoc(userRef);
-
-    if (!userSnap.exists()) {
-      const registeredUser = generateUserData(user?.username);
-
-      await setDoc(userRef, registeredUser);
-      setUserData(registeredUser);
-    } else {
-      setUserData(userSnap.data());
-      setPoints(userSnap.data().points);
-    }
-
-    const today = new Date();
-    const todayString = formatISO(today, { representation: "date" });
-    const dailyRewardDocRef = doc(
-      db,
-      "users",
-      user?.username,
-      "dailyRewards",
-      todayString,
-    );
-    const dailyRewardDocSnap = await getDoc(dailyRewardDocRef);
-
-    if (dailyRewardDocSnap.exists() && dailyRewardDocSnap.data().claimed) {
-      setUserData((prevState) => ({
-        ...prevState,
-        hasClaimedToday: true,
-      }));
-    } else {
-      setUserData((prevState) => ({
-        ...prevState,
-        hasClaimedToday: false,
-      }));
-    }
-  };
-
   useEffect(() => {
     tg.ready();
 
     if (!user?.username) return;
 
-    fetchUserData();
+    const userRef = doc(db, "users", user?.username);
+    const unsubscribe = onSnapshot(userRef, (doc) => {
+      const data = doc.data();
+      if (data) {
+        setPoints(data.points); // Получение общего количества очков
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (

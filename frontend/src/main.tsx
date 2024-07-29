@@ -5,6 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import routes from "./routes";
 import { RouterProvider } from "react-router-dom";
+import UserService from "./Api/UserService.ts";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCcrWcEBknR9NoXZccEBBtqE-txTVOE4wo",
@@ -18,6 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
+export const userService = new UserService();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

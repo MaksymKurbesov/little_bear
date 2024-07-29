@@ -1,13 +1,13 @@
 .leaders {
   background: var(--gray);
-  padding: 20px 10px;
+  padding: 10px;
   font-family: RobotoCondensed;
   flex-grow: 1;
   font-weight: 400;
-}
-
-.leaders h1 {
-  /*margin-bottom: 10px;*/
+  background-image: url('/leaders-bg.jpg');
+  background-size: 145% 50%;
+  background-repeat: no-repeat;
+  background-position: top -35px center;
 }
 
 .subtitle {
@@ -16,17 +16,117 @@
   margin-bottom: 15px;
 }
 
-.headers {
+.top3 {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  min-height: 120px;
+  margin-bottom: 60px;
+  font-size: 14px;
+}
+
+.top3 > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top3 > div img {
+  margin-bottom: 7px;
+}
+
+.top3 > div span {
+  color: var(--orange);
   font-weight: 500;
+  text-shadow: 0 0 5px rgba(101, 44, 0, 0.5);
+}
+
+.leader-avatar {
+  position: relative;
+
+}
+
+.leader-avatar img:nth-child(1) {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.leader-avatar img:nth-child(1){
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.leader-avatar img:nth-child(2){
+  position: relative;
+  z-index: 4;
+}
+
+.leader-nickname {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1;
+  text-shadow: 0 0 2px rgba(255, 209, 135, 0.8),
+  0 0 4px rgba(255, 207, 129, 0.8),
+  0 0 8px rgba(255, 206, 124, 0.6),
+  0 0 15px rgba(255, 201, 121, 0.5);
+
+}
+
+.silver, .bronze {
+  position: relative;
+  top: 35px;
+}
+
+.bronze {
+  top: 50px;
+}
+
+.leaders-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.headers {
+  font-weight: 400 !important;
+  opacity: 0.35;
+}
+
+.headers span {
+  font-weight: 400 !important;
+  font-size: 16px !important;
+}
+
+.headers p {
+  color: white !important;
 }
 
 .leaders li {
   display: grid;
   grid-template-columns: 24px 1fr 75px;
-  gap: 10px;
+  align-items: center;
   font-size: 14px;
+  padding: 20px 0;
+  /*border-bottom: 1px solid rgba(255, 255, 255, 0.05);*/
+}
+
+
+.leaders li:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.leaders li span {
+  /*font-size: 20px;*/
+  font-weight: 500;
 }
 
 .leaders li p {
   text-align: center;
+}
+
+.leaders li p:nth-child(3) {
+  text-align: right;
+  color: var(--orange);
+  /*font-weight: 500;*/
 }

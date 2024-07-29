@@ -6,7 +6,6 @@
 .game-wrapper {
   position: relative;
   display: flex;
-  /*grid-template-rows: 111px 1fr 58px;*/
   flex-direction: column;
   background-color: black;
   font-weight: bold;
@@ -14,11 +13,6 @@
   max-width: 36rem;
   width: 100%;
   color: white;
-
-/*  background-image: url("./src/images/bg.webp");*/
-/*  background-size: cover;*/
-/*  background-position: center;*/
-/*  background-repeat: no-repeat;*/
 }
 
 .background-image {

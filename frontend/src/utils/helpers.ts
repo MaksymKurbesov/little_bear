@@ -72,13 +72,33 @@ export const registerUser = async (nickname: string) => {
   }
 };
 
-export const generateUserData = (username: string) => {
+export const generateUserData = (username: string, id: string) => {
   return {
+    id,
     username: username,
     points: 0,
-    profitPerHour: 0,
     status: "Bronze",
     consecutiveDays: 0,
     lastClaimedDate: "",
   };
 };
+
+export function getLittleBearId(queryString: string) {
+  // Parse the query string to get the value of tgWebAppStartParam
+  const params = new URLSearchParams(queryString);
+  const tgWebAppStartParam = params.get("tgWebAppStartParam");
+
+  // Check if tgWebAppStartParam exists
+  if (!tgWebAppStartParam) {
+    return null;
+  }
+
+  // Decode the value of tgWebAppStartParam
+  const decodedParam = decodeURIComponent(tgWebAppStartParam);
+
+  // Parse the decoded parameter to get the value of little_bear_id
+  const startParams = new URLSearchParams(decodedParam);
+  const littleBearId = startParams.get("little_bear_id");
+
+  return littleBearId;
+}

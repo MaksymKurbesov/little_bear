@@ -3,10 +3,17 @@ import CopyIcon from "../../icons/copy.svg";
 import InviteUserIcon from "../../icons/invite-user.svg";
 import HighGiftIcon from "../../images/gift-icon-high.png";
 import LowGiftIcon from "../../images/gift-icon-low.png";
-
-import CoinIcon from "../../images/default-coin.png";
+import { useTelegram } from "../../hooks/useTelegram.ts";
 
 const Friends = () => {
+  const { tg, user } = useTelegram();
+
+  const handleInviteClick = () => {
+    const inviteUrl = `https://t.me/share/url?text=Invite%20your%20friends&url=t.me/little_bear_tap_bot/little_bear?startapp=little_bear_id=${user.id}`;
+
+    tg.openTelegramLink(inviteUrl);
+  };
+
   return (
     <div className={`${styles.friends} main`}>
       <h1>Invite friends!</h1>
@@ -19,12 +26,6 @@ const Friends = () => {
           <div className={styles["gift-info"]}>
             <h3>Invite a friend</h3>
             <div className={styles["text-wrapper"]}>
-              {/*<img*/}
-              {/*  src={CoinIcon}*/}
-              {/*  width={15}*/}
-              {/*  alt={""}*/}
-              {/*  className={styles["coin-icon"]}*/}
-              {/*/>*/}
               <p className={styles["description"]}>
                 <span>+5,000 </span>
                 <span>for you and your friend</span>
@@ -37,12 +38,6 @@ const Friends = () => {
           <div className={styles["gift-info"]}>
             <h3>Invite a friend with Telegram Premium</h3>
             <div className={styles["text-wrapper"]}>
-              {/*<img*/}
-              {/*  src={CoinIcon}*/}
-              {/*  width={15}*/}
-              {/*  alt={""}*/}
-              {/*  className={styles["coin-icon"]}*/}
-              {/*/>*/}
               <p className={styles["description"]}>
                 <span>+25,000</span> <span>for you and your friend</span>
               </p>
@@ -78,7 +73,10 @@ const Friends = () => {
       </div>
 
       <div className={styles["invite-buttons"]}>
-        <button className={styles["invite-friend-button"]}>
+        <button
+          className={styles["invite-friend-button"]}
+          onClick={handleInviteClick}
+        >
           Invite a friend <img src={InviteUserIcon} alt={""} width={15} />
         </button>
         <button className={styles["copy-button"]}>
