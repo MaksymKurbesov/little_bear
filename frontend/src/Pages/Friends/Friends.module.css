@@ -74,7 +74,7 @@
 
 
 .friends-list-wrapper {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .friends-list-wrapper h2 {
@@ -128,7 +128,7 @@
 
 .invite-buttons {
   position: sticky;
-  bottom: 15px;
+  bottom: 70px;
   display: flex;
   gap: 5px;
   align-items: center;

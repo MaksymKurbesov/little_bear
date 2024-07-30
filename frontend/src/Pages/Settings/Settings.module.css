@@ -34,7 +34,7 @@
   position: absolute;
   top: 50%;
   right: 20px;
-  filter: invert(1);
+  /*filter: invert(1);*/
   transform: translateY(-50%) rotateZ(-90deg);
   opacity: 0.55;
 }

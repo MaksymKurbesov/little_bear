@@ -1,3 +1,5 @@
+export const POINTS_TO_ADD = 11;
+
 const levelNames = [
   "Bronze", // From 0 to 4999 coins
   "Silver", // From 5000 coins to 24,999 coins
@@ -48,3 +50,5 @@ export const DAILY_REWARDS_BY_DAY: { [key: string]: number } = {
   8: 1000000,
   9: 5000000,
 };
+
+export const levelThresholds = [0, 100, 300, 600, 1000, 8500, 15000];

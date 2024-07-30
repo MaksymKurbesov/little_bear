@@ -6,6 +6,9 @@ import { getFirestore } from "@firebase/firestore";
 import routes from "./routes";
 import { RouterProvider } from "react-router-dom";
 import UserService from "./Api/UserService.ts";
+import { Provider } from "react-redux";
+import store from "./Stores/store.ts";
+import { AppStateProvider } from "./Stores/AppStateContext.tsx";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCcrWcEBknR9NoXZccEBBtqE-txTVOE4wo",
@@ -23,6 +26,10 @@ export const userService = new UserService();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={routes} />
+    <Provider store={store}>
+      <AppStateProvider>
+        <RouterProvider router={routes} />
+      </AppStateProvider>
+    </Provider>
   </React.StrictMode>,
 );

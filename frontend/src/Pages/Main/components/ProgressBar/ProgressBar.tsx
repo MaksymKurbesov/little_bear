@@ -1,15 +1,21 @@
 import styles from "./ProgressBar.module.css";
 import ArrowIcon from "../../../../icons/arrow.svg";
+import {
+  calculateProgressBar,
+  getLevelByPoints,
+} from "../../../../utils/helpers.ts";
 
-const ProgressBar = ({ points, progressPercentage, level }) => {
-  console.log(progressPercentage, "progressPercentage");
+const ProgressBar = ({ points }: { points: number }) => {
+  const progressPercentage = calculateProgressBar(points);
 
   return (
     <div className={styles["level"]}>
       <div className={styles["progress"]}>
         <div style={{ width: `${progressPercentage}%` }}></div>
       </div>
-      <p className={styles["level-span"]}>Level: {level}/7</p>
+      <p className={styles["level-span"]}>
+        Level: {getLevelByPoints(points)}/7
+      </p>
       <img
         className={styles["arrow-icon"]}
         src={ArrowIcon}

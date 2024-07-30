@@ -6,25 +6,32 @@ import {
   getDoc,
   updateDoc,
   deleteDoc,
+  arrayUnion,
 } from "firebase/firestore";
-import { addDays, formatISO, isSameDay } from "date-fns";
-import { DAILY_REWARDS_BY_DAY } from "../utils/consts.ts";
+import { formatISO } from "date-fns";
 
-interface User {
+export interface IReferral {
+  username: string;
+  points: number;
+}
+
+export interface IUser {
   id: string;
   status: string;
   username: string;
   consecutiveDays: number;
   lastClaimedDate?: string;
   points: number;
+  referrals: IReferral[];
+  hasClaimedToday: boolean;
 }
 
 class UserService {
   private userCollection = collection(db, "users");
 
-  async addUser(user: User): Promise<void> {
+  async addUser(user: IUser): Promise<void> {
     try {
-      const userRef = doc(this.userCollection, user.id);
+      const userRef = doc(this.userCollection, user.id.toString());
       await setDoc(userRef, user);
       console.log("User added successfully");
     } catch (error) {
@@ -32,12 +39,23 @@ class UserService {
     }
   }
 
-  async getUser(userId: string): Promise<User | undefined> {
+  async getUser(userId: string): Promise<IUser | undefined> {
     try {
-      const userRef = doc(this.userCollection, userId);
+      const userRef = doc(this.userCollection, userId.toString());
       const userDoc = await getDoc(userRef);
+
       if (userDoc.exists()) {
-        return userDoc.data() as User;
+        const user = userDoc.data() as IUser;
+
+        // Fetch referrals data
+        if (user.referrals) {
+          const referralPromises = user.referrals.map((ref) => getDoc(ref));
+          const referralDocs = await Promise.all(referralPromises);
+
+          user.referrals = referralDocs.map((doc) => doc.data()) as any; // Adjust this line to map the referral data appropriately
+        }
+
+        return user;
       } else {
         console.log("No such user!");
         return undefined;
@@ -48,7 +66,7 @@ class UserService {
     }
   }
 
-  async updateUser(userId: string, updatedData: Partial<User>): Promise<void> {
+  async updateUser(userId: string, updatedData: Partial<IUser>): Promise<void> {
     try {
       const userRef = doc(this.userCollection, userId);
       await updateDoc(userRef, updatedData);
@@ -71,59 +89,63 @@ class UserService {
   async addReferral(userId: string, referralId: string): Promise<void> {
     try {
       const userRef = doc(this.userCollection, userId);
-      await updateDoc(userRef, { referralId });
+      const referralUserRef = doc(this.userCollection, referralId.toString());
+
+      console.log(userRef, "userRef");
+      console.log(referralUserRef, "referralUserRef");
+
+      await updateDoc(userRef, {
+        referrals: arrayUnion(referralUserRef),
+      });
       console.log("Referral added successfully");
     } catch (error) {
       console.error("Error adding referral: ", error);
     }
   }
 
-  async checkDailyReward(
-    username: string,
-    setUserData: (callback: (prevState: any) => any) => void,
-  ): Promise<void> {
+  async checkDailyReward(id: string, dispatch: any): Promise<void> {
     try {
       const today = new Date();
       const todayString = formatISO(today, { representation: "date" });
       const dailyRewardDocRef = doc(
         db,
         "users",
-        username,
+        id.toString(),
         "dailyRewards",
         todayString,
       );
       const dailyRewardDocSnap = await getDoc(dailyRewardDocRef);
+      const isClaimed =
+        dailyRewardDocSnap.exists() && dailyRewardDocSnap.data().claimed;
 
-      if (dailyRewardDocSnap.exists() && dailyRewardDocSnap.data().claimed) {
-        setUserData((prevState) => ({
-          ...prevState,
-          hasClaimedToday: true,
-        }));
-      } else {
-        setUserData((prevState) => ({
-          ...prevState,
-          hasClaimedToday: false,
-        }));
-      }
+      dispatch({
+        type: "UPDATE_USER_DATA",
+        payload: {
+          hasClaimedToday: isClaimed,
+        },
+      });
     } catch (error) {
       console.error("Error checking daily reward: ", error);
     }
   }
 
-  async claimDailyReward(
-    userData: User,
-    setUserData: (callback: (prevState: any) => any) => void,
-  ): Promise<void> {
-    if (!userData) return;
+  async claimDailyReward(user: any, dispatch: any) {
+    if (!user) return;
 
+    const userID = user.id.toString();
     const today = new Date();
-    const todayString = formatISO(today, { representation: "date" });
+    const todayString = today.toISOString().split("T")[0];
 
-    const userDocRef = doc(db, "users", userData.username);
+    const newConsecutiveDays =
+      user.lastClaimedDate === todayString ? user.consecutiveDays + 1 : 1;
+
+    const rewardPoints = 100; // Логика начисления очков
+    const newTotalPoints = user.points + rewardPoints;
+
     const dailyRewardDocRef = doc(
       db,
       "users",
-      userData.username,
+      userID,
       "dailyRewards",
       todayString,
     );
@@ -135,47 +157,32 @@ class UserService {
       return;
     }
 
-    let newConsecutiveDays = userData.consecutiveDays;
-
-    if (userData.lastClaimedDate) {
-      const lastClaimedDate = new Date(userData.lastClaimedDate);
-
-      if (isSameDay(addDays(lastClaimedDate, 1), today)) {
-        newConsecutiveDays += 1;
-      } else if (!isSameDay(lastClaimedDate, today)) {
-        newConsecutiveDays = 1;
-      }
-    } else {
-      newConsecutiveDays = 1;
-    }
-
-    const rewardPoints =
-      DAILY_REWARDS_BY_DAY[newConsecutiveDays % DAILY_REWARDS_BY_DAY.length]; // Define your logic for points allocation here
-    const newTotalPoints = userData.points + rewardPoints;
-
     try {
       await setDoc(dailyRewardDocRef, {
         points: rewardPoints,
         claimed: true,
       });
 
-      await updateDoc(userDocRef, {
-        points: newTotalPoints,
-        lastClaimedDate: todayString,
-        consecutiveDays: newConsecutiveDays,
-      });
-
-      setUserData((prevUser: any) => ({
-        ...prevUser,
+      await this.updateUser(user.id.toString(), {
         points: newTotalPoints,
         lastClaimedDate: todayString,
         consecutiveDays: newConsecutiveDays,
         hasClaimedToday: true,
-      }));
+      });
 
-      console.log("Daily reward claimed successfully.");
+      dispatch({
+        type: "UPDATE_USER_DATA",
+        payload: {
+          points: newTotalPoints,
+          lastClaimedDate: todayString,
+          consecutiveDays: newConsecutiveDays,
+          hasClaimedToday: true,
+        },
+      });
+
+      console.log("Reward claimed successfully");
     } catch (err) {
-      console.error("Failed to claim daily reward:", err);
+      console.error("Failed to claim reward:", err);
     }
   }
 }

@@ -1,8 +1,9 @@
 .daily-reward {
-  padding: 0 10px;
+  padding: 20px 10px;
   background: var(--gray);
   font-family: RobotoCondensed;
   font-weight: 400;
+  flex-grow: 1;
 }
 
 .daily-icon {
@@ -10,19 +11,10 @@
   margin: 25px auto 0;
 }
 
-.daily-reward h1 {
-  text-align: center;
-  font-size: 40px;
-  font-weight: 500;
-  line-height: 1;
-}
-
 .subtitle {
-  margin: 0 auto 25px;
-  max-width: 70%;
   text-align: center;
-  font-size: 14px;
-
+  font-size: 12px;
+  margin-bottom: 40px;
 }
 
 .daily-list {

@@ -1,31 +1,50 @@
 import styles from "./Header.module.css";
 import Settings from "../../icons/Settings";
-import { dailyReward, dollarCoin } from "../../images";
-import { getRank } from "../../utils/helpers.ts";
+import { dailyReward } from "../../images";
+import { calculateTimeLeft } from "../../utils/helpers.ts";
 import LittleBearIcon from "../../images/little-bear-icon.png";
-import GoldStatus from "../../icons/levels/gold.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import ProgressBar from "../../Pages/Main/components/ProgressBar/ProgressBar.tsx";
+import { useAppState } from "../../Stores/AppStateContext.tsx";
+import { useEffect, useState } from "react";
 
-const Header = ({ userData, level, progressPercentage }) => {
-  const { username, points } = userData;
+const Header = () => {
+  const { state } = useAppState();
+  const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
+  const location = useLocation();
+  const isPlayPage = location.pathname === "/";
+
+  useEffect(() => {
+    const updateCountdowns = () => {
+      setDailyRewardTimeLeft(calculateTimeLeft());
+    };
+
+    updateCountdowns();
+    const interval = setInterval(updateCountdowns, 60000); // Update every minute
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  if (!state.user) return;
 
   return (
-    <div className={styles["header"]}>
+    <div
+      className={`${styles["header"]} ${isPlayPage ? styles["header-main"] : ""}`}
+    >
       <div className={styles["left-column"]}>
         <div className={styles["nickname"]}>
-          <div className={styles["user-icon"]}>
-            <img src={LittleBearIcon} alt={""} width={20} />
-          </div>
+          <NavLink to={"/"}>
+            <div className={styles["user-icon"]}>
+              <img src={LittleBearIcon} alt={""} width={20} />
+            </div>
+          </NavLink>
 
           <div className={styles["info-wrapper"]}>
-            <p>{username}</p>
+            <p>{state.user.username}</p>
             <NavLink to={"levels"}>
-              <ProgressBar
-                points={points}
-                level={level}
-                progressPercentage={progressPercentage}
-              />
+              <ProgressBar points={state.points} />
             </NavLink>
           </div>
         </div>
@@ -33,7 +52,6 @@ const Header = ({ userData, level, progressPercentage }) => {
 
       <div className={styles["daily-reward"]}>
         <NavLink to={"/daily-reward"} className={styles["daily-reward-link"]}>
-          {/*<div className={styles["daily-reward-wrapper"]}>*/}
           <div className={styles["dot"]}></div>
           <img
             src={dailyReward}
@@ -42,9 +60,8 @@ const Header = ({ userData, level, progressPercentage }) => {
           />
           <div className={styles["daily-text"]}>
             <p>Daily reward</p>
-            <p>00:00</p>
+            <p>{dailyRewardTimeLeft}</p>
           </div>
-          {/*</div>*/}
         </NavLink>
       </div>
 
@@ -53,8 +70,6 @@ const Header = ({ userData, level, progressPercentage }) => {
           <Settings />
         </div>
       </NavLink>
-
-      {/*</div>*/}
     </div>
   );
 };

@@ -1,13 +1,16 @@
 .leaders {
-  background: var(--gray);
+  background-color: var(--gray);
   padding: 10px;
   font-family: RobotoCondensed;
   flex-grow: 1;
   font-weight: 400;
-  background-image: url('/leaders-bg.jpg');
+  background-image: url('/leaders-bg.webp');
   background-size: 145% 50%;
   background-repeat: no-repeat;
   background-position: top -35px center;
+  position: relative;
+  top: -9px;
+  padding-bottom: 0px;
 }
 
 .subtitle {
@@ -20,8 +23,8 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  min-height: 120px;
-  margin-bottom: 60px;
+  /*min-height: 120px;*/
+  margin-bottom: 45px;
   font-size: 14px;
 }
 
@@ -43,7 +46,6 @@
 
 .leader-avatar {
   position: relative;
-
 }
 
 .leader-avatar img:nth-child(1) {
@@ -76,11 +78,11 @@
 
 .silver, .bronze {
   position: relative;
-  top: 35px;
+  top: 25px;
 }
 
 .bronze {
-  top: 50px;
+  top: 35px;
 }
 
 .leaders-list {

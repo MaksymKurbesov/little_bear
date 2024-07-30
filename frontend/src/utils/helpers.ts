@@ -1,17 +1,12 @@
-import { LEVELS_BY_POINTS } from "./consts.ts";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../main.tsx";
+import { LEVELS_BY_POINTS, levelThresholds } from "./consts.ts";
 
-export const calculateTimeLeft = (targetHour: number) => {
+export const calculateTimeLeft = () => {
   const now = new Date();
-  const target = new Date(now);
-  target.setUTCHours(targetHour, 0, 0, 0);
+  const nextDay = new Date(now);
+  nextDay.setDate(now.getDate() + 1);
+  nextDay.setHours(0, 0, 0, 0);
 
-  if (now.getUTCHours() >= targetHour) {
-    target.setUTCDate(target.getUTCDate() + 1);
-  }
-
-  const diff = target.getTime() - now.getTime();
+  const diff = nextDay.getTime() - now.getTime();
   const hours = Math.floor(diff / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
@@ -60,16 +55,9 @@ export const getRank = (points: number): string => {
   return rank;
 };
 
-export const registerUser = async (nickname: string) => {
-  const userRef = doc(db, "users", nickname);
-  const userSnap = await getDoc(userRef);
-
-  if (!userSnap.exists()) {
-    const registeredUser = generateUserData(nickname);
-
-    await setDoc(userRef, registeredUser);
-    setUserData(registeredUser);
-  }
+export const getLevelByPoints = (points: number) => {
+  const newLevel = levelThresholds.findIndex((threshold) => points < threshold);
+  return newLevel > 0 ? newLevel - 1 : levelThresholds.length - 1;
 };
 
 export const generateUserData = (username: string, id: string) => {
@@ -80,7 +68,16 @@ export const generateUserData = (username: string, id: string) => {
     status: "Bronze",
     consecutiveDays: 0,
     lastClaimedDate: "",
+    referrals: [],
   };
+};
+
+export const calculateProgressBar = (points: number) => {
+  const level = getLevelByPoints(points);
+
+  const pointsSinceLastLevel = points - levelThresholds[level];
+  const pointsToNextLevel = levelThresholds[level + 1] - levelThresholds[level];
+  return (pointsSinceLastLevel / pointsToNextLevel) * 100;
 };
 
 export function getLittleBearId(queryString: string) {

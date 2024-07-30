@@ -1,99 +1,54 @@
 import styles from "./Main.module.css";
-import { useEffect, useRef, useState } from "react";
-import { dailyReward, dollarCoin, mainCharacter } from "../../images";
-import { calculateTimeLeft } from "../../utils/helpers";
-import { NavLink, useOutletContext } from "react-router-dom";
+import { useCallback, useEffect, useRef } from "react";
 import { doc, runTransaction } from "firebase/firestore";
 import { db } from "../../main";
-import AncientBorder from "../../images/ancient-border.svg";
 import LittleBearCoin from "../../images/coin.png";
-import { Canvas } from "@react-three/fiber";
-import { Model } from "../../Box.tsx";
-
-const pointsToAdd = 11;
+import { useAppState } from "../../Stores/AppStateContext.tsx";
+import Bear from "./components/Bear/Bear.tsx";
+import { POINTS_TO_ADD } from "../../utils/consts.ts";
+import { useTelegram } from "../../hooks/useTelegram.ts";
 
 const Main = () => {
-  const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
+  const { state, dispatch } = useAppState();
 
-  const [earnedPoints, setEarnedPoints] = useState(0);
-  const [clickedPoints, setClickedPoints] = useState(0);
-  const [clicks, setClicks] = useState<{ id: number; x: number; y: number }[]>(
-    [],
-  );
-
-  const { userData } = useOutletContext();
-  const userDataRef = useRef(userData);
+  const { tg, user: UserTG } = useTelegram();
+  const userID = UserTG.id.toString();
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleAnimationEnd = (id: number) => {
-    setClicks((prevClicks) => prevClicks.filter((click) => click.id !== id));
+    dispatch({ type: "REMOVE_CLICK", payload: id });
   };
 
-  useEffect(() => {
-    const sendPointsToServer = async () => {
-      try {
-        if (clickedPoints > 0) {
-          console.log("sending data...");
+  const sendPointsToServer = useCallback(async () => {
+    if (state.clickedPoints <= 0 || !userID) return;
 
-          const userRef = doc(db, "users", userData?.username);
-          await runTransaction(db, async (transaction) => {
-            const doc = await transaction.get(userRef);
-            if (!doc.exists) {
-              throw "Документ не существует!";
-            }
-
-            const newCount = doc.data().points + clickedPoints;
-            transaction.update(userRef, { points: newCount });
-          });
-
-          setClickedPoints(0);
+    try {
+      const userRef = doc(db, "users", userID);
+      await runTransaction(db, async (transaction) => {
+        const docSnap = await transaction.get(userRef);
+        if (!docSnap.exists()) {
+          throw new Error("Документ не существует!");
         }
-      } catch (e) {}
-    };
 
-    const interval = setInterval(() => {
-      sendPointsToServer();
-    }, 3000); // Отправка данных каждые 5 секунд
+        const newCount = docSnap.data().points + state.clickedPoints;
+        transaction.update(userRef, { points: newCount });
+      });
 
-    return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
-  }, [clickedPoints]);
-
-  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    card.style.transform = `perspective(1000px) rotateX(${
-      -y / 10
-    }deg) rotateY(${x / 10}deg)`;
-    setTimeout(() => {
-      card.style.transform = "";
-    }, 100);
-
-    setEarnedPoints((prevState) => prevState + pointsToAdd);
-    setClickedPoints((prevState) => prevState + pointsToAdd);
-    setClicks([...clicks, { id: Date.now(), x: e.pageX, y: e.pageY }]);
-  };
+      dispatch({ type: "RESET_CLICKED_POINTS" });
+    } catch (error) {
+      console.error("Error sending points to server:", error);
+    }
+  }, [state.clickedPoints, userID, dispatch]);
 
   useEffect(() => {
-    userDataRef.current = userData;
-  }, [userData]);
-
-  useEffect(() => {
-    const updateCountdowns = () => {
-      setDailyRewardTimeLeft(calculateTimeLeft(0));
-    };
-
-    updateCountdowns();
-    const interval = setInterval(updateCountdowns, 60000); // Update every minute
-    // const pointsInterval = setInterval(() => {
-    //   setEarnedPoints((prevTime) => prevTime + pointsToAdd);
-    // }, 3600000);
+    intervalRef.current = setInterval(sendPointsToServer, 3000);
 
     return () => {
-      clearInterval(interval);
-      // clearInterval(pointsInterval);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
     };
-  }, []);
+  }, [sendPointsToServer]);
 
   return (
     <div className={styles["main"]}>
@@ -105,21 +60,13 @@ const Main = () => {
             className={styles["dollar-coin"]}
           />
           <p className="text-4xl text-white">
-            {userData
-              ? (userData?.points + earnedPoints).toLocaleString()
-              : "-"}
+            {state.points ? state.points.toLocaleString() : "-"}
           </p>
         </div>
       </div>
+      <Bear />
 
-      <div className={styles["main-image-wrapper"]} onClick={handleCardClick}>
-        <>
-          <Canvas>
-            <Model />
-          </Canvas>
-        </>
-      </div>
-      {clicks.map((click) => (
+      {state.clicks.map((click) => (
         <div
           key={click.id}
           className={`${styles["earned-points"]} absolute text-5xl font-bold opacity-0 text-white pointer-events-none`}
@@ -130,10 +77,9 @@ const Main = () => {
           }}
           onAnimationEnd={() => handleAnimationEnd(click.id)}
         >
-          +{pointsToAdd}
+          +{POINTS_TO_ADD}
         </div>
       ))}
-      {/*</div>*/}
     </div>
   );
 };

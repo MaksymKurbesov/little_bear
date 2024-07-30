@@ -2,7 +2,7 @@ import styles from "./Menu.module.css";
 import Friends from "../../icons/Friends";
 import Coins from "../../icons/Coins";
 import { hamsterCoin } from "../../images";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import LittleBearIcon from "../../images/little-bear-colored-icon.png";
 import LittleBearGoldenIcon from "../../images/little-bear-golden.png";
 import FriendsIcon from "../../images/friends-icon.png";
@@ -14,8 +14,11 @@ import LeadersIcon from "../../icons/leadership.webp";
 import TasksIcon from "../../icons/tasks.webp";
 
 const Menu = () => {
+  const location = useLocation();
+  const isPlayPage = location.pathname === "/";
+
   return (
-    <ul className={styles.menu}>
+    <ul className={`${styles.menu} ${isPlayPage ? styles["menu-main"] : ""}`}>
       <li>
         <NavLink
           to={"/"}
