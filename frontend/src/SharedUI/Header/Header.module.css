@@ -117,6 +117,10 @@
   line-height: 1;
 }
 
+.claimed {
+  color: var(--orange);
+}
+
 .settings {
   display: flex;
   align-items: center;

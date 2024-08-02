@@ -16,8 +16,7 @@ export interface IReferral {
 }
 
 export interface IUser {
-  id: string;
-  status: string;
+  id: number;
   username: string;
   consecutiveDays: number;
   lastClaimedDate?: string;
@@ -117,6 +116,8 @@ class UserService {
       const dailyRewardDocSnap = await getDoc(dailyRewardDocRef);
       const isClaimed =
         dailyRewardDocSnap.exists() && dailyRewardDocSnap.data().claimed;
+
+      console.log(isClaimed, "isClaimed in check ");
 
       dispatch({
         type: "UPDATE_USER_DATA",

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Podium
+* source:	https://sketchfab.com/3d-models/podium-2932a9062051454aa47e564a87239abe
+* author:	Maks_Art22 (https://sketchfab.com/Maks_Art22)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Podium" (https://sketchfab.com/3d-models/podium-2932a9062051454aa47e564a87239abe) by Maks_Art22 (https://sketchfab.com/Maks_Art22) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

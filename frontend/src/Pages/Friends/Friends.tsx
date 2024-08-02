@@ -4,7 +4,7 @@ import InviteUserIcon from "../../icons/invite-user.svg";
 import HighGiftIcon from "../../images/gift-icon-high.png";
 import LowGiftIcon from "../../images/gift-icon-low.png";
 import { useTelegram } from "../../hooks/useTelegram.ts";
-import { ScrollRestoration } from "react-router-dom";
+import { ScrollRestoration, useOutletContext } from "react-router-dom";
 import { getLevelByPoints } from "../../utils/helpers.ts";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
 

@@ -14,7 +14,6 @@ export const useImagePreloader = (imageUrls: any) => {
     };
 
     imageUrls.forEach((url) => {
-      console.log(url, "url");
       const img = new Image();
       img.src = url;
 

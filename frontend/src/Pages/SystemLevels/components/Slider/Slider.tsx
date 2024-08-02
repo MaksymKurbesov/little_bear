@@ -11,6 +11,7 @@ import BearSkin3 from "../../../../images/skins/acidlover.png";
 import ProgressBar from "../../../Main/components/ProgressBar/ProgressBar.tsx";
 import { useEffect, useRef, useState } from "react";
 import ArrowIcon from "../../../../icons/arrow.svg";
+import { useImagePreloader } from "../../../../hooks/useImagePreloader.ts";
 
 const Slider = ({ setCurrentSkin }) => {
   const swiperRef = useRef(null);
@@ -19,25 +20,32 @@ const Slider = ({ setCurrentSkin }) => {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [swiper, setSwiper] = useState<Swiper>();
+  const imageUrls = [BearSkin1, BearSkin2, BearSkin3];
+  const imagesLoaded = useImagePreloader(imageUrls);
 
   useEffect(() => {
-    const swiperInstance = swiperRef.current.swiper;
+    if (!swiper) return;
 
     const handleSlideChange = () => {
-      setIsBeginning(swiperInstance.isBeginning);
-      setIsEnd(swiperInstance.isEnd);
+      setIsBeginning(swiper.isBeginning);
+      setIsEnd(swiper.isEnd);
     };
 
-    swiperInstance.on("slideChange", handleSlideChange);
-    swiperInstance.on("reachEnd", () => setIsEnd(true));
-    swiperInstance.on("reachBeginning", () => setIsBeginning(true));
+    console.log("swiper.on");
+    swiper.on("slideChange", handleSlideChange);
+    swiper.on("reachEnd", () => setIsEnd(true));
+    swiper.on("reachBeginning", () => setIsBeginning(true));
 
     return () => {
-      swiperInstance.off("slideChange", handleSlideChange);
-      swiperInstance.off("reachEnd");
-      swiperInstance.off("reachBeginning");
+      swiper.off("slideChange", handleSlideChange);
+      swiper.off("reachEnd");
+      swiper.off("reachBeginning");
     };
-  }, []);
+  }, [swiper]);
+
+  if (!imagesLoaded) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Swiper
@@ -45,17 +53,13 @@ const Slider = ({ setCurrentSkin }) => {
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
       slidesPerView={1}
-      onSwiper={(swiper) => setSwiper(swiper)}
+      onSwiper={(swiper) => {
+        console.log(swiper, "on swiper");
+        setSwiper(swiper);
+      }}
       onSlideChange={(e) => {
         setCurrentSkin(e.activeIndex);
       }}
-      // navigation={
-      //   {
-      //     // nextEl: styles[".arrow-left"],
-      //     // prevEl: styles[".arrow-right"],
-      //     // disabledClass: "disabled_swiper_button",
-      //   }
-      // }
     >
       <SwiperSlide className={styles["slide"]}>
         {/*<div className={`${styles["orb"]} `}></div>*/}

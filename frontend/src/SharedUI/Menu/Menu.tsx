@@ -1,13 +1,6 @@
 import styles from "./Menu.module.css";
-import Friends from "../../icons/Friends";
-import Coins from "../../icons/Coins";
-import { hamsterCoin } from "../../images";
 import { NavLink, useLocation } from "react-router-dom";
-import LittleBearIcon from "../../images/little-bear-colored-icon.png";
 import LittleBearGoldenIcon from "../../images/little-bear-golden.png";
-import FriendsIcon from "../../images/friends-icon.png";
-import NewsIcon from "../../images/news-icon.png";
-
 import PlayIcon from "../../icons/play.webp";
 import FrensIcon from "../../icons/frens.webp";
 import LeadersIcon from "../../icons/leadership.webp";
@@ -26,7 +19,7 @@ const Menu = () => {
             isPending ? styles["pending"] : isActive ? styles["active"] : ""
           }
         >
-          <img src={PlayIcon} width={22} alt={""} />
+          <img src={PlayIcon} width={22} alt={""} height={32} />
           <span>Bear</span>
         </NavLink>
       </li>
@@ -40,10 +33,10 @@ const Menu = () => {
           <img
             src={TasksIcon}
             width={16}
+            height={32}
             alt={""}
             className={`${styles["icon"]}`}
           />
-          {/*<Friends className="w-5 h-5 mx-auto" /> */}
           <span>Tasks</span>
         </NavLink>
       </li>
@@ -54,11 +47,9 @@ const Menu = () => {
             isPending ? styles["pending"] : isActive ? styles["active"] : ""
           }
         >
-          {/*<Coins className="w-5 h-5 mx-auto" /> */}
           <img
             src={FrensIcon}
             width={24}
-            height={22}
             alt={""}
             className={`${styles["icon"]} ${styles["frens-icon"]}`}
           />
@@ -72,10 +63,10 @@ const Menu = () => {
             isPending ? styles["pending"] : isActive ? styles["active"] : ""
           }
         >
-          {/*<Coins className="w-5 h-5 mx-auto" /> */}
           <img
             src={LeadersIcon}
             width={20}
+            height={32}
             alt={""}
             className={`${styles["icon"]}`}
           />
@@ -94,7 +85,6 @@ const Menu = () => {
             alt="Airdrop"
             className={`${styles["icon"]} ${styles["airdrop-icon"]}`}
             width={24}
-            height={24}
           />
           <span>Airdrop</span>
         </NavLink>

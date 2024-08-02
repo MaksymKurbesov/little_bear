@@ -59,6 +59,8 @@ body {
   font-family: RobotoCondensed;
 }
 
+.suspense { flex-grow: 1}
+
 @keyframes float {
     0% {
         opacity: 1;

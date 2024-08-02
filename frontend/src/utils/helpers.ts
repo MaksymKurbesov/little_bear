@@ -1,4 +1,5 @@
 import { LEVELS_BY_POINTS, levelThresholds } from "./consts.ts";
+import { IUser } from "../Api/UserService.ts";
 
 export const calculateTimeLeft = () => {
   const now = new Date();
@@ -60,15 +61,15 @@ export const getLevelByPoints = (points: number) => {
   return newLevel > 0 ? newLevel - 1 : levelThresholds.length - 1;
 };
 
-export const generateUserData = (username: string, id: string) => {
+export const generateUserData = (username: string, id: number): IUser => {
   return {
     id,
     username: username,
-    points: 0,
-    status: "Bronze",
     consecutiveDays: 0,
     lastClaimedDate: "",
+    points: 0,
     referrals: [],
+    hasClaimedToday: false,
   };
 };
 

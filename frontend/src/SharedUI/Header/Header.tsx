@@ -8,11 +8,10 @@ import ProgressBar from "../../Pages/Main/components/ProgressBar/ProgressBar.tsx
 import { useAppState } from "../../Stores/AppStateContext.tsx";
 import { useEffect, useState } from "react";
 
-const Header = () => {
-  const { state } = useAppState();
-  const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
+const Header = ({ user }) => {
   const location = useLocation();
   const isPlayPage = location.pathname === "/";
+  const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
 
   useEffect(() => {
     const updateCountdowns = () => {
@@ -27,7 +26,9 @@ const Header = () => {
     };
   }, []);
 
-  if (!state.user) return;
+  if (!user) {
+    return null;
+  }
 
   return (
     <div
@@ -42,9 +43,9 @@ const Header = () => {
           </NavLink>
 
           <div className={styles["info-wrapper"]}>
-            <p>{state.user.username}</p>
+            <p>{user.username}</p>
             <NavLink to={"levels"}>
-              <ProgressBar points={state.points} />
+              <ProgressBar points={user.points} />
             </NavLink>
           </div>
         </div>
@@ -52,7 +53,8 @@ const Header = () => {
 
       <div className={styles["daily-reward"]}>
         <NavLink to={"/daily-reward"} className={styles["daily-reward-link"]}>
-          <div className={styles["dot"]}></div>
+          {!user.hasClaimedToday && <div className={styles["dot"]}></div>}
+
           <img
             src={dailyReward}
             alt="Daily Reward"
@@ -60,7 +62,11 @@ const Header = () => {
           />
           <div className={styles["daily-text"]}>
             <p>Daily reward</p>
-            <p>{dailyRewardTimeLeft}</p>
+            {user.hasClaimedToday ? (
+              <p className={styles["claimed"]}>Claimed!</p>
+            ) : (
+              <p>{dailyRewardTimeLeft}</p>
+            )}
           </div>
         </NavLink>
       </div>

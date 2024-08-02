@@ -5,22 +5,31 @@ import GoldMedal from "../../images/medals/gold-avatar.webp";
 import IShowSpeed from "../../images/leaders/ishowspeed.webp";
 import Pewdiepie from "../../images/leaders/pewdiepie.webp";
 import Statham from "../../images/leaders/statham.webp";
-import { ScrollRestoration } from "react-router-dom";
+import { ScrollRestoration, useOutletContext } from "react-router-dom";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
+import { useEffect } from "react";
+
+const imageUrls = [
+  BronzeMedal,
+  SilverMedal,
+  GoldMedal,
+  IShowSpeed,
+  Pewdiepie,
+  Statham,
+];
 
 const Leaders = () => {
-  const imageUrls = [
-    BronzeMedal,
-    SilverMedal,
-    GoldMedal,
-    IShowSpeed,
-    Pewdiepie,
-    Statham,
-  ];
-
   const imagesLoaded = useImagePreloader(imageUrls);
+  const { scrollableRef } = useOutletContext();
 
-  console.log(imagesLoaded, "imagesLoaded");
+  useEffect(() => {
+    if (scrollableRef.current) {
+      console.log("Scrollable element:", scrollableRef.current);
+      // Perform operations with the ref here
+    } else {
+      console.log("Scrollable element is null");
+    }
+  }, [scrollableRef]);
 
   if (!imagesLoaded) {
     return <div>Loading...</div>;
@@ -28,7 +37,7 @@ const Leaders = () => {
 
   return (
     <>
-      <div className={`${styles.leaders} main`}>
+      <div ref={scrollableRef} className={`${styles.leaders} main`}>
         <h1 className={"page-title"}>Leaders</h1>
         <p className={styles["subtitle"]}>Top Performers: Leading the Game</p>
         <div className={styles["top3"]}>

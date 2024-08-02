@@ -3,10 +3,12 @@ import { useCallback, useEffect, useRef } from "react";
 import { doc, runTransaction } from "firebase/firestore";
 import { db } from "../../main";
 import LittleBearCoin from "../../images/coin.png";
+import BearIcon from "../../images/default-coin.webp";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
 import Bear from "./components/Bear/Bear.tsx";
 import { POINTS_TO_ADD } from "../../utils/consts.ts";
 import { useTelegram } from "../../hooks/useTelegram.ts";
+import { useOutletContext } from "react-router-dom";
 
 const Main = () => {
   const { state, dispatch } = useAppState();
@@ -55,12 +57,13 @@ const Main = () => {
       <div className="flex justify-center">
         <div className={styles["points"]}>
           <img
-            src={LittleBearCoin}
-            alt="Dollar Coin"
-            className={styles["dollar-coin"]}
+            src={BearIcon}
+            alt=""
+            className={styles["coin-icon"]}
+            width={50}
           />
           <p className="text-4xl text-white">
-            {state.points ? state.points.toLocaleString() : "-"}
+            {state.points ? state.points.toLocaleString() : 0}
           </p>
         </div>
       </div>

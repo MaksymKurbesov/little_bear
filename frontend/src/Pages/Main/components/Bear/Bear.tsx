@@ -1,13 +1,14 @@
 import styles from "./Bear.module.css";
 import { Canvas } from "@react-three/fiber";
-import Model from "../../../../Box.tsx";
-import React, { useCallback, useRef } from "react";
+import Model from "../../../../Bear3D.tsx";
+import React, { Suspense, useCallback, useRef } from "react";
 import { POINTS_TO_ADD } from "../../../../utils/consts.ts";
 import { useAppState } from "../../../../Stores/AppStateContext.tsx";
+import { Podium } from "../../../../Podium.tsx";
 
 const Bear = () => {
   const cardRef = useRef<HTMLDivElement | null>(null);
-  const { state, dispatch } = useAppState();
+  const { dispatch } = useAppState();
   const objectRef = useRef();
 
   const handleCardClick = useCallback(
@@ -44,9 +45,13 @@ const Bear = () => {
       onClick={handleCardClick}
     >
       <>
-        <Canvas>
-          <Model ref={objectRef} />
-        </Canvas>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Canvas>
+            <Model ref={objectRef} />
+
+            {/*<Podium />*/}
+          </Canvas>
+        </Suspense>
       </>
     </div>
   );
