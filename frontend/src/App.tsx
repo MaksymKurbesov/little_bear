@@ -72,13 +72,13 @@ const App = () => {
     }
   }, [user, userData, dispatch, error]);
 
-  // if (!loadingComplete) {
-  //   return <LoadingScreen progress={progress} />;
-  // }
-  //
-  // if (!userIsRegistered && !videoIsEnd) {
-  //   return <StartBearVideo onEndVideoHandler={onEndVideoHandler} />;
-  // }
+  if (!loadingComplete) {
+    return <LoadingScreen progress={progress} />;
+  }
+
+  if (!userIsRegistered && !videoIsEnd) {
+    return <StartBearVideo onEndVideoHandler={onEndVideoHandler} />;
+  }
 
   return (
     <div className={`${styles["game-wrapper"]} ${styles[backgroundClassName]}`}>

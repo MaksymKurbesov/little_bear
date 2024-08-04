@@ -4,12 +4,7 @@ import StartVideo from "/start-video.mp4";
 const StartBearVideo = ({ onEndVideoHandler }) => {
   return (
     <div className={styles["start-bear-video"]}>
-      <video
-        onEnded={onEndVideoHandler}
-        src={StartVideo}
-        autoPlay
-        muted
-      ></video>
+      <video onEnded={onEndVideoHandler} src={StartVideo} autoPlay></video>
     </div>
   );
 };
