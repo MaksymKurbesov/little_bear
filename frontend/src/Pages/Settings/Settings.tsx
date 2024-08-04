@@ -1,15 +1,14 @@
 import styles from "./Settings.module.css";
-import ArrowIcon from "../../icons/arrow.svg";
+import Select from "../../SharedUI/Select/Select.tsx";
+import { useTranslation } from "react-i18next";
 
 const Settings = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles["settings"]}>
       <h1 className={"page-title"}>Settings</h1>
-      <div className={styles["select"]}>
-        <p>Select language</p>
-        <span>English</span>
-        <img src={ArrowIcon} alt={""} width={25} />
-      </div>
+      <Select />
       <div className={styles["switch-wrapper"]}>
         Haptic Feedback
         <label className={styles["switch"]}>
@@ -26,7 +25,7 @@ const Settings = () => {
       </div>
       <div className={styles["links-wrapper"]}>
         <a className={styles["link"]} href={"#"}>
-          Our channel
+          {t("Our channel")}
         </a>
         <a className={styles["link"]} href={"#"}>
           Our chat

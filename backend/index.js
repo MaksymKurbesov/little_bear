@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 
 const token = `7230742106:AAE70XxKI-3vpo3wU4ANL6jyZaw8AZtEK9M`;
-const webAppUrl = `https://b8b23c1d8d134fc6cde0132668c1f361.serveo.net`;
+const webAppUrl = `https://d1eca5a28cd45d40242dc5295c77b061.serveo.net`;
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, { polling: true });
 
@@ -26,10 +26,17 @@ bot.on("message", async (msg) => {
 
   // send a message to the chat acknowledging receipt of their message
   if (text === "/start") {
-    await bot.sendMessage(chatId, "Тест", {
-      reply_markup: {
-        inline_keyboard: [[{ text: "Тест", web_app: { url: webAppUrl } }]],
-      },
-    });
+    bot
+      .sendMessage(chatId, "Тест", {
+        reply_markup: {
+          inline_keyboard: [[{ text: "Тест", web_app: { url: webAppUrl } }]],
+        },
+      })
+      .then(() => {
+        console.log("sended");
+      })
+      .catch(() => {
+        console.log("error");
+      });
   }
 });

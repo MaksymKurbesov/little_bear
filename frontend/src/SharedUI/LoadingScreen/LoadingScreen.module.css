@@ -1,0 +1,104 @@
+.loading-screen {
+  height: 100vh;
+}
+
+.loading-screen img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.loading-bar-container {
+  width: 275px;
+  height: 40px; /* Adjust the height according to your loading bar image */
+  background: url('./loading-bar-container.png') no-repeat center;
+  background-size: contain;
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.loading-bar-fill {
+  width: 50px;
+  height: 25px;
+  background: url('./filling-bar.png') repeat-x;
+  background-size: contain;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: width 0.1s ease-in-out;
+}
+
+
+
+.text, .percent {
+  color: white;
+  font-family: RobotoCondensed;
+  font-size: 14px;
+  position: absolute;
+  left: 50%;
+  top: -25px;
+  transform: translate(-50%);
+  z-index: 5;
+}
+
+.percent {
+  top: 0;
+  font-size: 12px;
+  /*top: 50%;*/
+  /*transform: translateX(-50%);*/
+}
+
+.progress-bar{
+  width: 255px;
+  height: 22px;
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translateX(-50%);
+
+  border: 2px solid #5e3642;
+  background-image: linear-gradient(45deg, #442c3c, #23131c);
+  border-radius: 25px;
+  padding: 2px;
+}
+
+.progress-bar span{
+  background: #ff8800;
+  display: block;
+  height: 100%;
+  border-radius: 25px;
+  position: relative;
+}
+
+.progress-bar span:after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+  color-stop(.25, rgba(255, 255, 255, .2)),
+  color-stop(.25, transparent),
+  color-stop(.5, transparent),
+  color-stop(.5, rgba(255, 255, 255, .2)),
+  color-stop(.75, rgba(255, 255, 255, .2)),
+  color-stop(.75, transparent),
+  to(transparent));
+  background-size: 20px 20px;
+  animation: move 2s linear infinite;
+  border-radius: 25px;
+  transition: 0.35s ease all;
+}
+
+
+@keyframes move {
+  0%{
+    background-position: 0 0;
+  }
+  100%{
+    background-position: 50% 50%;
+  }
+}

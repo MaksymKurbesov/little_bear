@@ -15,28 +15,6 @@
   border-top-right-radius: 46px;
 }
 
-.points {
-  position: relative;
-  width: 250px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.points img {
-
-}
-
-.points p {
-  color: #e5e5e5;
-  font-size: 38px;
-  text-shadow: 0 0 5px rgba(229, 167, 66, 1),
-  0 0 10px rgba(229, 167, 66, 0.8),
-  0 0 15px rgba(229, 167, 66, 0.4),
-  0 0 20px rgba(229, 167, 66, 0.4);
-}
 
 .daily-reward {
   display: flex;

@@ -12,11 +12,12 @@ import ProgressBar from "../../../Main/components/ProgressBar/ProgressBar.tsx";
 import { useEffect, useRef, useState } from "react";
 import ArrowIcon from "../../../../icons/arrow.svg";
 import { useImagePreloader } from "../../../../hooks/useImagePreloader.ts";
+import LoadSpinning from "../../../../SharedUI/LoadSpinning/LoadSpinning.tsx";
+import { useAppState } from "../../../../Stores/AppStateContext.tsx";
 
 const Slider = ({ setCurrentSkin }) => {
   const swiperRef = useRef(null);
-  const currentSkin = 1;
-  // const swiper = useSwiper();
+  const { state, dispatch } = useAppState();
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [swiper, setSwiper] = useState<Swiper>();
@@ -44,7 +45,11 @@ const Slider = ({ setCurrentSkin }) => {
   }, [swiper]);
 
   if (!imagesLoaded) {
-    return <div>Loading...</div>;
+    return (
+      <div className={"suspense"}>
+        <LoadSpinning />
+      </div>
+    );
   }
 
   return (
@@ -62,7 +67,6 @@ const Slider = ({ setCurrentSkin }) => {
       }}
     >
       <SwiperSlide className={styles["slide"]}>
-        {/*<div className={`${styles["orb"]} `}></div>*/}
         <img src={BearSkin1} alt={""} width={220} />
         <div className={styles["info"]}>
           <p className={styles["experience"]}>2.5K / 5K</p>
@@ -72,7 +76,6 @@ const Slider = ({ setCurrentSkin }) => {
         </div>
       </SwiperSlide>
       <SwiperSlide className={`${styles["slide"]} ${styles["red-slide"]}`}>
-        {/*<div className={`${styles["orb"]} ${styles["red-orb"]}`}></div>*/}
         <img src={BearSkin2} alt={""} width={220} />
         <div className={styles["info"]}>
           <p className={styles["experience"]}>5K / 15K</p>
@@ -95,11 +98,6 @@ const Slider = ({ setCurrentSkin }) => {
           </div>
         </div>
       </SwiperSlide>
-      {/*<SwiperSlide className={styles["slide"]}>*/}
-      {/*  <img src={BearSkin2} alt={""} width={220} />*/}
-      {/*  <p className={styles["experience"]}>50K / 150K</p>*/}
-      {/*</SwiperSlide>*/}
-      {/*<div className={styles["slider-arrows"]}>*/}
       <button
         onClick={() => {
           swiper.slidePrev();
@@ -116,7 +114,6 @@ const Slider = ({ setCurrentSkin }) => {
       >
         <img src={ArrowIcon} alt={""} width={50} />
       </button>
-      {/*</div>*/}
     </Swiper>
   );
 };

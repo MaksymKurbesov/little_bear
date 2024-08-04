@@ -9,6 +9,7 @@ interface State {
   points: number;
   user: IUser | null;
   hasClaimedToday: boolean;
+  currentSkin: number;
 }
 
 const initialState: State = {
@@ -19,6 +20,7 @@ const initialState: State = {
   points: 0,
   user: null,
   hasClaimedToday: false,
+  currentSkin: 0,
 };
 
 type Action =
@@ -30,6 +32,7 @@ type Action =
   | { type: "RESET_CLICKED_POINTS" }
   | { type: "SET_POINTS"; payload: number }
   | { type: "SET_USER"; payload: IUser }
+  | { type: "SET_SKIN_NUMBER"; payload: number }
   | {
       type: "HANDLE_CARD_CLICK";
       payload: {
@@ -58,6 +61,9 @@ const reducer = (state: State, action: Action): State => {
         ...state,
         clicks: state.clicks.filter((click) => click.id !== action.payload),
       };
+
+    case "SET_SKIN_NUMBER":
+      return { ...state, currentSkin: action.payload };
     case "SET_USER":
       return {
         ...state,

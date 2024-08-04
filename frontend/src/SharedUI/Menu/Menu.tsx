@@ -9,9 +9,15 @@ import TasksIcon from "../../icons/tasks.webp";
 const Menu = () => {
   const location = useLocation();
   const isPlayPage = location.pathname === "/";
+  const isAirdropPage = location.pathname === "/airdrop";
+  const isSkinsPage = location.pathname === "/skins";
+
+  const isTransparentMenu = isPlayPage || isAirdropPage;
 
   return (
-    <ul className={`${styles.menu} ${isPlayPage ? styles["menu-main"] : ""}`}>
+    <ul
+      className={`${styles.menu} ${isTransparentMenu ? styles["transparent-menu"] : ""}`}
+    >
       <li>
         <NavLink
           to={"/"}

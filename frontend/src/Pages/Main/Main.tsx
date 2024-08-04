@@ -1,46 +1,40 @@
 import styles from "./Main.module.css";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { doc, runTransaction } from "firebase/firestore";
-import { db } from "../../main";
-import LittleBearCoin from "../../images/coin.png";
-import BearIcon from "../../images/default-coin.webp";
+import { db, userService } from "../../main";
+import BearIcon from "../../images/default-coin.png";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
 import Bear from "./components/Bear/Bear.tsx";
 import { POINTS_TO_ADD } from "../../utils/consts.ts";
 import { useTelegram } from "../../hooks/useTelegram.ts";
-import { useOutletContext } from "react-router-dom";
+import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";
+import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
+import BackgroundImage from "/bg.webp";
+import Points from "./components/Points/Points.tsx";
 
 const Main = () => {
   const { state, dispatch } = useAppState();
 
-  const { tg, user: UserTG } = useTelegram();
-  const userID = UserTG.id.toString();
+  const { user: UserTG } = useTelegram();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const imagesLoaded = useImagePreloader([BackgroundImage, BearIcon]);
+  const [isBouncing, setIsBouncing] = useState(false);
 
   const handleAnimationEnd = (id: number) => {
     dispatch({ type: "REMOVE_CLICK", payload: id });
   };
 
   const sendPointsToServer = useCallback(async () => {
-    if (state.clickedPoints <= 0 || !userID) return;
+    if (state.clickedPoints <= 0 || !UserTG) return;
 
     try {
-      const userRef = doc(db, "users", userID);
-      await runTransaction(db, async (transaction) => {
-        const docSnap = await transaction.get(userRef);
-        if (!docSnap.exists()) {
-          throw new Error("Документ не существует!");
-        }
-
-        const newCount = docSnap.data().points + state.clickedPoints;
-        transaction.update(userRef, { points: newCount });
-      });
+      await userService.sendPointsToServer(UserTG.id, state.clickedPoints);
 
       dispatch({ type: "RESET_CLICKED_POINTS" });
     } catch (error) {
       console.error("Error sending points to server:", error);
     }
-  }, [state.clickedPoints, userID, dispatch]);
+  }, [state.clickedPoints, dispatch]);
 
   useEffect(() => {
     intervalRef.current = setInterval(sendPointsToServer, 3000);
@@ -52,22 +46,18 @@ const Main = () => {
     };
   }, [sendPointsToServer]);
 
+  if (!imagesLoaded) {
+    return (
+      <div className={"suspense"}>
+        <LoadSpinning />
+      </div>
+    );
+  }
+
   return (
     <div className={styles["main"]}>
-      <div className="flex justify-center">
-        <div className={styles["points"]}>
-          <img
-            src={BearIcon}
-            alt=""
-            className={styles["coin-icon"]}
-            width={50}
-          />
-          <p className="text-4xl text-white">
-            {state.points ? state.points.toLocaleString() : 0}
-          </p>
-        </div>
-      </div>
-      <Bear />
+      <Points points={state.points} isBouncing={isBouncing} />
+      <Bear setIsBouncing={setIsBouncing} isBouncing={isBouncing} />
 
       {state.clicks.map((click) => (
         <div

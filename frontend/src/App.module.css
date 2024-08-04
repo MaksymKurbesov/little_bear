@@ -1,16 +1,3 @@
-.progress-gradient {
-  background: linear-gradient(to right, #90ef89, #d692dd, #726edd);
-}
-
-.loading-screen {
-  height: 100vh;
-}
-
-.loading-screen img {
-  height: 100%;
-
-  object-fit: cover;
-}
 
 .game-wrapper {
   position: relative;
@@ -22,14 +9,27 @@
   max-width: 36rem;
   width: 100%;
   color: white;
-}
 
-.background-image {
-  background-image: url("/bg.webp");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.background-image-main {
+  background-image: url("/bg.webp");
+  background-size: cover;
+
+}
+
+.background-image-airdrop {
+  background-image: url('./airdrop-bg.png');
+  background-size: cover;
+  /*background-size: contain;*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center;*/
+}
+
+
 
 .top-glow {
   box-shadow: 0 -26px 20px rgba(243, 186, 47, 0.3);

@@ -1,0 +1,33 @@
+.points {
+  position: relative;
+  width: 250px;
+  margin: 20px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+
+.points p {
+  color: #e5e5e5;
+  font-size: 38px;
+  text-shadow: 0 0 5px rgba(229, 167, 66, 1),
+  0 0 10px rgba(229, 167, 66, 0.8),
+  0 0 15px rgba(229, 167, 66, 0.4),
+  0 0 20px rgba(229, 167, 66, 0.4);
+}
+
+.bounce-once {
+  animation: bounce 0.35s ease-in-out;
+}
+
+@keyframes bounce {
+  0% { transform:translateY(0%); }
+  20% { transform:translateY(-7%); }
+  40% { transform:translateY(0%); }
+  65% { transform:translateY(-5%); }
+  97% { transform:translateY(0%); }
+  99% { transform:translateY(-2%); }
+  100% { transform:translateY(0); }
+}

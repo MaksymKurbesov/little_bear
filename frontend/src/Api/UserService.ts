@@ -7,6 +7,9 @@ import {
   updateDoc,
   deleteDoc,
   arrayUnion,
+  increment,
+  FieldValue,
+  runTransaction,
 } from "firebase/firestore";
 import { formatISO } from "date-fns";
 
@@ -18,7 +21,7 @@ export interface IReferral {
 export interface IUser {
   id: number;
   username: string;
-  consecutiveDays: number;
+  consecutiveDays: number | FieldValue;
   lastClaimedDate?: string;
   points: number;
   referrals: IReferral[];
@@ -130,15 +133,29 @@ class UserService {
     }
   }
 
+  async sendPointsToServer(userID: number, clickedPoints: number) {
+    try {
+      const userRef = doc(db, "users", userID.toString());
+      await runTransaction(db, async (transaction) => {
+        const docSnap = await transaction.get(userRef);
+        if (!docSnap.exists()) {
+          throw new Error("Документ не существует!");
+        }
+
+        const newCount = docSnap.data().points + clickedPoints;
+        transaction.update(userRef, { points: newCount });
+      });
+    } catch (e) {
+      console.log(e, "error");
+    }
+  }
+
   async claimDailyReward(user: any, dispatch: any) {
     if (!user) return;
 
     const userID = user.id.toString();
     const today = new Date();
     const todayString = today.toISOString().split("T")[0];
-
-    const newConsecutiveDays =
-      user.lastClaimedDate === todayString ? user.consecutiveDays + 1 : 1;
 
     const rewardPoints = 100; // Логика начисления очков
     const newTotalPoints = user.points + rewardPoints;
@@ -167,18 +184,22 @@ class UserService {
       await this.updateUser(user.id.toString(), {
         points: newTotalPoints,
         lastClaimedDate: todayString,
-        consecutiveDays: newConsecutiveDays,
+        consecutiveDays: increment(1),
         hasClaimedToday: true,
       });
 
       dispatch({
         type: "UPDATE_USER_DATA",
         payload: {
-          points: newTotalPoints,
           lastClaimedDate: todayString,
-          consecutiveDays: newConsecutiveDays,
+          consecutiveDays: user.consecutiveDays + 1,
           hasClaimedToday: true,
         },
+      });
+
+      dispatch({
+        type: "SET_POINTS",
+        payload: newTotalPoints,
       });
 
       console.log("Reward claimed successfully");

@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel="preload" href="./src/assets/RobotoCondensed-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./src/assets/RobotoCondensed-Light.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="./src/assets/RobotoCondensed-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
     <title>Hamster Kombat Clone</title>
   </head>
   <body>
@@ -15,8 +17,8 @@
 		    const tele = window.Telegram.WebApp;
 		    tele.ready()
 		    tele.expand();
-		    tele.setHeaderColor("#FFFFFF")
-		    tele.setBackgroundColor("#FFFFFF")
+		    tele.setHeaderColor("#000000")
+		    tele.setBackgroundColor("#000000")
 		    tele.disableVerticalSwipes()
 	    })()
     </script>

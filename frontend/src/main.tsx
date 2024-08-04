@@ -9,6 +9,7 @@ import UserService from "./Api/UserService.ts";
 import { Provider } from "react-redux";
 import store from "./Stores/store.ts";
 import { AppStateProvider } from "./Stores/AppStateContext.tsx";
+import "./i18n";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCcrWcEBknR9NoXZccEBBtqE-txTVOE4wo",

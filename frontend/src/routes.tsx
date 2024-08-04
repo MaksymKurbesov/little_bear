@@ -19,6 +19,7 @@ import {
   SystemLevelsPage,
   TasksPage,
 } from "./lazyImports.ts";
+import LoadSpinning from "./SharedUI/LoadSpinning/LoadSpinning.tsx";
 
 const routes = createBrowserRouter([
   {
@@ -28,7 +29,13 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className={"suspense"}>
+                <LoadSpinning />
+              </div>
+            }
+          >
             <MainPage />
           </Suspense>
         ),
@@ -36,7 +43,13 @@ const routes = createBrowserRouter([
       {
         path: "/referrals",
         element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className={"suspense"}>
+                <LoadSpinning />
+              </div>
+            }
+          >
             <FriendsPage />
           </Suspense>
         ),
@@ -44,7 +57,13 @@ const routes = createBrowserRouter([
       {
         path: "/leaders",
         element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className={"suspense"}>
+                <LoadSpinning />
+              </div>
+            }
+          >
             <LeadersPage />
           </Suspense>
         ),
@@ -52,7 +71,13 @@ const routes = createBrowserRouter([
       {
         path: "/daily-reward",
         element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className={"suspense"}>
+                <LoadSpinning />
+              </div>
+            }
+          >
             <DailyRewardPage />
           </Suspense>
         ),
@@ -60,7 +85,13 @@ const routes = createBrowserRouter([
       {
         path: "/airdrop",
         element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className={"suspense"}>
+                <LoadSpinning />
+              </div>
+            }
+          >
             <AirdropPage />
           </Suspense>
         ),
@@ -68,7 +99,13 @@ const routes = createBrowserRouter([
       {
         path: "/tasks",
         element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className={"suspense"}>
+                <LoadSpinning />
+              </div>
+            }
+          >
             <TasksPage />
           </Suspense>
         ),
@@ -76,15 +113,27 @@ const routes = createBrowserRouter([
       {
         path: "/settings",
         element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className={"suspense"}>
+                <LoadSpinning />
+              </div>
+            }
+          >
             <SettingsPage />
           </Suspense>
         ),
       },
       {
-        path: "/levels",
+        path: "/skins",
         element: (
-          <Suspense fallback={<div className={"suspense"}>Loading...</div>}>
+          <Suspense
+            fallback={
+              <div className={"suspense"}>
+                <LoadSpinning />
+              </div>
+            }
+          >
             <SystemLevelsPage />
           </Suspense>
         ),

@@ -10,34 +10,6 @@
   margin-bottom: 20px;
 }
 
-.select {
-  position: relative;
-  background: var(--orange-opacity);
-  padding: 10px 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.select p {
-  font-size: 14px;
-}
-
-.select span {
-  font-size: 12px;
-  font-weight: 400;
-  opacity: 0.6;
-}
-
-
-.select img {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  /*filter: invert(1);*/
-  transform: translateY(-50%) rotateZ(-90deg);
-  opacity: 0.55;
-}
 
 .switch-wrapper {
   padding: 10px 20px;
@@ -118,3 +90,4 @@ input:checked + .slider:before {
   text-align: center;
   opacity: 0.65;
 }
+

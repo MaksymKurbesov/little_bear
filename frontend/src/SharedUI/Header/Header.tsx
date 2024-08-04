@@ -11,6 +11,10 @@ import { useEffect, useState } from "react";
 const Header = ({ user }) => {
   const location = useLocation();
   const isPlayPage = location.pathname === "/";
+  const isAirdropPage = location.pathname === "/airdrop";
+
+  const isTransparentMenu = isPlayPage || isAirdropPage;
+
   const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
 
   useEffect(() => {
@@ -32,7 +36,7 @@ const Header = ({ user }) => {
 
   return (
     <div
-      className={`${styles["header"]} ${isPlayPage ? styles["header-main"] : ""}`}
+      className={`${styles["header"]} ${isTransparentMenu ? styles["transparent-header"] : ""}`}
     >
       <div className={styles["left-column"]}>
         <div className={styles["nickname"]}>
@@ -44,7 +48,7 @@ const Header = ({ user }) => {
 
           <div className={styles["info-wrapper"]}>
             <p>{user.username}</p>
-            <NavLink to={"levels"}>
+            <NavLink to={"/skins"}>
               <ProgressBar points={user.points} />
             </NavLink>
           </div>

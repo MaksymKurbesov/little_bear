@@ -100,3 +100,33 @@ export function getLittleBearId(queryString: string) {
 
   return littleBearId;
 }
+
+export const simulateLoadingProgress = (callback) => {
+  let progress = 0;
+  const startTime = Date.now();
+
+  const interval = setInterval(
+    () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = 3000 - elapsedTime;
+
+      // Увеличиваем прогресс случайным образом от 5 до 15 процентов
+      progress += Math.floor(Math.random() * 10) + 5;
+
+      // Ограничиваем прогресс значением 100
+      if (progress > 100) {
+        progress = 100;
+      }
+
+      // Вызываем callback с текущим значением прогресса
+      callback(progress);
+
+      // Проверяем, если прошло больше 3 секунд
+      if (remainingTime <= 0) {
+        clearInterval(interval);
+        callback(100); // Устанавливаем прогресс на 100% по завершении
+      }
+    },
+    Math.random() * 300 + 200,
+  ); // Интервал от 200 до 500 мс
+};
