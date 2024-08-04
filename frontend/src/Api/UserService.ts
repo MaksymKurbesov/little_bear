@@ -12,6 +12,7 @@ import {
   runTransaction,
 } from "firebase/firestore";
 import { formatISO } from "date-fns";
+import { DAILY_REWARDS_BY_DAY } from "../utils/consts.ts";
 
 export interface IReferral {
   username: string;
@@ -157,7 +158,7 @@ class UserService {
     const today = new Date();
     const todayString = today.toISOString().split("T")[0];
 
-    const rewardPoints = 100; // Логика начисления очков
+    const rewardPoints = DAILY_REWARDS_BY_DAY[user.consecutiveDays]; // Логика начисления очков
     const newTotalPoints = user.points + rewardPoints;
 
     const dailyRewardDocRef = doc(

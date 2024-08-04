@@ -13,3 +13,8 @@
   overflow: hidden;
   object-fit: cover;
 }
+
+.unmute {
+  height: 50px;
+  width: 100%;
+}

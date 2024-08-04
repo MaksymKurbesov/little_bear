@@ -14,6 +14,14 @@ const Bear = ({ setIsBouncing }) => {
   const objectRef = useRef();
   const { tg } = useTelegram();
 
+  const triggerVibration = () => {
+    const vibrationEnabled =
+      localStorage.getItem("vibrationEnabled") === "true";
+    if (vibrationEnabled) {
+      tg.HapticFeedback.impactOccurred("rigid");
+    }
+  };
+
   const handleCardClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       setIsBouncing(false); // Сбрасываем состояние
@@ -27,7 +35,7 @@ const Bear = ({ setIsBouncing }) => {
       const card = cardRef.current;
       if (!card) return;
 
-      tg.HapticFeedback.impactOccurred("rigid");
+      triggerVibration();
       // const rect = card.getBoundingClientRect();
       // const x = e.clientX - rect.left - rect.width / 2;
       // const y = e.clientY - rect.top - rect.height / 2;

@@ -67,18 +67,18 @@ const App = () => {
 
     if (error && error.data === "Document does not exist") {
       const registeredUser: IUser = generateUserData(user.username, user.id);
-      userService.addUser(registeredUser);
+      // userService.addUser(registeredUser);
       dispatch({ type: "SET_USER", payload: registeredUser });
     }
   }, [user, userData, dispatch, error]);
 
-  if (!loadingComplete) {
-    return <LoadingScreen progress={progress} />;
-  }
-
-  if (!userIsRegistered && !videoIsEnd) {
-    return <StartBearVideo onEndVideoHandler={onEndVideoHandler} />;
-  }
+  // if (!loadingComplete) {
+  //   return <LoadingScreen progress={progress} />;
+  // }
+  //
+  // if (!userIsRegistered && !videoIsEnd) {
+  //   return <StartBearVideo onEndVideoHandler={onEndVideoHandler} />;
+  // }
 
   return (
     <div className={`${styles["game-wrapper"]} ${styles[backgroundClassName]}`}>

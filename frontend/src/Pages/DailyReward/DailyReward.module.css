@@ -36,7 +36,7 @@
 }
 
 .daily-item-active {
-  background-image: linear-gradient(180deg, #fcc982, #ff9a0c);
+  background-image: linear-gradient(45deg, #fcc982, #ff9a0c);
 }
 
 .claim-button {

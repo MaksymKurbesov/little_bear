@@ -1,9 +1,23 @@
 import styles from "./Settings.module.css";
 import Select from "../../SharedUI/Select/Select.tsx";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 
 const Settings = () => {
   const { t } = useTranslation();
+
+  const savedSetting = localStorage.getItem("vibrationEnabled") === "true";
+  const [vibrationEnabled, setVibrationEnabled] = useState(savedSetting);
+
+  const handleToggle = () => {
+    const newSetting = !vibrationEnabled;
+    setVibrationEnabled(newSetting);
+    localStorage.setItem("vibrationEnabled", newSetting);
+  };
+
+  useEffect(() => {
+    setVibrationEnabled(savedSetting);
+  }, []);
 
   return (
     <div className={styles["settings"]}>
@@ -12,7 +26,11 @@ const Settings = () => {
       <div className={styles["switch-wrapper"]}>
         Haptic Feedback
         <label className={styles["switch"]}>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            checked={vibrationEnabled}
+            onChange={handleToggle}
+          />
           <span className={`${styles["slider"]} ${styles["round"]}`}></span>
         </label>
       </div>
