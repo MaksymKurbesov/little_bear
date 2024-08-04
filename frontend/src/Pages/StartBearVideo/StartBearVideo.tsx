@@ -8,7 +8,7 @@ const StartBearVideo = ({ onEndVideoHandler }) => {
         onEnded={onEndVideoHandler}
         src={StartVideo}
         autoPlay
-        muted
+        playsInline
       ></video>
     </div>
   );
