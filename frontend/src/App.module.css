@@ -22,7 +22,7 @@
 }
 
 .background-image-airdrop {
-  background-image: url('./airdrop-bg.png');
+  background-image: url('/airdrop-bg.png');
   background-size: cover;
   /*background-size: contain;*/
   /*background-repeat: no-repeat;*/
