@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 
 const token = `7230742106:AAE70XxKI-3vpo3wU4ANL6jyZaw8AZtEK9M`;
-const webAppUrl = `https://d1eca5a28cd45d40242dc5295c77b061.serveo.net`;
+const webAppUrl = `https://2175c27f74b35e514b8a664a212ab85d.serveo.net`;
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, { polling: true });
 
@@ -30,6 +30,28 @@ bot.on("message", async (msg) => {
       .sendMessage(chatId, "Тест", {
         reply_markup: {
           inline_keyboard: [[{ text: "Тест", web_app: { url: webAppUrl } }]],
+        },
+      })
+      .then(() => {
+        console.log("sended");
+      })
+      .catch(() => {
+        console.log("error");
+      });
+  }
+
+  if (text === "/test") {
+    bot
+      .sendMessage(chatId, "Тест", {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: "Тест",
+                web_app: { url: `https://little-bear-rho.vercel.app/` },
+              },
+            ],
+          ],
         },
       })
       .then(() => {
