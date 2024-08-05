@@ -5,8 +5,9 @@ import {
   getLevelByPoints,
 } from "../../../../utils/helpers.ts";
 
-const ProgressBar = ({ points }: { points: number }) => {
-  const progressPercentage = calculateProgressBar(points);
+const ProgressBar = ({ points }) => {
+  const level = getLevelByPoints(points);
+  const progressPercentage = calculateProgressBar(points, level);
 
   return (
     <div className={styles["level"]}>

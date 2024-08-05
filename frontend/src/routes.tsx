@@ -7,7 +7,7 @@ import App from "./App";
 // import Airdrop from "./Pages/Airdrop/Airdrop.tsx";
 // import Tasks from "./Pages/Tasks/Tasks.tsx";
 // import Settings from "./Pages/Settings/Settings.tsx";
-// import SystemLevels from "./Pages/SystemLevels/SystemLevels.tsx";
+// import Skins from "./Pages/Skins/Skins.tsx";
 import { Suspense } from "react";
 import {
   AirdropPage,
@@ -16,6 +16,7 @@ import {
   LeadersPage,
   MainPage,
   SettingsPage,
+  SkinsPage,
   SystemLevelsPage,
   TasksPage,
 } from "./lazyImports.ts";
@@ -134,7 +135,7 @@ const routes = createBrowserRouter([
               </div>
             }
           >
-            <SystemLevelsPage />
+            <SkinsPage />
           </Suspense>
         ),
       },

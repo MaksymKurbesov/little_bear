@@ -1,0 +1,32 @@
+.arrow-right {
+  color: white;
+  width: 100%;
+}
+
+
+
+.arrow-prev {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  /*filter: invert(1);*/
+  transform: translateY(-50%) rotateZ(90deg);
+  z-index: 5;
+  opacity: 1;
+  transition: 0.2s ease all;
+}
+
+.arrow-next {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  /*filter: invert(1);*/
+  transform: translateY(-50%) rotateZ(-90deg);
+  z-index: 5;
+  opacity: 1;
+  transition: 0.2s ease all;
+}
+
+.arrow-prev.hidden, .arrow-next.hidden {
+  display: none;
+}

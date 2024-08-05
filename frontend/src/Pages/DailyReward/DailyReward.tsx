@@ -2,7 +2,7 @@ import styles from "./DailyReward.module.css";
 import { dollarCoin } from "../../images";
 import { DAILY_REWARDS } from "../../utils/consts.ts";
 
-import { userService } from "../../main.tsx";
+import { userApi } from "../../main.tsx";
 import { ScrollRestoration } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
@@ -12,7 +12,7 @@ const DailyReward = () => {
 
   useEffect(() => {
     if (state.user) {
-      userService.checkDailyReward(state.user.id, dispatch);
+      userApi.checkDailyReward(state.user.id.toString(), dispatch);
     }
   }, []);
 
@@ -47,7 +47,7 @@ const DailyReward = () => {
         </ul>
         <button
           onClick={() => {
-            userService.claimDailyReward(state.user, dispatch);
+            userApi.claimDailyReward(state.user, dispatch);
           }}
           className={`${styles["claim-button"]} ${state.user?.hasClaimedToday ? styles["claim-button-disabled"] : ""}`}
         >

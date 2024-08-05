@@ -1,7 +1,6 @@
 import styles from "./Main.module.css";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { doc, runTransaction } from "firebase/firestore";
-import { db, userService } from "../../main";
+import { userApi } from "../../main";
 import BearIcon from "../../images/default-coin.png";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
 import Bear from "./components/Bear/Bear.tsx";
@@ -28,7 +27,7 @@ const Main = () => {
     if (state.clickedPoints <= 0 || !UserTG) return;
 
     try {
-      await userService.sendPointsToServer(UserTG.id, state.clickedPoints);
+      await userApi.sendPointsToServer(UserTG.id, state.clickedPoints);
 
       dispatch({ type: "RESET_CLICKED_POINTS" });
     } catch (error) {
@@ -57,7 +56,7 @@ const Main = () => {
   return (
     <div className={styles["main"]}>
       <Points points={state.points} isBouncing={isBouncing} />
-      <Bear setIsBouncing={setIsBouncing} isBouncing={isBouncing} />
+      <Bear setIsBouncing={setIsBouncing} />
 
       {state.clicks.map((click) => (
         <div

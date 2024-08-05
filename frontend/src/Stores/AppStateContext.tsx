@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, ReactNode } from "react";
-import { IUser } from "../Api/UserService.ts";
+import { IUser } from "../Api/UserApi.ts";
 
 interface State {
   dailyRewardTimeLeft: string;
@@ -10,6 +10,7 @@ interface State {
   user: IUser | null;
   hasClaimedToday: boolean;
   currentSkin: number;
+  level: number;
 }
 
 const initialState: State = {
@@ -21,6 +22,7 @@ const initialState: State = {
   user: null,
   hasClaimedToday: false,
   currentSkin: 0,
+  level: 0,
 };
 
 type Action =
@@ -32,6 +34,7 @@ type Action =
   | { type: "RESET_CLICKED_POINTS" }
   | { type: "SET_POINTS"; payload: number }
   | { type: "SET_USER"; payload: IUser }
+  | { type: "SET_USER_LEVEL"; payload: number }
   | { type: "SET_SKIN_NUMBER"; payload: number }
   | {
       type: "HANDLE_CARD_CLICK";
@@ -54,6 +57,8 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, clicks: [...state.clicks, action.payload] };
     case "RESET_CLICKED_POINTS":
       return { ...state, clickedPoints: 0 };
+    case "SET_USER_LEVEL":
+      return { ...state, level: action.payload };
     case "SET_POINTS":
       return { ...state, points: action.payload };
     case "REMOVE_CLICK":

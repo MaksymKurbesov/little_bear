@@ -1,5 +1,5 @@
-import { LEVELS_BY_POINTS, levelThresholds } from "./consts.ts";
-import { IUser } from "../Api/UserService.ts";
+import { levelThresholds } from "./consts.ts";
+import { IUser } from "../Api/UserApi.ts";
 
 export const calculateTimeLeft = () => {
   const now = new Date();
@@ -40,22 +40,6 @@ export const throttle = (func, limit) => {
   };
 };
 
-export const getRank = (points: number): string => {
-  let rank: string = "Bronze"; // Default rank
-
-  const thresholds: number[] = Object.keys(LEVELS_BY_POINTS)
-    .map(Number)
-    .sort((a, b) => b - a);
-  for (const threshold of thresholds) {
-    if (points >= threshold) {
-      rank = LEVELS_BY_POINTS[threshold];
-      break;
-    }
-  }
-
-  return rank;
-};
-
 export const getLevelByPoints = (points: number) => {
   const newLevel = levelThresholds.findIndex((threshold) => points < threshold);
   return newLevel > 0 ? newLevel - 1 : levelThresholds.length - 1;
@@ -73,12 +57,15 @@ export const generateUserData = (username: string, id: number): IUser => {
   };
 };
 
-export const calculateProgressBar = (points: number) => {
-  const level = getLevelByPoints(points);
+export const triggerVibration = (tg) => {
+  const vibrationEnabled = localStorage.getItem("vibrationEnabled") === "true";
+  if (vibrationEnabled) {
+    tg.HapticFeedback.impactOccurred("rigid");
+  }
+};
 
-  const pointsSinceLastLevel = points - levelThresholds[level];
-  const pointsToNextLevel = levelThresholds[level + 1] - levelThresholds[level];
-  return (pointsSinceLastLevel / pointsToNextLevel) * 100;
+export const calculateProgressBar = (points: number, level: number) => {
+  return (points / levelThresholds[level + 1]) * 100;
 };
 
 export function getLittleBearId(queryString: string) {

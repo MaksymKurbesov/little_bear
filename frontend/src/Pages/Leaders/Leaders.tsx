@@ -6,9 +6,8 @@ import IShowSpeed from "../../images/leaders/ishowspeed.webp";
 import Pewdiepie from "../../images/leaders/pewdiepie.webp";
 import Statham from "../../images/leaders/statham.webp";
 import Background from "/leaders-bg.webp";
-import { ScrollRestoration, useOutletContext } from "react-router-dom";
+import { ScrollRestoration } from "react-router-dom";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
-import { useEffect } from "react";
 import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";
 
 const imageUrls = [
@@ -67,15 +66,6 @@ const Leaders = () => {
           <li className={styles["headers"]}>
             <span>№</span> <p>Nickname</p> <p>Dance time</p>
           </li>
-          {/*<li>*/}
-          {/*  <span>1</span> <p>BerryNew9057</p> <p>543s</p>*/}
-          {/*</li>*/}
-          {/*<li>*/}
-          {/*  <span>2</span> <p>to_control_yourself</p> <p>412s</p>*/}
-          {/*</li>*/}
-          {/*<li>*/}
-          {/*  <span>3</span> <p>stillish</p> <p>411s</p>*/}
-          {/*</li>*/}
           <li>
             <span>4</span> <p>firmament42</p> <p>387s</p>
           </li>

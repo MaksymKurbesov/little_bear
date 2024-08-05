@@ -1,29 +1,35 @@
+import BearSkin1 from "../images/skins/brickie.png";
+import BearSkin2 from "../images/skins/stony.png";
+import BearSkin3 from "../images/skins/acidlover.png";
+import OpenedBearSkin1 from "../images/skins/brickie-opened.png";
+import OpenedBearSkin2 from "../images/skins/stony-opened.png";
+import OpenedBearSkin3 from "../images/skins/acidlover-opened.png";
+
 export const POINTS_TO_ADD = 11;
 
-const levelNames = [
-  "Bronze", // From 0 to 4999 coins
-  "Silver", // From 5000 coins to 24,999 coins
-  "Gold", // From 25,000 coins to 99,999 coins
-  "Platinum", // From 100,000 coins to 999,999 coins
-  "Diamond", // From 1,000,000 coins to 2,000,000 coins
-  "Epic", // From 2,000,000 coins to 10,000,000 coins
-  "Legendary", // From 10,000,000 coins to 50,000,000 coins
-  "Master", // From 50,000,000 coins to 100,000,000 coins
-  "GrandMaster", // From 100,000,000 coins to 1,000,000,000 coins
-  "Lord", // From 1,000,000,000 coins to ∞
+export const SKINS = [
+  {
+    id: 1,
+    image: BearSkin1,
+    openedImage: OpenedBearSkin1,
+    requiredPoints: 5000,
+    colorCN: "color-blue",
+  },
+  {
+    id: 2,
+    image: BearSkin2,
+    openedImage: OpenedBearSkin2,
+    requiredPoints: 15000,
+    colorCN: "color-red",
+  },
+  {
+    id: 3,
+    image: BearSkin3,
+    openedImage: OpenedBearSkin3,
+    requiredPoints: 50000,
+    colorCN: "color-green",
+  },
 ];
-
-export const LEVELS_BY_POINTS: { [key: number]: string } = {
-  0: "Bronze", // From 0 to 4999 coins
-  5000: "Silver", // From 5000 coins to 24,999 coins
-  25000: "Gold", // From 25,000 coins to 99,999 coins
-  100000: "Platinum", // From 25,000 coins to 99,999 coins
-  1000000: "Diamond", // From 25,000 coins to 99,999 coins
-  2000000: "Epic", // From 25,000 coins to 99,999 coins
-  10000000: "Legendary", // From 25,000 coins to 99,999 coins
-  50000000: "Master", // From 25,000 coins to 99,999 coins
-  100000000: "GrandMaster", // From 25,000 coins to 99,999 coins
-};
 
 export const DAILY_REWARDS = [
   `500`,
@@ -51,4 +57,4 @@ export const DAILY_REWARDS_BY_DAY: { [key: string]: number } = {
   9: 5000000,
 };
 
-export const levelThresholds = [0, 100, 300, 600, 1000, 8500, 15000];
+export const levelThresholds = [0, 5000, 15000, 50000, 100000, 200000, 1000000];

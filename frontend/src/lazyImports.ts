@@ -16,6 +16,4 @@ export const TasksPage = lazy(() => import("./Pages/Tasks/Tasks.tsx"));
 
 export const SettingsPage = lazy(() => import("./Pages/Settings/Settings.tsx"));
 
-export const SystemLevelsPage = lazy(
-  () => import("./Pages/SystemLevels/SystemLevels.tsx"),
-);
+export const SkinsPage = lazy(() => import("./Pages/Skins/Skins.tsx"));

@@ -1,0 +1,180 @@
+.slide {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  padding: 25px 10px;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .01);
+}
+
+
+.slide::after {
+  position: absolute;
+  content: "";
+  top: 45%;
+  left: 50%;
+  z-index: -1;
+  height: 80%;
+  width: 65vw;
+  transform: translate(-50%, -50%)  translateZ(0);
+  filter: blur(10px);
+}
+
+
+.color-blue::after {
+  top: 45%;
+  height: 82%;
+  background: linear-gradient(
+          to left,
+          #ff5770,
+          #e4428d,
+          #2d50c4,
+          #16bdc3,
+          #016fde,
+          #9e16c3,
+          #c42da8,
+          #e4428d,
+          #ff5770
+  );
+  background-size: 200% 200%;
+  animation: animateGlow 4.25s linear infinite;
+}
+
+.color-red::after {
+  top: 45%;
+  height: 82%;
+  background: linear-gradient(
+          to left,
+          #ff5757,
+          #e4425a,
+          #ff0000,
+          rgba(87, 2, 2, 0.6),
+          rgba(222, 8, 1, 0.67),
+          rgba(147, 0, 0, 0.62),
+          #c42d2d,
+          #e4428d,
+          #ff5770
+  );
+  background-size: 200% 200%;
+  animation: animateGlow 4.25s linear infinite;
+}
+
+.color-green::after {
+  top: 45%;
+  height: 81%;
+  background: linear-gradient(
+          to left,
+          #57ff8c,
+          #6be442,
+          #c8ff00,
+          rgba(0, 247, 255, 0.8),
+          rgba(1, 222, 38, 0.67),
+          rgb(71, 255, 62),
+          #74ff6c,
+          #5dff54,
+          #cfff57
+  );
+  background-size: 200% 200%;
+  animation: animateGlow 4.25s linear infinite;
+}
+
+.slide img {
+  margin: 0 auto 20px;
+  width: 40vh;
+}
+
+.info {
+  width: 60%;
+  text-align: center;
+}
+
+.experience {
+  font-size: 14px;
+}
+
+.unpacked {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.progress-bar {
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  height: 15px;
+  border-radius: 25px;
+}
+
+.progress-bar div {
+  width: 50%;
+  height: 100%;
+  border-radius: 25px;
+}
+
+.color-blue .progress-bar > div {
+  --fill:
+          linear-gradient(rgba(226, 102, 76, 0.65), transparent),
+          repeating-linear-gradient(135deg, #d12d9c 10px, #5ea2ef 15px);
+
+  background: var(--fill);
+  background-size: 200% 200%;
+  animation: gradientAnimation 5s linear infinite;
+  box-shadow: 0 0 7px 5px rgb(209, 45, 156);
+}
+
+.color-red .progress-bar > div {
+  --fill:
+          linear-gradient(rgba(226, 102, 76, 0.65), transparent),
+          repeating-linear-gradient(135deg, #d12d2d 10px, #ef5e85 15px);
+
+  background: var(--fill);
+  background-size: 200% 200%;
+  animation: gradientAnimation 5s linear infinite;
+  box-shadow: 0 0 7px 5px rgb(209, 45, 45);
+}
+
+.color-green .progress-bar > div{
+  --fill:
+          linear-gradient(rgba(226, 102, 76, 0.65), transparent),
+          repeating-linear-gradient(135deg, #4bd12d 10px, #5eef8c 15px);
+
+  background: var(--fill);
+  background-size: 200% 200%;
+  animation: gradientAnimation 5s linear infinite;
+  box-shadow: 0 0 7px 5px rgba(75, 209, 45, 0.7);
+}
+
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform: translate(-50%, -50%) rotate(360deg); } }
+
+@keyframes animateGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+
+@media screen and (max-width: 385px){
+  .slide img {
+    width: 34vh;
+  }
+
+  .slide::after {
+    width: 45vw;
+    height: 70%;
+    top: 44%;
+  }
+}
