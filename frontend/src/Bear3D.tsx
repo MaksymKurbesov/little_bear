@@ -14,7 +14,7 @@ const Model = forwardRef((props, ref) => {
   useEffect(() => {
     console.log(actions, "actions");
     if (actions && actions["stat2|CINEMA_4D_Main|Layer0"]) {
-      // actions["stat2|CINEMA_4D_Main|Layer0"].play();
+      actions["stat2|CINEMA_4D_Main|Layer0"].play();
     }
   }, [mixer]);
 
@@ -32,11 +32,19 @@ const Model = forwardRef((props, ref) => {
 
   return (
     <group ref={group} {...props} dispose={null}>
+      <ambientLight />
       <pointLight
         ref={lightRef}
-        intensity={15.5}
-        power={1500}
-        position={[0, 5, 5]}
+        intensity={2}
+        power={500}
+        castShadow={true}
+        position={[4, 3, 6]}
+      />
+      <pointLight
+        intensity={2}
+        power={500}
+        castShadow={true}
+        position={[-4, 3, 6]}
       />
       <group name="Scene">
         <group
