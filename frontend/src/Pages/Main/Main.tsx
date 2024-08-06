@@ -3,13 +3,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { userApi } from "../../main";
 import BearIcon from "../../images/default-coin.png";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
-import Bear from "./components/Bear/Bear.tsx";
+import Bear from "./Bear/Bear.tsx";
 import { POINTS_TO_ADD } from "../../utils/consts.ts";
 import { useTelegram } from "../../hooks/useTelegram.ts";
 import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
 import BackgroundImage from "/bg.webp";
-import Points from "./components/Points/Points.tsx";
+import Points from "./Points/Points.tsx";
 
 const Main = () => {
   const { state, dispatch } = useAppState();

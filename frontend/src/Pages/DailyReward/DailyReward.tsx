@@ -16,6 +16,8 @@ const DailyReward = () => {
     }
   }, []);
 
+  if (!state.user) return;
+
   return (
     <>
       <div className={styles["daily-reward"]}>
@@ -38,7 +40,7 @@ const DailyReward = () => {
                 <img
                   src={dollarCoin}
                   alt="Dollar Coin"
-                  className="w-[18px] h-[18px]"
+                  className="w-[8vw] h-[8vw]"
                 />
                 {reward}
               </li>
@@ -49,9 +51,9 @@ const DailyReward = () => {
           onClick={() => {
             userApi.claimDailyReward(state.user, dispatch);
           }}
-          className={`${styles["claim-button"]} ${state.user?.hasClaimedToday ? styles["claim-button-disabled"] : ""}`}
+          className={`${styles["claim-button"]} ${state.user.hasClaimedToday ? styles["claim-button-disabled"] : ""}`}
         >
-          {state.user?.hasClaimedToday ? "Come back tomorrow" : "Claim"}
+          {state.user.hasClaimedToday ? "Come back tomorrow" : "Claim"}
         </button>
       </div>
       <ScrollRestoration />

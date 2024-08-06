@@ -1,10 +1,7 @@
 import styles from "./Points.module.css";
-import BearIcon from "../../../../images/default-coin.png";
-import { useState } from "react";
+import BearIcon from "../../../images/default-coin.png";
 
 const Points = ({ points, isBouncing }) => {
-  console.log(isBouncing, "isBouncing");
-
   return (
     <div className={styles["points"]}>
       <img
@@ -13,9 +10,7 @@ const Points = ({ points, isBouncing }) => {
         className={`${isBouncing ? styles["bounce-once"] : ""}`}
         width={50}
       />
-      <p className="text-4xl text-white">
-        {points ? points.toLocaleString() : 0}
-      </p>
+      <p className="text-4xl text-white">{points.toLocaleString()}</p>
     </div>
   );
 };

@@ -12,18 +12,6 @@
   --red: rgba(255, 0, 0, 0.91);
 }
 
-@font-face {
-  font-family: "Neue";
-  src:
-          local("Neue"),
-          url("./assets/NeuePower-Heavy.otf") format("opentype")
-}
-@font-face {
-  font-family: "NeueBold";
-  src:
-          local("Neue"),
-          url("./assets/NeuePower-Ultra.otf") format("opentype")
-}
 
 
 @font-face {

@@ -1,0 +1,25 @@
+.main-image-wrapper {
+  /*height: 55vh;*/
+  display: flex;
+  flex-grow: 1;
+}
+
+.main-image-wrapper > div {
+  flex-grow: 1;
+  height: auto !important;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.buttons button {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}

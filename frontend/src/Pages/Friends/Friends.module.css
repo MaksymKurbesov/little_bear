@@ -1,11 +1,14 @@
 .friends {
   display: flex;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
   flex-direction: column;
   background: var(--gray);
   flex-grow: 1;
   padding: 20px 10px;
   font-family: "RobotoCondensed", 'sans-serif';
   font-weight: 400;
+  min-height: 400px;
 }
 
 .friends h1 {

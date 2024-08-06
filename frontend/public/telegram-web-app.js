@@ -16,7 +16,6 @@
       }
     }
   }
-  initParams.tgWebAppVersion = "7.7";
   sessionStorageSet("initParams", initParams);
 
   var isIframe = false,
@@ -305,7 +304,7 @@
     webAppInitDataUnsafe = {};
   var themeParams = {},
     colorScheme = "light";
-  var webAppVersion = "7.7";
+  var webAppVersion = "6.0";
   var webAppPlatform = "unknown";
 
   if (initParams.tgWebAppData && initParams.tgWebAppData.length) {

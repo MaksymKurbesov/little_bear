@@ -1,5 +1,5 @@
 import styles from "./Skins.module.css";
-import Slider from "./components/Slider/Slider.tsx";
+import Slider from "./Slider/Slider.tsx";
 import { useState } from "react";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
 import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";

@@ -85,32 +85,6 @@ class UserApi {
     }
   }
 
-  async checkDailyReward(id: string, dispatch: any): Promise<void> {
-    try {
-      const today = new Date();
-      const todayString = formatISO(today, { representation: "date" });
-      const dailyRewardDocRef = doc(
-        db,
-        "users",
-        id.toString(),
-        "dailyRewards",
-        todayString,
-      );
-      const dailyRewardDocSnap = await getDoc(dailyRewardDocRef);
-      const isClaimed =
-        dailyRewardDocSnap.exists() && dailyRewardDocSnap.data().claimed;
-
-      dispatch({
-        type: "UPDATE_USER_DATA",
-        payload: {
-          hasClaimedToday: isClaimed,
-        },
-      });
-    } catch (error) {
-      console.error("Error checking daily reward: ", error);
-    }
-  }
-
   async sendPointsToServer(userID: number, clickedPoints: number) {
     try {
       const userRef = doc(db, "users", userID.toString());
@@ -128,12 +102,47 @@ class UserApi {
     }
   }
 
+  async checkDailyReward(id: string, dispatch: any): Promise<void> {
+    try {
+      const today = new Date();
+      const localDateString = today.toLocaleDateString("en-CA");
+
+      // const todayString = formatISO(today, { representation: "date" });
+
+      console.log(localDateString, "localDateString checkDailyReward");
+
+      const dailyRewardDocRef = doc(
+        db,
+        "users",
+        id.toString(),
+        "dailyRewards",
+        localDateString,
+      );
+      const dailyRewardDocSnap = await getDoc(dailyRewardDocRef);
+      const isClaimed =
+        dailyRewardDocSnap.exists() && dailyRewardDocSnap.data().claimed;
+
+      dispatch({
+        type: "UPDATE_USER_DATA",
+        payload: {
+          hasClaimedToday: isClaimed,
+        },
+      });
+    } catch (error) {
+      console.error("Error checking daily reward: ", error);
+    }
+  }
+
   async claimDailyReward(user: any, dispatch: any) {
     if (!user) return;
 
     const userID = user.id.toString();
     const today = new Date();
-    const todayString = today.toISOString().split("T")[0];
+    // const todayString = today.toISOString().split("T")[0];
+
+    const localDateString = today.toLocaleDateString("en-CA");
+
+    console.log(localDateString, "localDateString claimDailyReward");
 
     const rewardPoints = DAILY_REWARDS_BY_DAY[user.consecutiveDays]; // Логика начисления очков
     const newTotalPoints = user.points + rewardPoints;
@@ -143,7 +152,7 @@ class UserApi {
       "users",
       userID,
       "dailyRewards",
-      todayString,
+      localDateString,
     );
 
     const dailyRewardDocSnap = await getDoc(dailyRewardDocRef);
@@ -161,7 +170,7 @@ class UserApi {
 
       await this.updateUser(user.id.toString(), {
         points: newTotalPoints,
-        lastClaimedDate: todayString,
+        lastClaimedDate: localDateString,
         consecutiveDays: increment(1),
         hasClaimedToday: true,
       });
@@ -169,7 +178,7 @@ class UserApi {
       dispatch({
         type: "UPDATE_USER_DATA",
         payload: {
-          lastClaimedDate: todayString,
+          lastClaimedDate: localDateString,
           consecutiveDays: user.consecutiveDays + 1,
           hasClaimedToday: true,
         },

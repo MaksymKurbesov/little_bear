@@ -1,17 +1,18 @@
 import { useEffect, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
 
-const Bear2 = (props) => {
+const BearDance2 = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/new_bear_model/2/untitled.gltf",
+    "/new_bear_model/dance2/untitled.gltf",
   );
 
   const { actions, mixer } = useAnimations(animations, group);
 
+  console.log(actions, "actions");
   useEffect(() => {
-    if (actions && actions["stat2|CINEMA_4D_Main|Layer0"]) {
-      actions["stat2|CINEMA_4D_Main|Layer0"].play();
+    if (actions && actions["Sta|CINEMA_4D_Main|Layer0"]) {
+      actions["Sta|CINEMA_4D_Main|Layer0"].play();
     }
   }, [mixer]);
 
@@ -19,7 +20,7 @@ const Bear2 = (props) => {
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <group
-          name="stat2"
+          name="Sta"
           position={[0.001, 0.106, 0]}
           rotation={[Math.PI / 2, 0, 0]}
           scale={0.25}
@@ -73,13 +74,13 @@ const Bear2 = (props) => {
             skeleton={nodes.Pelvis.skeleton}
             castShadow
           />
-          <primitive object={nodes.mixamorig_Hips} />
+          <primitive object={nodes.mixamorig_Hipss} />
         </group>
       </group>
     </group>
   );
 };
 
-export default Bear2;
+export default BearDance2;
 
-useGLTF.preload("/new_bear_model/2/untitled.gltf");
+useGLTF.preload("/new_bear_model/dance2/untitled.gltf");

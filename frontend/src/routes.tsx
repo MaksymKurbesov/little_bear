@@ -17,7 +17,6 @@ import {
   MainPage,
   SettingsPage,
   SkinsPage,
-  SystemLevelsPage,
   TasksPage,
 } from "./lazyImports.ts";
 import LoadSpinning from "./SharedUI/LoadSpinning/LoadSpinning.tsx";

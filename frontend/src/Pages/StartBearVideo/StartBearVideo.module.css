@@ -14,7 +14,18 @@
   object-fit: cover;
 }
 
-.unmute {
-  height: 50px;
-  width: 100%;
+.mute-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 9px;
+  cursor: pointer;
+  z-index: 5;
 }

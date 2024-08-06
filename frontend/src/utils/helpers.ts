@@ -3,14 +3,27 @@ import { IUser } from "../Api/UserApi.ts";
 
 export const calculateTimeLeft = () => {
   const now = new Date();
-  const nextDay = new Date(now);
-  nextDay.setDate(now.getDate() + 1);
-  nextDay.setHours(0, 0, 0, 0);
 
-  const diff = nextDay.getTime() - now.getTime();
+  // Получаем текущее время
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
+  const currentDate = now.getDate();
+
+  // Создаем объект завтрашнего дня на полночь локального времени
+  const tomorrow = new Date(
+    currentYear,
+    currentMonth,
+    currentDate + 1,
+    0,
+    0,
+    0,
+    0,
+  );
+
+  const diff = tomorrow.getTime() - now.getTime();
+
   const hours = Math.floor(diff / (1000 * 60 * 60));
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-
   const paddedHours = hours.toString().padStart(2, "0");
   const paddedMinutes = minutes.toString().padStart(2, "0");
 

@@ -5,16 +5,16 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
-import BearSkin1 from "../../../../images/skins/brickie.png";
-import BearSkin2 from "../../../../images/skins/stony.png";
-import BearSkin3 from "../../../../images/skins/acidlover.png";
+import BearSkin1 from "../../../images/skins/brickie.png";
+import BearSkin2 from "../../../images/skins/stony.png";
+import BearSkin3 from "../../../images/skins/acidlover.png";
 import { useEffect, useRef, useState } from "react";
-import ArrowIcon from "../../../../icons/arrow.svg";
-import { useImagePreloader } from "../../../../hooks/useImagePreloader.ts";
-import LoadSpinning from "../../../../SharedUI/LoadSpinning/LoadSpinning.tsx";
-import { useAppState } from "../../../../Stores/AppStateContext.tsx";
+import ArrowIcon from "../../../icons/arrow.svg";
+import { useImagePreloader } from "../../../hooks/useImagePreloader.ts";
+import LoadSpinning from "../../../SharedUI/LoadSpinning/LoadSpinning.tsx";
+import { useAppState } from "../../../Stores/AppStateContext.tsx";
 import SkinSlide from "../SkinSlide/SkinSlide.tsx";
-import { SKINS } from "../../../../utils/consts.ts";
+import { SKINS } from "../../../utils/consts.ts";
 
 const Slider = ({ setCurrentSkin }) => {
   const swiperRef = useRef(null);

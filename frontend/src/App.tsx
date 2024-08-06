@@ -7,8 +7,8 @@ import { useTelegram } from "./hooks/useTelegram";
 import { useGetUserQuery } from "./Stores/slices/apiSlice.ts";
 import { useAppState } from "./Stores/AppStateContext.tsx";
 import StartBearVideo from "./Pages/StartBearVideo/StartBearVideo.tsx";
-import LoadingScreen from "./SharedUI/LoadingScreen/LoadingScreen.tsx";
-import { getLittleBearId, simulateLoadingProgress } from "./utils/helpers.ts";
+import LoadingScreen from "./Pages/LoadingScreen/LoadingScreen.tsx";
+import { getLittleBearId } from "./utils/helpers.ts";
 import RegisteredModal from "./SharedUI/RegisteredModal/RegisteredModal.tsx";
 
 import UserService from "./Services/UserService.ts";
@@ -22,18 +22,13 @@ const BACKGROUND_MAP = {
 const App = () => {
   const { user } = useTelegram();
   const { data: userData, error, isLoading } = useGetUserQuery(user?.id);
-  const { state, dispatch } = useAppState();
+  const { dispatch } = useAppState();
   const [userIsRegistered, setUserIsRegistered] = useState<boolean>(false);
-  const [videoIsEnd, setVideoIsEnd] = useState(false);
   const location = useLocation();
   const backgroundClassName = BACKGROUND_MAP[location.pathname];
 
-  const onEndVideoHandler = () => {
-    setVideoIsEnd(true);
-  };
-
-  const [progress, setProgress] = useState(0);
-  const [loadingComplete, setLoadingComplete] = useState(false);
+  const [isLoadingScreen, setIsLoadingScreen] = useState(true);
+  const [videoIsEnd, setVideoIsEnd] = useState(false);
 
   useEffect(() => {
     if (!user || !user.username) return;
@@ -41,46 +36,37 @@ const App = () => {
     const userService = new UserService(dispatch);
 
     if (userData) {
-      userService.setUserData(userData);
-      setUserIsRegistered(true); //
+      userService.setUserData(userData).then(() => {
+        setUserIsRegistered(true);
+      });
     }
 
     if (error && error.data === "Document does not exist") {
       const refID = getLittleBearId(location.search) || "";
       const isPremium = !!user.is_premium;
-      userService.registerUser(user, refID, isPremium);
-      setUserIsRegistered(false);
+      userService.registerUser(user, refID, isPremium).then(() => {
+        setUserIsRegistered(false);
+      });
     }
   }, [user, userData, dispatch, error, location.search]);
 
-  useEffect(() => {
-    if (progress === 100) {
-      const timer = setTimeout(() => {
-        setLoadingComplete(true);
-      }, 500);
-
-      return () => clearTimeout(timer);
-    }
-  }, [progress]);
-
-  useEffect(() => {
-    simulateLoadingProgress(setProgress);
-  }, []);
-
-  if (!loadingComplete) {
-    return <LoadingScreen progress={progress} />;
+  if (isLoadingScreen) {
+    return <LoadingScreen setIsLoadingScreen={setIsLoadingScreen} />;
   }
 
-  if (!userIsRegistered && !videoIsEnd) {
-    return <StartBearVideo onEndVideoHandler={onEndVideoHandler} />;
+  if (!userIsRegistered) {
+    return (
+      <StartBearVideo
+        setUserIsRegistered={setUserIsRegistered}
+        setVideoIsEnd={setVideoIsEnd}
+      />
+    );
   }
 
   return (
     <div className={`${styles["game-wrapper"]} ${styles[backgroundClassName]}`}>
-      {!userIsRegistered && !isLoading && (
-        <RegisteredModal userIsRegistered={userIsRegistered} />
-      )}
-      <Header user={state.user} />
+      {videoIsEnd && <RegisteredModal />}
+      <Header />
       <Outlet />
       <Menu />
     </div>

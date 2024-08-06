@@ -1,24 +1,8 @@
 import styles from "./RegisteredModal.module.css";
-import { useEffect, useState } from "react";
-
-const RegisteredModal = ({ userIsRegistered }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeHandler = () => {
-    setIsOpen(false);
+const RegisteredModal = () => {
+  const closeHandler = (e) => {
+    e.target.parentElement.parentElement.remove();
   };
-
-  useEffect(() => {
-    if (userIsRegistered) {
-      setIsOpen(false);
-    } else {
-      setIsOpen(true);
-    }
-  }, []);
-
-  if (!isOpen) {
-    return null;
-  }
 
   return (
     <div className={styles["registered-modal-wrapper"]}>
@@ -40,10 +24,6 @@ const RegisteredModal = ({ userIsRegistered }) => {
         <button onClick={closeHandler} className={styles["close"]}>
           Close
         </button>
-        {/*<button className={styles["close-button"]}>*/}
-        {/*  <span></span>*/}
-        {/*  <span></span>*/}
-        {/*</button>*/}
       </div>
     </div>
   );

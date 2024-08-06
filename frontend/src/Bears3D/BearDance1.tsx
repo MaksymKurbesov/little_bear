@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
 
-const Bear1 = (props) => {
+const BearDance1 = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
     "/new_bear_model/1/untitled.gltf",
@@ -80,6 +80,6 @@ const Bear1 = (props) => {
   );
 };
 
-export default Bear1;
+export default BearDance1;
 
 useGLTF.preload("/new_bear_model/1/untitled.gltf");

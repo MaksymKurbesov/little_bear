@@ -44,7 +44,7 @@
 .progress div {
   height: 100%;
   border-radius: 25px;
-
+  transition: 0.35s ease all;
   --fill:
           linear-gradient(rgba(226, 102, 76, 0.65), transparent),
           repeating-linear-gradient(135deg, #f28e26 10px, #fd644f 15px);

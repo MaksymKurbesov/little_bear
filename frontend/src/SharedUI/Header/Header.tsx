@@ -1,36 +1,20 @@
 import styles from "./Header.module.css";
 import Settings from "../../icons/Settings";
-import { dailyReward } from "../../images";
-import { calculateTimeLeft } from "../../utils/helpers.ts";
 import LittleBearIcon from "../../images/little-bear-icon.png";
 import { NavLink, useLocation } from "react-router-dom";
-import ProgressBar from "../../Pages/Main/components/ProgressBar/ProgressBar.tsx";
+import ProgressBar from "../../Pages/Main/ProgressBar/ProgressBar.tsx";
+import DailyRewardHeader from "./DailyRewardHeader/DailyRewardHeader.tsx";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
-import { useEffect, useState } from "react";
 
-const Header = ({ user }) => {
+const Header = () => {
   const location = useLocation();
   const isPlayPage = location.pathname === "/";
   const isAirdropPage = location.pathname === "/airdrop";
+  const { state } = useAppState();
 
   const isTransparentMenu = isPlayPage || isAirdropPage;
 
-  const [dailyRewardTimeLeft, setDailyRewardTimeLeft] = useState("");
-
-  useEffect(() => {
-    const updateCountdowns = () => {
-      setDailyRewardTimeLeft(calculateTimeLeft());
-    };
-
-    updateCountdowns();
-    const interval = setInterval(updateCountdowns, 60000); // Update every minute
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
-  if (!user) {
+  if (!state.user) {
     return null;
   }
 
@@ -47,33 +31,15 @@ const Header = ({ user }) => {
           </NavLink>
 
           <div className={styles["info-wrapper"]}>
-            <p>{user.username}</p>
+            <p>{state.user.username}</p>
             <NavLink to={"/skins"}>
-              <ProgressBar points={user.points} />
+              <ProgressBar points={state.points} />
             </NavLink>
           </div>
         </div>
       </div>
 
-      <div className={styles["daily-reward"]}>
-        <NavLink to={"/daily-reward"} className={styles["daily-reward-link"]}>
-          {!user.hasClaimedToday && <div className={styles["dot"]}></div>}
-
-          <img
-            src={dailyReward}
-            alt="Daily Reward"
-            className={styles["daily-icon"]}
-          />
-          <div className={styles["daily-text"]}>
-            <p>Daily reward</p>
-            {user.hasClaimedToday ? (
-              <p className={styles["claimed"]}>Claimed!</p>
-            ) : (
-              <p>{dailyRewardTimeLeft}</p>
-            )}
-          </div>
-        </NavLink>
-      </div>
+      <DailyRewardHeader />
 
       <NavLink to={"/settings"}>
         <div className={styles["settings"]}>

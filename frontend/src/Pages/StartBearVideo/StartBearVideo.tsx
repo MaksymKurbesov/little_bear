@@ -1,42 +1,45 @@
 import styles from "./StartBearVideo.module.css";
-import StartVideo from "/start-video.mp4";
+import StartVideo from "/start-video-short.mp4";
 import { useEffect, useRef, useState } from "react";
-import { current } from "@reduxjs/toolkit";
+import TurnOnSoundIcon from "../../icons/turn-on-sound.svg";
+import TurnOffSoundIcon from "../../icons/turn-off-sound.svg";
 
-const StartBearVideo = ({ onEndVideoHandler }) => {
+const StartBearVideo = ({ setUserIsRegistered, setVideoIsEnd }) => {
   const videoRef = useRef(null);
   const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     if (videoRef && videoRef.current) {
-      // setTimeout(() => {
-      //   videoRef?.current.muted = false; // Включение звука
-      //   videoRef?.current.play();
-      //   console.log("work");
-      // }, 100);
+      videoRef.current.volume = 0.5;
     }
-  }, []);
+  }, [videoRef.current]);
 
   return (
-    <div className={styles["start-bear-video"]}>
-      <button
-        onClick={() => {
-          setMuted((current) => !current);
-          console.log(muted, "muted");
-        }}
-        className={styles["unmute"]}
-      >
-        Unmute
-      </button>
-      <video
-        ref={videoRef}
-        onEnded={onEndVideoHandler}
-        src={StartVideo}
-        autoPlay
-        // playsInline
-        muted={muted}
-      ></video>
-    </div>
+    <>
+      <div className={styles["start-bear-video"]}>
+        <button
+          onClick={() => {
+            setMuted((current) => !current);
+          }}
+          className={styles["mute-button"]}
+        >
+          <img src={muted ? TurnOffSoundIcon : TurnOnSoundIcon} alt={""} />
+        </button>
+        <video
+          ref={videoRef}
+          onEnded={() => {
+            setTimeout(() => {
+              setVideoIsEnd(true);
+              setUserIsRegistered(true);
+            }, 100);
+          }}
+          src={StartVideo}
+          autoPlay
+          // playsInline
+          muted={muted}
+        ></video>
+      </div>
+    </>
   );
 };
 

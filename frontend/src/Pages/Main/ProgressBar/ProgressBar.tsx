@@ -1,9 +1,9 @@
 import styles from "./ProgressBar.module.css";
-import ArrowIcon from "../../../../icons/arrow.svg";
+import ArrowIcon from "../../../icons/arrow.svg";
 import {
   calculateProgressBar,
   getLevelByPoints,
-} from "../../../../utils/helpers.ts";
+} from "../../../utils/helpers.ts";
 
 const ProgressBar = ({ points }) => {
   const level = getLevelByPoints(points);
