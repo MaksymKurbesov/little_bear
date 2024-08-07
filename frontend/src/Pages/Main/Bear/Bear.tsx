@@ -8,8 +8,8 @@ import { useTelegram } from "../../../hooks/useTelegram.ts";
 import { OrbitControls } from "@react-three/drei";
 import { triggerVibration } from "../../../utils/helpers.ts";
 import BearDance1 from "../../../Bears3D/BearDance1.tsx";
-import StatueStand from "../../../SharedUI/StatueStand/StatueStand.tsx";
 import BearDance2 from "../../../Bears3D/BearDance2.tsx";
+import Stand from "../../../SharedUI/Stand/Stand.tsx";
 
 const Bear = ({ setIsBouncing }) => {
   const { dispatch } = useAppState();
@@ -64,8 +64,7 @@ const Bear = ({ setIsBouncing }) => {
             />
             {dance === 1 && <BearDance1 />}
             {dance === 2 && <BearDance2 />}
-            <StatueStand />
-            {/*<BearContainer ref={objectRef} />*/}
+            <Stand />
           </group>
           <OrbitControls />
         </Canvas>
