@@ -6,20 +6,20 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-image: url('/gaming-bg.png');
+  background-image: url('/wood-bg.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   transition: 0.35s ease all;
 }
 
-.stony-bg {
-  background-image: url('/stony-bg.png');
-  background-position: center top;
+
+.bg-skin-2 {
+  background-image: url('/bg2.png');
 }
 
-.acid-bg {
-  background-image: url('/acid-bg.png');
+.bg-skin-3 {
+  background-image: url('/bg3.png');
 }
 
 .title-wrapper {

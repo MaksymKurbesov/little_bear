@@ -9,10 +9,12 @@ const BearDance2 = (props) => {
 
   const { actions, mixer } = useAnimations(animations, group);
 
-  console.log(actions, "actions");
   useEffect(() => {
-    if (actions && actions["Sta|CINEMA_4D_Main|Layer0"]) {
-      actions["Sta|CINEMA_4D_Main|Layer0"].play();
+    if (actions && actions["Bear2|CINEMA_4D_Main|Layer0"]) {
+      const action = actions["Bear2|CINEMA_4D_Main|Layer0"];
+
+      action.play();
+      // action.paused = true;
     }
   }, [mixer]);
 
@@ -21,57 +23,57 @@ const BearDance2 = (props) => {
       <group name="Scene">
         <group
           name="Bear2"
-          position={[0.001, 0.106, 0]}
+          position={[0.001, 0.25, 0]}
           rotation={[Math.PI / 2, 0, 0]}
           scale={0.25}
         >
           <skinnedMesh
-            name="Bearbrick_Chest001"
-            geometry={nodes.Bearbrick_Chest001.geometry}
-            material={materials["dark bear"]}
-            skeleton={nodes.Bearbrick_Chest001.skeleton}
+            name="Bearbrick_Chest"
+            geometry={nodes.Bearbrick_Chest.geometry}
+            material={materials["Material.001"]}
+            skeleton={nodes.Bearbrick_Chest.skeleton}
             castShadow
           />
           <skinnedMesh
-            name="Bearbrick_Head001"
-            geometry={nodes.Bearbrick_Head001.geometry}
-            material={materials["dark bear"]}
-            skeleton={nodes.Bearbrick_Head001.skeleton}
+            name="Bearbrick_Head"
+            geometry={nodes.Bearbrick_Head.geometry}
+            material={materials["Material.001"]}
+            skeleton={nodes.Bearbrick_Head.skeleton}
             castShadow
           />
           <skinnedMesh
-            name="Hand001"
-            geometry={nodes.Hand001.geometry}
-            material={materials["dark bear"]}
-            skeleton={nodes.Hand001.skeleton}
+            name="Hand"
+            geometry={nodes.Hand.geometry}
+            material={materials["Material.001"]}
+            skeleton={nodes.Hand.skeleton}
             castShadow
           />
           <skinnedMesh
-            name="Hand_1001"
-            geometry={nodes.Hand_1001.geometry}
-            material={materials["dark bear"]}
-            skeleton={nodes.Hand_1001.skeleton}
+            name="Hand_1"
+            geometry={nodes.Hand_1.geometry}
+            material={materials["Material.001"]}
+            skeleton={nodes.Hand_1.skeleton}
             castShadow
           />
           <skinnedMesh
-            name="Leg001"
-            geometry={nodes.Leg001.geometry}
-            material={materials["dark bear"]}
-            skeleton={nodes.Leg001.skeleton}
+            name="Leg"
+            geometry={nodes.Leg.geometry}
+            material={materials["Material.001"]}
+            skeleton={nodes.Leg.skeleton}
             castShadow
           />
           <skinnedMesh
-            name="Object002001"
-            geometry={nodes.Object002001.geometry}
-            material={materials["dark bear"]}
-            skeleton={nodes.Object002001.skeleton}
+            name="Object002"
+            geometry={nodes.Object002.geometry}
+            material={materials["Material.001"]}
+            skeleton={nodes.Object002.skeleton}
             castShadow
           />
           <skinnedMesh
-            name="Pelvis001"
-            geometry={nodes.Pelvis001.geometry}
-            material={materials["dark bear"]}
-            skeleton={nodes.Pelvis001.skeleton}
+            name="Pelvis"
+            geometry={nodes.Pelvis.geometry}
+            material={materials["Material.001"]}
+            skeleton={nodes.Pelvis.skeleton}
             castShadow
           />
           <primitive object={nodes.mixamorig_HipsS} />

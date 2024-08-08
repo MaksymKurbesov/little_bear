@@ -8,7 +8,7 @@ import { POINTS_TO_ADD } from "../../utils/consts.ts";
 import { useTelegram } from "../../hooks/useTelegram.ts";
 import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
-import BackgroundImage from "/bg.webp";
+import BackgroundImage from "/bg-light.webp";
 import Points from "./Points/Points.tsx";
 
 const Main = () => {

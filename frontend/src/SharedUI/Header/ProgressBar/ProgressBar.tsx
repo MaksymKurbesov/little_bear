@@ -7,6 +7,7 @@ import {
 
 const ProgressBar = ({ points }) => {
   const level = getLevelByPoints(points);
+
   const progressPercentage = calculateProgressBar(points, level);
 
   return (

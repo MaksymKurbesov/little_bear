@@ -1,15 +1,15 @@
 import styles from "./Header.module.css";
 import Settings from "../../icons/Settings";
 import LittleBearIcon from "../../images/little-bear-icon.png";
-import { NavLink, useLocation } from "react-router-dom";
-import ProgressBar from "../../Pages/Main/ProgressBar/ProgressBar.tsx";
+import { NavLink } from "react-router-dom";
+import ProgressBar from "./ProgressBar/ProgressBar.tsx";
 import DailyRewardHeader from "./DailyRewardHeader/DailyRewardHeader.tsx";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
+import { useEffect } from "react";
 
-const Header = () => {
-  const location = useLocation();
-  const isPlayPage = location.pathname === "/";
-  const isAirdropPage = location.pathname === "/airdrop";
+const Header = ({ pathname }) => {
+  const isPlayPage = pathname === "/";
+  const isAirdropPage = pathname === "/airdrop";
   const { state } = useAppState();
 
   const isTransparentMenu = isPlayPage || isAirdropPage;
@@ -17,6 +17,10 @@ const Header = () => {
   if (!state.user) {
     return null;
   }
+
+  useEffect(() => {
+    console.log("header");
+  }, []);
 
   return (
     <div

@@ -1,22 +1,34 @@
 import styles from "./Bear.module.css";
 import { Canvas } from "@react-three/fiber";
-import React, { Suspense, useCallback, useRef, useState } from "react";
+import React, { lazy, Suspense, useCallback, useRef, useState } from "react";
 import { POINTS_TO_ADD } from "../../../utils/consts.ts";
 import { useAppState } from "../../../Stores/AppStateContext.tsx";
 import LoadSpinning from "../../../SharedUI/LoadSpinning/LoadSpinning.tsx";
 import { useTelegram } from "../../../hooks/useTelegram.ts";
 import { OrbitControls } from "@react-three/drei";
 import { triggerVibration } from "../../../utils/helpers.ts";
-import BearDance1 from "../../../Bears3D/BearDance1.tsx";
-import BearDance2 from "../../../Bears3D/BearDance2.tsx";
-import Stand from "../../../SharedUI/Stand/Stand.tsx";
+import Lights from "../../../SharedUI/Lights/Lights.tsx";
+
+const BearDance1 = lazy(() => import("../../../Bears3D/BearDance1.tsx"));
+const BearDance2 = lazy(() => import("../../../Bears3D/BearDance2.tsx"));
+const BearDance3 = lazy(() => import("../../../Bears3D/BearDance3.tsx"));
+const Stand1 = lazy(() => import("../../../SharedUI/Stands/Stand1.tsx"));
+const Stand2 = lazy(() => import("../../../SharedUI/Stands/Stand2.tsx"));
+const Stand3 = lazy(() => import("../../../SharedUI/Stands/Stand3.tsx"));
 
 const Bear = ({ setIsBouncing }) => {
   const { dispatch } = useAppState();
-  const objectRef = useRef();
   const { tg } = useTelegram();
 
+  const [action, setAction] = useState();
   const [dance, setDance] = useState(1);
+
+  const controlsRef = useRef();
+
+  const handleActionReady = (action) => {
+    console.log(action, "handleActionReady");
+    setAction(action);
+  };
 
   const handleCardClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -26,6 +38,17 @@ const Bear = ({ setIsBouncing }) => {
           setIsBouncing(true); // Запускаем анимацию
         });
       });
+
+      console.log(action, "action before inside bear");
+
+      if (action) {
+        console.log(action, "action inside bear");
+        action.paused = false;
+        setTimeout(() => {
+          action.paused = true;
+          action.reset().paused = true;
+        }, 5000);
+      }
 
       setTimeout(() => setIsBouncing(false), 350); // Длительность анимации 1 секунда
 
@@ -39,39 +62,77 @@ const Bear = ({ setIsBouncing }) => {
         },
       });
     },
-    [dispatch],
+    [dispatch, action],
   );
 
   return (
     <div className={styles["main-image-wrapper"]} onClick={handleCardClick}>
       <Suspense fallback={<LoadSpinning />}>
-        <Canvas shadows>
-          <group scale={0.7} position={[0, -0.2, 0]}>
-            <ambientLight intensity={0.4} />
-            <directionalLight
-              castShadow
-              intensity={1.5}
-              position={[10, 15, 6]}
-              shadow-mapSize-width={1024}
-              shadow-mapSize-height={1024}
-            />
-            <directionalLight
-              castShadow
-              intensity={1.5}
-              position={[-10, 15, 6]}
-              shadow-mapSize-width={1024}
-              shadow-mapSize-height={1024}
-            />
-            {dance === 1 && <BearDance1 />}
-            {dance === 2 && <BearDance2 />}
-            <Stand />
-          </group>
-          <OrbitControls />
+        <Canvas shadows camera={{ position: [0, 1.1, 5] }}>
+          <Lights>
+            <group position={[0, -0.4, 3.2]} scale={0.47}>
+              <group position={[0, -0.1, 0]}>
+                {dance === 1 && (
+                  <>
+                    <BearDance1 handleActionReady={handleActionReady} />
+                    <Stand1 />
+                  </>
+                )}
+                {dance === 2 && (
+                  <>
+                    <BearDance2 handleActionReady={handleActionReady} />
+                    <Stand2 />
+                  </>
+                )}
+                {dance === 3 && (
+                  <>
+                    <BearDance3 handleActionReady={handleActionReady} />
+                    <Stand3 />
+                  </>
+                )}
+              </group>
+
+              <OrbitControls ref={controlsRef} />
+            </group>
+          </Lights>
         </Canvas>
       </Suspense>
-      <div className={styles["buttons"]}>
-        <button onClick={() => setDance(1)}>Dance 1</button>
-        <button onClick={() => setDance(2)}>Dance 2</button>
+      <div className={styles["buttons-wrapper"]}>
+        <button
+          onClick={() => {
+            console.log(controlsRef, "controlsRef");
+            controlsRef.current.reset();
+          }}
+          className={styles["reset-camera"]}
+        >
+          Reset camera
+        </button>
+        <div className={styles["buttons"]}>
+          <button
+            onClick={() => {
+              setDance(1);
+              dispatch({ type: "SET_SKIN_NUMBER", payload: 0 });
+            }}
+          >
+            Dance 1
+          </button>
+          <button
+            onClick={() => {
+              setDance(2);
+              dispatch({ type: "SET_SKIN_NUMBER", payload: 1 });
+            }}
+          >
+            Dance 2
+          </button>
+          <button
+            onClick={() => {
+              setDance(3);
+              dispatch({ type: "SET_SKIN_NUMBER", payload: 2 });
+            }}
+          >
+            Dance 3
+          </button>
+        </div>
       </div>
     </div>
   );

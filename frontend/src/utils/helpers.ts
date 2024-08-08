@@ -55,7 +55,7 @@ export const throttle = (func, limit) => {
 
 export const getLevelByPoints = (points: number) => {
   const newLevel = levelThresholds.findIndex((threshold) => points < threshold);
-  return newLevel > 0 ? newLevel - 1 : levelThresholds.length - 1;
+  return newLevel >= 0 ? newLevel : levelThresholds.length - 1;
 };
 
 export const generateUserData = (username: string, id: number): IUser => {
@@ -78,7 +78,7 @@ export const triggerVibration = (tg) => {
 };
 
 export const calculateProgressBar = (points: number, level: number) => {
-  return (points / levelThresholds[level + 1]) * 100;
+  return (points / levelThresholds[level]) * 100;
 };
 
 export function getLittleBearId(queryString: string) {

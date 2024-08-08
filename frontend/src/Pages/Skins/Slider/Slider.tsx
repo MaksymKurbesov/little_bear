@@ -5,9 +5,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
-import BearSkin1 from "../../../images/skins/brickie.png";
-import BearSkin2 from "../../../images/skins/stony.png";
-import BearSkin3 from "../../../images/skins/acidlover.png";
+import BearSkin1 from "../../../images/skins/timber.png";
+import BearSkin2 from "../../../images/skins/brickn.png";
+import BearSkin3 from "../../../images/skins/neyon.png";
+import OpenedBearSkin1 from "../../../images/skins/timber.png";
+import OpenedBearSkin2 from "../../../images/skins/brickn-opened.png";
+import OpenedBearSkin3 from "../../../images/skins/neyon-opened.png";
+
 import { useEffect, useRef, useState } from "react";
 import ArrowIcon from "../../../icons/arrow.svg";
 import { useImagePreloader } from "../../../hooks/useImagePreloader.ts";
@@ -16,13 +20,21 @@ import { useAppState } from "../../../Stores/AppStateContext.tsx";
 import SkinSlide from "../SkinSlide/SkinSlide.tsx";
 import { SKINS } from "../../../utils/consts.ts";
 
+const imageUrls = [
+  BearSkin1,
+  BearSkin2,
+  BearSkin3,
+  OpenedBearSkin1,
+  OpenedBearSkin2,
+  OpenedBearSkin3,
+];
+
 const Slider = ({ setCurrentSkin }) => {
   const swiperRef = useRef(null);
   const { state, dispatch } = useAppState();
   const [isBeginning, setIsBeginning] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
   const [swiper, setSwiper] = useState<Swiper>();
-  const imageUrls = [BearSkin1, BearSkin2, BearSkin3];
   const imagesLoaded = useImagePreloader(imageUrls);
 
   useEffect(() => {
@@ -55,6 +67,8 @@ const Slider = ({ setCurrentSkin }) => {
       </div>
     );
   }
+
+  console.log(state.level, "state.level");
 
   return (
     <Swiper

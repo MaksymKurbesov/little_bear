@@ -16,9 +16,18 @@
 }
 
 .background-image-main {
-  background-image: url("/bg-light.webp");
+  background-image: url("/bg-light2.webp");
   background-size: cover;
+}
 
+.background-image-main2 {
+  background-image: url("/bg2.jpg");
+  background-size: cover;
+}
+
+.background-image-main3 {
+  background-image: url("/bg3.webp");
+  background-size: cover;
 }
 
 .background-image-airdrop {
@@ -29,6 +38,9 @@
   /*background-position: center;*/
 }
 
+.background-image-skins {
+  background-image: none;
+}
 
 
 .top-glow {

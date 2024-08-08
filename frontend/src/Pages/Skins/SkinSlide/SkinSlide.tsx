@@ -7,9 +7,7 @@ const SkinSlide = ({ skin, currentPoints, level }) => {
   const isNextSkin = skin.id > level + 1;
 
   return (
-    <div
-      className={`${styles["slide"]} ${isPreviuosSkin || isCurrentSkin ? styles[skin.colorCN] : ""}`}
-    >
+    <div className={`${styles["slide"]} ${styles[skin.colorCN]}`}>
       <img
         src={isPreviuosSkin ? skin.openedImage : skin.image}
         alt={""}

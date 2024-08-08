@@ -1,5 +1,5 @@
 import styles from "./StartBearVideo.module.css";
-import StartVideo from "/start-video-short.mp4";
+import StartVideo from "/start-video.mp4";
 import { useEffect, useRef, useState } from "react";
 import TurnOnSoundIcon from "../../icons/turn-on-sound.svg";
 import TurnOffSoundIcon from "../../icons/turn-off-sound.svg";

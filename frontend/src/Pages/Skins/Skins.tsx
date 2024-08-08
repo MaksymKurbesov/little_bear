@@ -3,11 +3,11 @@ import Slider from "./Slider/Slider.tsx";
 import { useState } from "react";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
 import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";
-import Bg1 from "/gaming-bg.png";
-import Bg2 from "/stony-bg.png";
-import Bg3 from "/acid-bg.png";
+import Bg1 from "/wood-bg.png";
+import Bg2 from "/bg2.png";
+import Bg3 from "/bg3.png";
 
-const BACKGROUND = ["gaming-bg", "stony-bg", "acid-bg"];
+const BACKGROUND = ["bg-skin-1", "bg-skin-2", "bg-skin-3"];
 
 const Skins = () => {
   const [currentSkin, setCurrentSkin] = useState(0);

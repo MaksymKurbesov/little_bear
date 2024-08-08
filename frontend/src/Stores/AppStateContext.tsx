@@ -22,7 +22,7 @@ const initialState: State = {
   user: null,
   hasClaimedToday: false,
   currentSkin: 0,
-  level: 0,
+  level: 1,
 };
 
 type Action =

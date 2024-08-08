@@ -28,15 +28,15 @@
   height: 82%;
   background: linear-gradient(
           to left,
-          #ff5770,
-          #e4428d,
-          #2d50c4,
-          #16bdc3,
-          #016fde,
-          #9e16c3,
-          #c42da8,
-          #e4428d,
-          #ff5770
+          #ffe6ca,
+          #ffc994,
+          #ffe6ca,
+          #ffe6ca,
+          #ffe6ca,
+          #ffdbb2,
+          #ffbe74,
+          #ffcb8e,
+          #ffe6ca
   );
   background-size: 200% 200%;
   animation: animateGlow 4.25s linear infinite;
@@ -47,15 +47,15 @@
   height: 82%;
   background: linear-gradient(
           to left,
-          #ff5757,
-          #e4425a,
-          #ff0000,
-          rgba(87, 2, 2, 0.6),
-          rgba(222, 8, 1, 0.67),
-          rgba(147, 0, 0, 0.62),
+          #300703,
+          rgba(48, 7, 3, 1),
+          rgba(169, 27, 18, 1),
+          rgba(86, 19, 12, 1),
+          rgba(224, 53, 47, 1),
+          rgba(147, 0, 0, 1),
           #c42d2d,
-          #e4428d,
-          #ff5770
+          #3f100d,
+          #180200
   );
   background-size: 200% 200%;
   animation: animateGlow 4.25s linear infinite;
@@ -66,15 +66,15 @@
   height: 81%;
   background: linear-gradient(
           to left,
-          #57ff8c,
-          #6be442,
-          #c8ff00,
-          rgba(0, 247, 255, 0.8),
-          rgba(1, 222, 38, 0.67),
-          rgb(71, 255, 62),
-          #74ff6c,
-          #5dff54,
-          #cfff57
+          #c757ff,
+          #f957ff,
+          #a857ff,
+          rgb(143, 87, 255),
+          rgb(224, 87, 255),
+          rgb(255, 87, 241),
+          #e057ff,
+          #ae57ff,
+          #e957ff
   );
   background-size: 200% 200%;
   animation: animateGlow 4.25s linear infinite;
@@ -115,12 +115,12 @@
 .color-blue .progress-bar > div {
   --fill:
           linear-gradient(rgba(226, 102, 76, 0.65), transparent),
-          repeating-linear-gradient(135deg, #d12d9c 10px, #5ea2ef 15px);
+          repeating-linear-gradient(135deg, #ff9e6c 10px, #ffe5c8 15px);
 
   background: var(--fill);
   background-size: 200% 200%;
   animation: gradientAnimation 5s linear infinite;
-  box-shadow: 0 0 7px 5px rgb(209, 45, 156);
+  box-shadow: 0 0 7px 5px #ffc389;
 }
 
 .color-red .progress-bar > div {
@@ -137,13 +137,16 @@
 .color-green .progress-bar > div{
   --fill:
           linear-gradient(rgba(226, 102, 76, 0.65), transparent),
-          repeating-linear-gradient(135deg, #4bd12d 10px, #5eef8c 15px);
+          repeating-linear-gradient(135deg, #c757ff 10px, #ee57ff 15px);
 
   background: var(--fill);
   background-size: 200% 200%;
   animation: gradientAnimation 5s linear infinite;
-  box-shadow: 0 0 7px 5px rgba(75, 209, 45, 0.7);
+  box-shadow: 0 0 7px 5px rgb(185, 60, 248);
 }
+
+
+
 
 
 @keyframes gradientAnimation {

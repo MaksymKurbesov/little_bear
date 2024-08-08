@@ -19,13 +19,22 @@ const BACKGROUND_MAP = {
   "/skins": "background-image-skins",
 };
 
+const BEAR_BACKGROUNDS = [
+  "background-image-main",
+  "background-image-main2",
+  "background-image-main3",
+];
+
 const App = () => {
   const { user } = useTelegram();
   const { data: userData, error, isLoading } = useGetUserQuery(user?.id);
-  const { dispatch } = useAppState();
+  const { state, dispatch } = useAppState();
   const [userIsRegistered, setUserIsRegistered] = useState<boolean>(false);
   const location = useLocation();
   const backgroundClassName = BACKGROUND_MAP[location.pathname];
+  const bearBackgroundCN = BEAR_BACKGROUNDS[state.currentSkin];
+
+  console.log(state.currentSkin, "state.currentSkin");
 
   const [isLoadingScreen, setIsLoadingScreen] = useState(true);
   const [videoIsEnd, setVideoIsEnd] = useState(false);
@@ -50,23 +59,25 @@ const App = () => {
     }
   }, [user, userData, dispatch, error, location.search]);
 
-  if (isLoadingScreen) {
-    return <LoadingScreen setIsLoadingScreen={setIsLoadingScreen} />;
-  }
+  // if (isLoadingScreen) {
+  //   return <LoadingScreen setIsLoadingScreen={setIsLoadingScreen} />;
+  // }
 
-  if (!userIsRegistered) {
-    return (
-      <StartBearVideo
-        setUserIsRegistered={setUserIsRegistered}
-        setVideoIsEnd={setVideoIsEnd}
-      />
-    );
-  }
+  // if (!userIsRegistered) {
+  //   return (
+  //     <StartBearVideo
+  //       setUserIsRegistered={setUserIsRegistered}
+  //       setVideoIsEnd={setVideoIsEnd}
+  //     />
+  //   );
+  // }
 
   return (
-    <div className={`${styles["game-wrapper"]} ${styles[backgroundClassName]}`}>
+    <div
+      className={`${styles["game-wrapper"]} ${styles[backgroundClassName]} ${styles[bearBackgroundCN]}`}
+    >
       {videoIsEnd && <RegisteredModal />}
-      <Header />
+      <Header pathname={location.pathname} />
       <Outlet />
       <Menu />
     </div>
