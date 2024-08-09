@@ -26,7 +26,7 @@ bot.on("message", async (msg) => {
               [
                 {
                   text: "Play in 1 click 🐻",
-                  web_app: { url: `https://little-bear-rho.vercel.app/` },
+                  web_app: { url: `https://littlebear-app.online` },
                 },
               ],
             ],

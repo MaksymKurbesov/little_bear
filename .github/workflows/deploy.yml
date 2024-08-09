@@ -1,0 +1,38 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main  # укажите ветку, на которую нужно реагировать
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Нужно для получения полного репозитория
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Укажите версию Node.js, которую вы используете
+
+    - name: Install dependencies
+      run: cd frontend && npm install
+
+    - name: Build project
+      run: cd frontend && npm run build
+
+    - name: Deploy to server
+      run: |
+        rsync -avz --delete frontend/dist/ root@69.57.163.156:/var/www/littlebear-app.online/
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SERVER_HOST: 69.57.163.156
+        SERVER_USER: root
+
+    - name: Clean up local build
+      run: rm -rf frontend/dist/
