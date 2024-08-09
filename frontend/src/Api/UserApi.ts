@@ -89,7 +89,7 @@ class UserApi {
 
       await updateDoc(referralUserRef, {
         referrals: arrayUnion(userRef),
-        points: isPremium ? increment(25000) : increment(5000),
+        points: isPremium ? increment(2000) : increment(1000),
       });
       console.log("Referral added successfully");
     } catch (error) {
