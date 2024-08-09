@@ -78,8 +78,6 @@ const App = () => {
     );
   }
 
-  if (!isLevelSpecified) return null;
-
   return (
     <div
       className={`${styles["game-wrapper"]} ${styles[backgroundClassName]} ${styles[bearBackgroundCN]}`}
