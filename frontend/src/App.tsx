@@ -63,7 +63,7 @@ const App = () => {
         setUserIsRegistered(false);
       });
     }
-  }, [user, userData, dispatch, error, location.search]);
+  }, [user, userData, dispatch, error, location.search, videoIsEnd]);
 
   if (isLoadingScreen) {
     return <LoadingScreen setIsLoadingScreen={setIsLoadingScreen} />;
