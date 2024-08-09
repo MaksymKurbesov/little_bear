@@ -2,7 +2,7 @@ import doteEnv from "dotenv";
 doteEnv.config();
 
 import TelegramBot from "node-telegram-bot-api";
-const webAppUrl = `https://cce790e41beaab74e07778ae4f63a45c.serveo.net`;
+const webAppUrl = `https://7782accf65339c50c8fd3f54d4744acd.serveo.net`;
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
 
 // Listen for any kind of message. There are different kinds of
