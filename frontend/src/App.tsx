@@ -65,18 +65,18 @@ const App = () => {
     }
   }, [user, userData, dispatch, error, location.search]);
 
-  // if (isLoadingScreen) {
-  //   return <LoadingScreen setIsLoadingScreen={setIsLoadingScreen} />;
-  // }
+  if (isLoadingScreen) {
+    return <LoadingScreen setIsLoadingScreen={setIsLoadingScreen} />;
+  }
 
-  // if (!userIsRegistered) {
-  //   return (
-  //     <StartBearVideo
-  //       setUserIsRegistered={setUserIsRegistered}
-  //       setVideoIsEnd={setVideoIsEnd}
-  //     />
-  //   );
-  // }
+  if (!userIsRegistered) {
+    return (
+      <StartBearVideo
+        setUserIsRegistered={setUserIsRegistered}
+        setVideoIsEnd={setVideoIsEnd}
+      />
+    );
+  }
 
   if (!isLevelSpecified) return null;
 

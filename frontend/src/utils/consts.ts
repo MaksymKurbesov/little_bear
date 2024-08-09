@@ -1,11 +1,15 @@
 import BearSkin1 from "../images/skins/timber.png";
 import BearSkin2 from "../images/skins/brickn.png";
 import BearSkin3 from "../images/skins/neyon.png";
+import BearSkin4 from "../images/skins/brizzy.png";
+import BearSkin5 from "../images/skins/aztron.png";
 import OpenedBearSkin1 from "../images/skins/timber.png";
 import OpenedBearSkin2 from "../images/skins/brickn-opened.png";
 import OpenedBearSkin3 from "../images/skins/neyon-opened.png";
+import OpenedBearSkin4 from "../images/skins/brizzy-opened.png";
+import OpenedBearSkin5 from "../images/skins/aztron-opened.png";
 
-export const POINTS_TO_ADD = [1, 5, 17];
+export const POINTS_TO_ADD = [1, 3, 5, 7, 10];
 
 export const SKINS = [
   {
@@ -13,24 +17,40 @@ export const SKINS = [
     image: BearSkin1,
     openedImage: OpenedBearSkin1,
     requiredPoints: 0,
-    colorCN: "color-blue",
+    colorCN: "color-brown",
     points: 1,
   },
   {
     id: 2,
     image: BearSkin2,
     openedImage: OpenedBearSkin2,
-    requiredPoints: 5000,
+    requiredPoints: 20000,
     colorCN: "color-red",
-    points: 5,
+    points: 3,
   },
   {
     id: 3,
     image: BearSkin3,
     openedImage: OpenedBearSkin3,
-    requiredPoints: 50000,
+    requiredPoints: 60000,
+    colorCN: "color-purple",
+    points: 5,
+  },
+  {
+    id: 4,
+    image: BearSkin4,
+    openedImage: OpenedBearSkin4,
+    requiredPoints: 120000,
     colorCN: "color-green",
-    points: 17,
+    points: 7,
+  },
+  {
+    id: 5,
+    image: BearSkin5,
+    openedImage: OpenedBearSkin5,
+    requiredPoints: 200000,
+    colorCN: "color-white",
+    points: 10,
   },
 ];
 
@@ -60,4 +80,4 @@ export const DAILY_REWARDS_BY_DAY: { [key: string]: number } = {
   9: 10000,
 };
 
-export const levelThresholds = [0, 5000, 50000, 170000, 330000, 1000000];
+export const levelThresholds = [0, 20000, 60000, 120000, 200000];

@@ -42,10 +42,17 @@ const Settings = () => {
         </label>
       </div>
       <div className={styles["links-wrapper"]}>
-        <a className={styles["link"]} href={"#"}>
+        <a
+          className={styles["link"]}
+          href={"https://t.me/little_bear_official"}
+        >
           {t("Our channel")}
         </a>
-        <a className={styles["link"]} href={"#"}>
+        <a
+          className={styles["link"]}
+          target={"_blank"}
+          href={"https://t.me/+uxQafEGkMLdjMDJi"}
+        >
           Our chat
         </a>
       </div>

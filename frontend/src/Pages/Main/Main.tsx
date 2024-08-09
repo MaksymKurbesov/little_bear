@@ -1,11 +1,10 @@
 import styles from "./Main.module.css";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { userApi } from "../../main";
+import { useCallback } from "react";
 import BearIcon from "../../images/default-coin.png";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
 import Bear from "./Bear/Bear.tsx";
 import { POINTS_TO_ADD } from "../../utils/consts.ts";
-import { useTelegram } from "../../hooks/useTelegram.ts";
+
 import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
 import BackgroundImage from "/bg-light.webp";
@@ -18,16 +17,6 @@ const Main = () => {
   const handleAnimationEnd = useCallback((id: number) => {
     dispatch({ type: "REMOVE_CLICK", payload: id });
   }, []);
-
-  // useEffect(() => {
-  // intervalRef.current = setInterval(sendPointsToServer, 3000);
-
-  // return () => {
-  //   if (intervalRef.current) {
-  //     clearInterval(intervalRef.current);
-  //   }
-  // };
-  // }, [sendPointsToServer]);
 
   if (!imagesLoaded) {
     return (

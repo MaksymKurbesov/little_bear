@@ -38,8 +38,7 @@ const Friends = () => {
               <h3>Invite a friend</h3>
               <div className={styles["text-wrapper"]}>
                 <p className={styles["description"]}>
-                  <span>+5,000 </span>
-                  <span>for you and your friend</span>
+                  <span>+1,000</span> <span>for you and your friend</span>
                 </p>
               </div>
             </div>
@@ -50,7 +49,7 @@ const Friends = () => {
               <h3>Invite a friend with Telegram Premium</h3>
               <div className={styles["text-wrapper"]}>
                 <p className={styles["description"]}>
-                  <span>+25,000</span> <span>for you and your friend</span>
+                  <span>+5,000</span> <span>for you and your friend</span>
                 </p>
               </div>
             </div>

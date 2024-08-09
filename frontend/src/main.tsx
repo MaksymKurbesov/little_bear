@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { initializeApp } from "firebase/app";
@@ -12,12 +11,12 @@ import { AppStateProvider } from "./Stores/AppStateContext.tsx";
 import "./i18n";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCcrWcEBknR9NoXZccEBBtqE-txTVOE4wo",
-  authDomain: "tg-tapper.firebaseapp.com",
-  projectId: "tg-tapper",
-  storageBucket: "tg-tapper.appspot.com",
-  messagingSenderId: "225925639303",
-  appId: "1:225925639303:web:98cccb6ab6560edc929c22",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
