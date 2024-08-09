@@ -3,7 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches:
-      - main  # укажите ветку, на которую нужно реагировать
+      - main
 
 jobs:
   build-and-deploy:
@@ -12,20 +12,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  # Нужно для получения полного репозитория
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Укажите версию Node.js, которую вы используете
+        node-version: '16'
 
     - name: Install dependencies
       run: cd frontend && npm install
 
     - name: Build project
       run: cd frontend && npm run build
-	
+
     - name: Add server to known_hosts
       run: |
         mkdir -p ~/.ssh
