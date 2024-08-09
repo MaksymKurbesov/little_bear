@@ -2,22 +2,8 @@ import doteEnv from "dotenv";
 doteEnv.config();
 
 import TelegramBot from "node-telegram-bot-api";
-const webAppUrl = `https://acd11904704c9512b5fcf1538065117c.serveo.net`;
-// Create a bot that uses 'polling' to fetch new updates
+const webAppUrl = `https://b24b53eea1c051a7ba3aca21584f956c.serveo.net`;
 const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
-
-// Matches "/echo [whatever]"
-bot.onText(/\/echo (.+)/, (msg, match) => {
-  // 'msg' is the received Message from Telegram
-  // 'match' is the result of executing the regexp above on the text content
-  // of the message
-
-  const chatId = msg.chat.id;
-  const resp = match[1]; // the captured "whatever"
-
-  // send back the matched "whatever" to the chat
-  bot.sendMessage(chatId, resp);
-});
 
 // Listen for any kind of message. There are different kinds of
 // messages.
@@ -28,11 +14,26 @@ bot.on("message", async (msg) => {
   // send a message to the chat acknowledging receipt of their message
   if (text === "/start") {
     bot
-      .sendMessage(chatId, "Тест development", {
-        reply_markup: {
-          inline_keyboard: [[{ text: "Тест", web_app: { url: webAppUrl } }]],
+      .sendMessage(
+        chatId,
+        "<b>Hello! Welcome to The Little Bear 🐻\n\n</b>" +
+          "You're now in the world of dancing bears that earn you crypto!\n" +
+          "Tap the screen, collect coins, and boost your income with every dance.\n\n" +
+          "Invite your friends, dance together, and earn even more coins!",
+        {
+          reply_markup: {
+            inline_keyboard: [
+              [
+                {
+                  text: "Play in 1 click 🐻",
+                  web_app: { url: `https://little-bear-rho.vercel.app/` },
+                },
+              ],
+            ],
+          },
+          parse_mode: "HTML",
         },
-      })
+      )
       .then(() => {
         console.log("sended");
       })
@@ -41,7 +42,7 @@ bot.on("message", async (msg) => {
       });
   }
 
-  if (text === "/test") {
+  if (text === "/test_development") {
     bot
       .sendMessage(chatId, "Тест production", {
         reply_markup: {
@@ -49,7 +50,7 @@ bot.on("message", async (msg) => {
             [
               {
                 text: "Тест",
-                web_app: { url: `https://little-bear-rho.vercel.app/` },
+                web_app: { url: webAppUrl },
               },
             ],
           ],
