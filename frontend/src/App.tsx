@@ -63,11 +63,14 @@ const App = () => {
         setUserIsRegistered(false);
       });
     }
-  }, [user, userData, dispatch, error, location.search, videoIsEnd]);
+  }, [user, userData, dispatch, error, location.search]);
 
   if (isLoadingScreen) {
     return <LoadingScreen setIsLoadingScreen={setIsLoadingScreen} />;
   }
+
+  console.log(userIsRegistered, "do usloviya userIsRegistered");
+  console.log(isLoadingScreen, "isLoadingScreen");
 
   if (!userIsRegistered) {
     return (
@@ -77,6 +80,8 @@ const App = () => {
       />
     );
   }
+
+  console.log(userIsRegistered, "posle usloviya userIsRegistered");
 
   return (
     <div
