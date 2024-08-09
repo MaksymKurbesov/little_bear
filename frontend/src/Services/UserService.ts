@@ -28,7 +28,13 @@ class UserService {
 
     const registeredUser: IUser = generateUserData(user.username, user.id);
     await userApi.addUser(registeredUser);
+
+    console.log("after register in user service");
+    console.log(registeredUser, "registeredUser");
     this.dispatch({ type: "SET_USER", payload: registeredUser });
+
+    console.log("after dispatch in user service");
+    console.log(referralId, "referralId");
 
     if (referralId) {
       await userApi.addReferral(user.id.toString(), referralId, isPremium);
