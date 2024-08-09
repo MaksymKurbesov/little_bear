@@ -1,9 +1,10 @@
-import TelegramBot from "node-telegram-bot-api";
+import doteEnv from "dotenv";
+doteEnv.config();
 
-const token = `7230742106:AAE70XxKI-3vpo3wU4ANL6jyZaw8AZtEK9M`;
-const webAppUrl = `https://3e518455420be5d53e446f019f4ffea0.serveo.net`;
+import TelegramBot from "node-telegram-bot-api";
+const webAppUrl = `https://acd11904704c9512b5fcf1538065117c.serveo.net`;
 // Create a bot that uses 'polling' to fetch new updates
-const bot = new TelegramBot(token, { polling: true });
+const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
 
 // Matches "/echo [whatever]"
 bot.onText(/\/echo (.+)/, (msg, match) => {
