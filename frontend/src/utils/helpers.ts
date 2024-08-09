@@ -36,7 +36,6 @@ export const debounce = (func, delay) => {
   return function executedFunction(...args) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => func.apply(this, args), delay);
-    console.log(timeoutId, "timeoutId");
   };
 };
 

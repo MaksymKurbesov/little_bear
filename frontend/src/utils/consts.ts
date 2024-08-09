@@ -30,10 +30,10 @@ export const SKINS = [
   },
   {
     id: 3,
-    image: BearSkin3,
-    openedImage: OpenedBearSkin3,
+    image: BearSkin5,
+    openedImage: OpenedBearSkin5,
     requiredPoints: 60000,
-    colorCN: "color-purple",
+    colorCN: "color-white",
     points: 5,
   },
   {
@@ -46,10 +46,10 @@ export const SKINS = [
   },
   {
     id: 5,
-    image: BearSkin5,
-    openedImage: OpenedBearSkin5,
+    image: BearSkin3,
+    openedImage: OpenedBearSkin3,
     requiredPoints: 200000,
-    colorCN: "color-white",
+    colorCN: "color-purple",
     points: 10,
   },
 ];

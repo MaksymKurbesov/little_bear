@@ -48,8 +48,6 @@ const Slider = ({ setCurrentSkin }) => {
       setIsEnd(true);
     }
 
-    console.log(swiper, "swiper");
-
     const handleSlideChange = () => {
       setIsBeginning(swiper.isBeginning);
       setIsEnd(swiper.isEnd);

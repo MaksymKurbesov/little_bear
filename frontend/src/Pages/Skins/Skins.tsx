@@ -12,9 +12,9 @@ import Bg5 from "/bg5.png";
 const BACKGROUND = [
   "bg-skin-1",
   "bg-skin-2",
-  "bg-skin-3",
-  "bg-skin-4",
   "bg-skin-5",
+  "bg-skin-4",
+  "bg-skin-3",
 ];
 
 const Skins = () => {
