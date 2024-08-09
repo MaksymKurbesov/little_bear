@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 type CountdownReturn = [string, string, string, string];
 
 const useCountdown = (targetDate: string | number | Date): CountdownReturn => {
-  const countDownDate: number = new Date(targetDate).getTime();
+  const countDownDate = new Date(targetDate).getTime();
 
   const [countDown, setCountDown] = useState<number>(
     countDownDate - new Date().getTime(),

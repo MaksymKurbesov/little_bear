@@ -11,7 +11,7 @@ const imageUrls = [BackgroundImage, BearCoin, OrangeBearCoin, AirdropLogo];
 
 const Airdrop = () => {
   const imagesLoaded = useImagePreloader(imageUrls);
-  const targetDate = "2024-09-31T23:59:59";
+  const targetDate = "2024-10-01T23:59:59Z";
 
   const [days, hours, minutes, seconds] = useCountdown(targetDate);
 
