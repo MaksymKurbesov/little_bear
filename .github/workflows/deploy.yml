@@ -25,6 +25,11 @@ jobs:
 
     - name: Build project
       run: cd frontend && npm run build
+	
+    - name: Add server to known_hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan 69.57.163.156 >> ~/.ssh/known_hosts
 
     - name: Deploy to server
       run: |
