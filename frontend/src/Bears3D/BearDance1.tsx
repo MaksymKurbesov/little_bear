@@ -1,26 +1,22 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
 
 const BearDance1 = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/new_bear_model/1/untitled.gltf",
+    "/new_bear_model/1/optimized.glb",
   );
 
-  const { actions, mixer } = useAnimations(animations, group);
+  const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
-    if (actions && actions["Dance|CINEMA_4D_Main|Layer0"]) {
-      const action = actions["Dance|CINEMA_4D_Main|Layer0"];
-
+    if (actions) {
+      const action = Object.values(actions)[0];
       action.play();
-      // action.paused = true;
-
-      if (action) {
-        props.handleActionReady(action);
-      }
+      action.paused = true;
+      props.handleActionReady(action);
     }
-  }, [actions, mixer, props]);
+  }, []);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -89,4 +85,4 @@ const BearDance1 = (props) => {
 
 export default BearDance1;
 
-useGLTF.preload("/new_bear_model/1/untitled.gltf");
+useGLTF.preload("/new_bear_model/1/optimized.glb");

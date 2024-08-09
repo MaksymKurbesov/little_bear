@@ -7,6 +7,7 @@ const Tasks = () => {
       <p className={styles["subtitle"]}>
         Complete Tasks. Earn Points. Level Up.
       </p>
+      <p className={styles["no-task"]}>We don't have any tasks for you 😔</p>
     </div>
   );
 };

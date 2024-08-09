@@ -15,7 +15,6 @@ import {
   limit,
   getDocs,
 } from "firebase/firestore";
-import { formatISO } from "date-fns";
 import { DAILY_REWARDS_BY_DAY } from "../utils/consts.ts";
 
 export interface IReferral {
@@ -66,6 +65,19 @@ class UserApi {
     }
   }
 
+  async getUserPoints(userId: string): Promise<void> {
+    try {
+      const userRef = doc(this.userCollection, userId);
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        return userDoc.data().points;
+      }
+    } catch (error) {
+      console.error("Error get user points: ", error);
+    }
+  }
+
   async addReferral(
     userId: string,
     referralId: string,
@@ -87,6 +99,7 @@ class UserApi {
 
   async sendPointsToServer(userID: number, clickedPoints: number) {
     try {
+      let newCount: number | null = null;
       const userRef = doc(db, "users", userID.toString());
       await runTransaction(db, async (transaction) => {
         const docSnap = await transaction.get(userRef);
@@ -94,9 +107,11 @@ class UserApi {
           throw new Error("Документ не существует!");
         }
 
-        const newCount = docSnap.data().points + clickedPoints;
+        newCount = docSnap.data().points + clickedPoints;
         transaction.update(userRef, { points: newCount });
+        console.log(`sending on server ${newCount}`);
       });
+      return newCount;
     } catch (e) {
       console.log(e, "error");
     }
@@ -106,10 +121,6 @@ class UserApi {
     try {
       const today = new Date();
       const localDateString = today.toLocaleDateString("en-CA");
-
-      // const todayString = formatISO(today, { representation: "date" });
-
-      console.log(localDateString, "localDateString checkDailyReward");
 
       const dailyRewardDocRef = doc(
         db,
@@ -139,10 +150,7 @@ class UserApi {
     const userID = user.id.toString();
     const today = new Date();
     // const todayString = today.toISOString().split("T")[0];
-
     const localDateString = today.toLocaleDateString("en-CA");
-
-    console.log(localDateString, "localDateString claimDailyReward");
 
     const rewardPoints = DAILY_REWARDS_BY_DAY[user.consecutiveDays]; // Логика начисления очков
     const newTotalPoints = user.points + rewardPoints;

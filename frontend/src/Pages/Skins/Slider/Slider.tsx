@@ -44,6 +44,12 @@ const Slider = ({ setCurrentSkin }) => {
       setIsBeginning(true);
     }
 
+    if (swiper.activeIndex === swiper.slides.length - 1) {
+      setIsEnd(true);
+    }
+
+    console.log(swiper, "swiper");
+
     const handleSlideChange = () => {
       setIsBeginning(swiper.isBeginning);
       setIsEnd(swiper.isEnd);
@@ -67,8 +73,6 @@ const Slider = ({ setCurrentSkin }) => {
       </div>
     );
   }
-
-  console.log(state.level, "state.level");
 
   return (
     <Swiper

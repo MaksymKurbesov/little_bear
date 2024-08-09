@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import ProgressBar from "./ProgressBar/ProgressBar.tsx";
 import DailyRewardHeader from "./DailyRewardHeader/DailyRewardHeader.tsx";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
-import { useEffect } from "react";
 
 const Header = ({ pathname }) => {
   const isPlayPage = pathname === "/";
@@ -17,10 +16,6 @@ const Header = ({ pathname }) => {
   if (!state.user) {
     return null;
   }
-
-  useEffect(() => {
-    console.log("header");
-  }, []);
 
   return (
     <div

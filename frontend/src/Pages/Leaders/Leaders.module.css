@@ -38,7 +38,7 @@
 }
 
 .top3 > div span {
-  color: var(--orange);
+  /*color: var(--orange);*/
   font-weight: 500;
   text-shadow: 0 0 5px rgba(101, 44, 0, 0.5);
 }

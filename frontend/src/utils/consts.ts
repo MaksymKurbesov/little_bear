@@ -5,7 +5,7 @@ import OpenedBearSkin1 from "../images/skins/timber.png";
 import OpenedBearSkin2 from "../images/skins/brickn-opened.png";
 import OpenedBearSkin3 from "../images/skins/neyon-opened.png";
 
-export const POINTS_TO_ADD = 11;
+export const POINTS_TO_ADD = [1, 5, 17];
 
 export const SKINS = [
   {
@@ -14,6 +14,7 @@ export const SKINS = [
     openedImage: OpenedBearSkin1,
     requiredPoints: 0,
     colorCN: "color-blue",
+    points: 1,
   },
   {
     id: 2,
@@ -21,40 +22,42 @@ export const SKINS = [
     openedImage: OpenedBearSkin2,
     requiredPoints: 5000,
     colorCN: "color-red",
+    points: 5,
   },
   {
     id: 3,
     image: BearSkin3,
     openedImage: OpenedBearSkin3,
-    requiredPoints: 15000,
+    requiredPoints: 50000,
     colorCN: "color-green",
+    points: 17,
   },
 ];
 
 export const DAILY_REWARDS = [
+  `10`,
+  `50`,
+  `100`,
+  `300`,
   `500`,
-  `1K`,
-  `2.5K`,
-  `5K`,
-  `15K`,
-  `25K`,
-  `100K`,
-  `500K`,
-  `1M`,
-  `5M`,
+  `1000`,
+  `2000`,
+  `3000`,
+  `5000`,
+  `10000`,
 ];
 
 export const DAILY_REWARDS_BY_DAY: { [key: string]: number } = {
-  0: 500,
-  1: 1000,
-  2: 2500,
-  3: 5000,
-  4: 15000,
-  5: 25000,
-  6: 100000,
-  7: 500000,
-  8: 1000000,
-  9: 5000000,
+  0: 10,
+  1: 50,
+  2: 100,
+  3: 300,
+  4: 500,
+  5: 1000,
+  6: 2000,
+  7: 3000,
+  8: 5000,
+  9: 10000,
 };
 
-export const levelThresholds = [0, 5000, 15000, 25000, 100000, 1000000];
+export const levelThresholds = [0, 5000, 50000, 170000, 330000, 1000000];

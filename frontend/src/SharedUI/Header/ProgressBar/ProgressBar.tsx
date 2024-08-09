@@ -4,6 +4,7 @@ import {
   calculateProgressBar,
   getLevelByPoints,
 } from "../../../utils/helpers.ts";
+import { useAppState } from "../../../Stores/AppStateContext.tsx";
 
 const ProgressBar = ({ points }) => {
   const level = getLevelByPoints(points);
@@ -16,7 +17,7 @@ const ProgressBar = ({ points }) => {
         <div style={{ width: `${progressPercentage}%` }}></div>
       </div>
       <p className={styles["level-span"]}>
-        Level: {getLevelByPoints(points)}/7
+        Level: {getLevelByPoints(points)}/5
       </p>
       <img
         className={styles["arrow-icon"]}

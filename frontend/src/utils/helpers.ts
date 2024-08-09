@@ -31,12 +31,12 @@ export const calculateTimeLeft = () => {
 };
 
 export const debounce = (func, delay) => {
-  let debounceTimer;
-  return function () {
-    const args = arguments;
-    const context = this;
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => func.apply(context, args), delay);
+  let timeoutId;
+
+  return function executedFunction(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+    console.log(timeoutId, "timeoutId");
   };
 };
 
@@ -78,7 +78,13 @@ export const triggerVibration = (tg) => {
 };
 
 export const calculateProgressBar = (points: number, level: number) => {
-  return (points / levelThresholds[level]) * 100;
+  if (level - 1 >= levelThresholds.length - 1) {
+    return 100;
+  }
+
+  const prevThreshold = levelThresholds[level - 1];
+  const nextThreshold = levelThresholds[level];
+  return ((points - prevThreshold) / (nextThreshold - prevThreshold)) * 100;
 };
 
 export function getLittleBearId(queryString: string) {

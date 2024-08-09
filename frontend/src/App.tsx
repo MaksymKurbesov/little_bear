@@ -14,7 +14,6 @@ import RegisteredModal from "./SharedUI/RegisteredModal/RegisteredModal.tsx";
 import UserService from "./Services/UserService.ts";
 
 const BACKGROUND_MAP = {
-  "/": "background-image-main",
   "/airdrop": "background-image-airdrop",
   "/skins": "background-image-skins",
 };
@@ -27,14 +26,20 @@ const BEAR_BACKGROUNDS = [
 
 const App = () => {
   const { user } = useTelegram();
-  const { data: userData, error, isLoading } = useGetUserQuery(user?.id);
+  const {
+    data: userData,
+    error,
+    isLoading,
+  } = useGetUserQuery(user?.id, {
+    skip: !user?.id,
+  });
   const { state, dispatch } = useAppState();
   const [userIsRegistered, setUserIsRegistered] = useState<boolean>(false);
   const location = useLocation();
   const backgroundClassName = BACKGROUND_MAP[location.pathname];
-  const bearBackgroundCN = BEAR_BACKGROUNDS[state.currentSkin];
+  const bearBackgroundCN = BEAR_BACKGROUNDS[state.level - 1];
 
-  console.log(state.currentSkin, "state.currentSkin");
+  const [isLevelSpecified, setIsLevelSpecified] = useState(false);
 
   const [isLoadingScreen, setIsLoadingScreen] = useState(true);
   const [videoIsEnd, setVideoIsEnd] = useState(false);
@@ -46,6 +51,7 @@ const App = () => {
 
     if (userData) {
       userService.setUserData(userData).then(() => {
+        setIsLevelSpecified(true);
         setUserIsRegistered(true);
       });
     }
@@ -71,6 +77,8 @@ const App = () => {
   //     />
   //   );
   // }
+
+  if (!isLevelSpecified) return null;
 
   return (
     <div

@@ -13,37 +13,21 @@ import Points from "./Points/Points.tsx";
 
 const Main = () => {
   const { state, dispatch } = useAppState();
-
-  const { user: UserTG } = useTelegram();
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const imagesLoaded = useImagePreloader([BackgroundImage, BearIcon]);
-  const [isBouncing, setIsBouncing] = useState(false);
 
-  const handleAnimationEnd = (id: number) => {
+  const handleAnimationEnd = useCallback((id: number) => {
     dispatch({ type: "REMOVE_CLICK", payload: id });
-  };
+  }, []);
 
-  const sendPointsToServer = useCallback(async () => {
-    if (state.clickedPoints <= 0 || !UserTG) return;
+  // useEffect(() => {
+  // intervalRef.current = setInterval(sendPointsToServer, 3000);
 
-    try {
-      await userApi.sendPointsToServer(UserTG.id, state.clickedPoints);
-
-      dispatch({ type: "RESET_CLICKED_POINTS" });
-    } catch (error) {
-      console.error("Error sending points to server:", error);
-    }
-  }, [state.clickedPoints, dispatch]);
-
-  useEffect(() => {
-    intervalRef.current = setInterval(sendPointsToServer, 3000);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [sendPointsToServer]);
+  // return () => {
+  //   if (intervalRef.current) {
+  //     clearInterval(intervalRef.current);
+  //   }
+  // };
+  // }, [sendPointsToServer]);
 
   if (!imagesLoaded) {
     return (
@@ -55,8 +39,8 @@ const Main = () => {
 
   return (
     <div className={styles["main"]}>
-      <Points points={state.points} isBouncing={isBouncing} />
-      <Bear setIsBouncing={setIsBouncing} />
+      <Points points={state.points} />
+      <Bear />
 
       {state.clicks.map((click) => (
         <div
@@ -69,7 +53,7 @@ const Main = () => {
           }}
           onAnimationEnd={() => handleAnimationEnd(click.id)}
         >
-          +{POINTS_TO_ADD}
+          +{POINTS_TO_ADD[state.level - 1]}
         </div>
       ))}
     </div>
