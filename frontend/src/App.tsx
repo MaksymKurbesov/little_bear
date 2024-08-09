@@ -60,7 +60,7 @@ const App = () => {
       const refID = getLittleBearId(location.search) || "";
       const isPremium = !!user.is_premium;
       userService.registerUser(user, refID, isPremium).then(() => {
-        setUserIsRegistered(true);
+        setUserIsRegistered(false);
       });
     }
   }, [user, userData, dispatch, error, location.search]);
