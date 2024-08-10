@@ -202,28 +202,6 @@ class UserApi {
       console.error("Failed to claim reward:", err);
     }
   }
-
-  async fetchTopUser() {
-    try {
-      console.log("fetching");
-      const usersRef = collection(db, "users");
-      const topUsersQuery = query(
-        usersRef,
-        orderBy("points", "desc"),
-        limit(10),
-      );
-      const querySnapshot = await getDocs(topUsersQuery);
-
-      const usersList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      return usersList;
-    } catch (e) {
-      console.log(e, "error");
-    }
-  }
 }
 
 export default UserApi;

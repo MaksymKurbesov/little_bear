@@ -1,118 +1,79 @@
 [vite-plugin-deadfile]:
-  All source files: 316
-  Used source files: 9
-  Unused source files: 307
+  All source files: 300
+  Used source files: 3
+  Unused source files: 297
+    ./deadfiles-report.json
     ./index.html
     ./package-lock.json
-    ./postcss.config.js
     ./package.json
+    ./postcss.config.js
     ./README.md
-    ./tailwind.config.js
     ./tsconfig.app.json
-    ./tsconfig.node.json
+    ./tailwind.config.js
     ./tsconfig.json
+    ./tsconfig.node.json
     ./vite.config.ts
-    ./public\bg2.jpg
-    ./public\bg-light2.webp
-    ./public\bg3.webp
-    ./public\circle.svg
-    ./public\leaders-bg.jpg
-    ./public\filling-bar.png
-    ./public\loading-bar-container.png
-    ./public\left-bear.png
-    ./public\right-bear.png
-    ./public\start-video-short.mp4
-    ./public\telegram-web-app.js
-    ./public\wave.svg
-    ./public\vite.svg
-    ./public\stand_model1\Stand3Diff.png
-    ./public\stand_model1\Stand3Norm.png
-    ./public\stand_model1\untitled.gltf
-    ./public\stand_model1\untitled.bin
-    ./public\stand_model3\StandPinkDiff.png
-    ./public\stand_model3\StandPinkNormal.png
-    ./public\stand_model3\untitled.bin
-    ./public\stand_model3\untitled.gltf
-    ./public\stand_model2\StandTexDiffuse.png
-    ./public\stand_model2\untitled.bin
-    ./public\stand_model2\StandTexMormal.png
-    ./public\stand_model2\untitled.gltf
-    ./public\new_bear_model\1\Bear1Normal.png
-    ./public\new_bear_model\1\Bear1Diffuse.png
-    ./public\new_bear_model\1\optimized.glb
-    ./public\new_bear_model\1\untitled.gltf
-    ./public\new_bear_model\1\untitled.bin
-    ./public\new_bear_model\2\Brick2Diffuse.png
-    ./public\new_bear_model\2\Brick2Normal.png
-    ./public\new_bear_model\2\untitled.bin
-    ./public\new_bear_model\2\untitled.gltf
-    ./public\new_bear_model\2\optimized.glb
-    ./public\new_bear_model\3\Bear3TexDiff.png
-    ./public\new_bear_model\3\Bear3TexNor.png
-    ./public\new_bear_model\3\untitled.bin
-    ./public\new_bear_model\3\untitled.gltf
-    ./public\new_bear_model\3\optimized.glb
     ./dist\airdrop-bg.png
-    ./dist\bg-light2.webp
     ./dist\bg-light.webp
-    ./dist\bg2.png
+    ./dist\bg-light2.webp
     ./dist\bg2.jpg
-    ./dist\bg3.webp
+    ./dist\bg2.png
     ./dist\bg3.png
+    ./dist\bg3.webp
     ./dist\bg4.png
-    ./dist\circle.svg
     ./dist\bg5.png
-    ./dist\filling-bar.png
+    ./dist\circle.svg
     ./dist\index.html
+    ./dist\filling-bar.png
     ./dist\leaders-bg.jpg
-    ./dist\loading-bar-container.png
     ./dist\leaders-bg.webp
-    ./dist\right-bear.png
     ./dist\left-bear.png
+    ./dist\loading-bar-container.png
+    ./dist\right-bear.png
     ./dist\start-video-short.mp4
-    ./dist\telegram-web-app.js
     ./dist\start-video.mp4
-    ./dist\wave.svg
+    ./dist\telegram-web-app.js
     ./dist\vite.svg
+    ./dist\wave.svg
     ./dist\wood-bg.png
-    ./dist\assets\2-iXwDI3OS.png
     ./dist\assets\1-Ct-188Kc.png
-    ./dist\assets\3-CbydaL7T.png
     ./dist\assets\Airdrop-CO6HmUjv.css
-    ./dist\assets\Airdrop-DMxDSsav.js
+    ./dist\assets\2-iXwDI3OS.png
+    ./dist\assets\3-CbydaL7T.png
     ./dist\assets\airdrop-logo-DB6LIh1I.png
+    ./dist\assets\Airdrop-DKtn5bHH.js
     ./dist\assets\aztron-DGQXmtgZ.png
+    ./dist\assets\BearDance1-DbntMeuf.js
     ./dist\assets\aztron-opened-D1qkbeoa.png
-    ./dist\assets\BearDance1-BApobcr4.js
-    ./dist\assets\BearDance2-CPAjZ9mP.js
-    ./dist\assets\BearDance3-Ceto1fK-.js
+    ./dist\assets\BearDance2-DzLEPVxi.js
     ./dist\assets\binance-logo-ICDYv7TY.png
+    ./dist\assets\BearDance3-BXKTHFru.js
     ./dist\assets\brickn-BXpuAoiK.png
-    ./dist\assets\brickn-opened-nFKRb_A2.png
     ./dist\assets\brizzy-CQ56lRV7.png
+    ./dist\assets\brickn-opened-nFKRb_A2.png
     ./dist\assets\brizzy-opened-bCe1Hp9X.png
     ./dist\assets\bronze-avatar-Byx6kY5m.webp
-    ./dist\assets\daily-combo-BILPP4Db.png
     ./dist\assets\daily-cipher-BsFh939_.png
+    ./dist\assets\daily-combo-BILPP4Db.png
     ./dist\assets\daily-reward-OQz4yrzE.png
+    ./dist\assets\DailyReward-By9rzTe9.js
     ./dist\assets\DailyReward-C4mnMu7a.css
-    ./dist\assets\DailyReward-CE4Iqs7i.js
-    ./dist\assets\default-coin-BdMkfVfp.png
     ./dist\assets\default-coin-C_SWz9JK.js
+    ./dist\assets\default-coin-BdMkfVfp.png
     ./dist\assets\dollar-coin-Hep7vbco.png
     ./dist\assets\frens-Dcp8Hmkr.webp
-    ./dist\assets\Friends-BwflddEU.js
     ./dist\assets\Friends-mQObQpFo.css
-    ./dist\assets\gift-icon-high-BgZoFwIH.png
+    ./dist\assets\Friends-Dx5OtGuW.js
     ./dist\assets\gift-icon-low-BwEM8Exe.png
+    ./dist\assets\Gltf-hWwbr-tk.js
     ./dist\assets\gold-avatar-DUzRzK3h.webp
-    ./dist\assets\Gltf-BWxl9stK.js
     ./dist\assets\hamster-coin-BBw1dF5i.png
+    ./dist\assets\gift-icon-high-BgZoFwIH.png
     ./dist\assets\hamster-exchange-hHtqN6jH.png
-    ./dist\assets\index-D1ddxFs0.js
+    ./dist\assets\index-3jZ3zvly.js
+    ./dist\assets\Leaders-DRqAjVxD.js
     ./dist\assets\index-BJAqfdqj.css
     ./dist\assets\Leaders-DbjK4An9.css
-    ./dist\assets\Leaders-DSO_1t44.js
     ./dist\assets\leadership-BjkoIi7V.webp
     ./dist\assets\level-up-5dNz9pEs.svg
     ./dist\assets\little-bear-golden-VUMsh4Mp.png
@@ -120,38 +81,38 @@
     ./dist\assets\loading screen-BeJ6i0ky.png
     ./dist\assets\main-character-CEs6V02e.png
     ./dist\assets\Main-DAW7jCZV.css
-    ./dist\assets\neyon-BhvzuMag.png
-    ./dist\assets\Main-DKcjhYB8.js
+    ./dist\assets\Main-wm4O1eU6.js
     ./dist\assets\neyon-opened-CLtK8AuL.png
+    ./dist\assets\neyon-BhvzuMag.png
     ./dist\assets\orange-coin-BBNRj3hs.png
     ./dist\assets\play-DTkEW5mw.webp
-    ./dist\assets\RobotoCondensed-Light-CigBOjcQ.ttf
     ./dist\assets\RobotoCondensed-Black-I3yHG28G.ttf
+    ./dist\assets\RobotoCondensed-Light-CigBOjcQ.ttf
     ./dist\assets\RobotoCondensed-Regular-CYkzI7a4.ttf
     ./dist\assets\RobotoCondensed-SemiBold-CeqDY5ZK.ttf
-    ./dist\assets\silver-avatar-BlDsLRXk.webp
-    ./dist\assets\Settings-B3T_AbXF.js
+    ./dist\assets\Settings-CIzq0C1O.js
     ./dist\assets\Settings-DkIvII14.css
-    ./dist\assets\Skins-DkAe_yhe.js
+    ./dist\assets\silver-avatar-BlDsLRXk.webp
     ./dist\assets\Skins-DN2uOStg.css
-    ./dist\assets\Stand2-CDgDDEFw.js
-    ./dist\assets\Stand1-DmWdFa97.js
-    ./dist\assets\Stand3-D_3EWslV.js
+    ./dist\assets\Skins-DRthKFES.js
+    ./dist\assets\Stand1-y8-7mEoJ.js
+    ./dist\assets\Stand2-C6QpJYRz.js
+    ./dist\assets\Stand3-CfQNoK93.js
     ./dist\assets\Tasks-6s-KjBYb.css
-    ./dist\assets\Tasks-B03z6zl-.js
     ./dist\assets\tasks-Dg3t__JQ.webp
+    ./dist\assets\Tasks-Mr4FQzVZ.js
     ./dist\assets\timber-CNf0qK8F.png
-    ./dist\assets\useAnimations-BUruKTEp.js
-    ./dist\stand_model2\StandTexMormal.png
+    ./dist\assets\useAnimations-ylJfewM-.js
+    ./dist\stand_model1\Stand3Norm.png
+    ./dist\stand_model1\untitled.bin
+    ./dist\stand_model1\Stand3Diff.png
+    ./dist\stand_model1\untitled.gltf
     ./dist\stand_model2\StandTexDiffuse.png
+    ./dist\stand_model2\StandTexMormal.png
     ./dist\stand_model2\untitled.bin
     ./dist\stand_model2\untitled.gltf
-    ./dist\stand_model1\Stand3Diff.png
-    ./dist\stand_model1\untitled.bin
-    ./dist\stand_model1\Stand3Norm.png
-    ./dist\stand_model1\untitled.gltf
-    ./dist\stand_model3\StandPinkDiff.png
     ./dist\stand_model3\StandPinkNormal.png
+    ./dist\stand_model3\StandPinkDiff.png
     ./dist\stand_model3\untitled.gltf
     ./dist\stand_model3\untitled.bin
     ./dist\new_bear_model\1\Bear1Diffuse.png
@@ -159,21 +120,63 @@
     ./dist\new_bear_model\1\optimized.glb
     ./dist\new_bear_model\1\untitled.bin
     ./dist\new_bear_model\1\untitled.gltf
-    ./dist\new_bear_model\3\Bear3TexDiff.png
-    ./dist\new_bear_model\3\Bear3TexNor.png
-    ./dist\new_bear_model\3\optimized.glb
-    ./dist\new_bear_model\3\untitled.bin
-    ./dist\new_bear_model\3\untitled.gltf
-    ./dist\new_bear_model\2\Brick2Diffuse.png
     ./dist\new_bear_model\2\Brick2Normal.png
     ./dist\new_bear_model\2\optimized.glb
+    ./dist\new_bear_model\2\Brick2Diffuse.png
     ./dist\new_bear_model\2\untitled.bin
     ./dist\new_bear_model\2\untitled.gltf
-    ./src\App.tsx
+    ./dist\new_bear_model\3\Bear3TexDiff.png
+    ./dist\new_bear_model\3\optimized.glb
+    ./dist\new_bear_model\3\Bear3TexNor.png
+    ./dist\new_bear_model\3\untitled.bin
+    ./dist\new_bear_model\3\untitled.gltf
+    ./public\bg-light.webp
+    ./public\bg2.jpg
+    ./public\bg2.webp
+    ./public\bg2.png
+    ./public\bg3.png
+    ./public\bg3.webp
+    ./public\bg4.png
+    ./public\bg5.png
+    ./public\circle.svg
+    ./public\filling-bar.png
+    ./public\loading-bar-container.png
+    ./public\telegram-web-app.js
+    ./public\vite.svg
+    ./public\wave.svg
+    ./public\wood-bg.png
+    ./public\stand_model1\Stand3Diff.png
+    ./public\stand_model1\Stand3Norm.png
+    ./public\stand_model1\untitled.bin
+    ./public\stand_model1\untitled.gltf
+    ./public\stand_model2\StandTexDiffuse.png
+    ./public\stand_model2\untitled.bin
+    ./public\stand_model2\untitled.gltf
+    ./public\stand_model2\StandTexMormal.png
+    ./public\stand_model3\StandPinkDiff.png
+    ./public\stand_model3\StandPinkNormal.png
+    ./public\stand_model3\untitled.bin
+    ./public\stand_model3\untitled.gltf
+    ./public\new_bear_model\1\Bear1Diffuse.png
+    ./public\new_bear_model\1\Bear1Normal.png
+    ./public\new_bear_model\1\optimized.glb
+    ./public\new_bear_model\1\untitled.bin
+    ./public\new_bear_model\1\untitled.gltf
+    ./public\new_bear_model\3\Bear3TexDiff.png
+    ./public\new_bear_model\3\Bear3TexNor.png
+    ./public\new_bear_model\3\untitled.gltf
+    ./public\new_bear_model\3\optimized.glb
+    ./public\new_bear_model\3\untitled.bin
+    ./public\new_bear_model\2\Brick2Normal.png
+    ./public\new_bear_model\2\optimized.glb
+    ./public\new_bear_model\2\Brick2Diffuse.png
+    ./public\new_bear_model\2\untitled.gltf
+    ./public\new_bear_model\2\untitled.bin
     ./src\App.module.css
+    ./src\App.tsx
     ./src\BearContainer.tsx
-    ./src\i18n.ts
     ./src\firestoreBaseQuery.ts
+    ./src\i18n.ts
     ./src\lazyImports.ts
     ./src\index.css
     ./src\main.tsx
@@ -181,11 +184,11 @@
     ./src\routes.tsx
     ./src\vite-env.d.ts
     ./src\Api\UserApi.ts
+    ./src\assets\RobotoCondensed-Black.woff2
     ./src\assets\react.svg
-    ./src\assets\RobotoCondensed-Black.ttf
-    ./src\assets\RobotoCondensed-Light.ttf
-    ./src\assets\RobotoCondensed-SemiBold.ttf
-    ./src\assets\RobotoCondensed-Regular.ttf
+    ./src\assets\RobotoCondensed-SemiBold.woff2
+    ./src\assets\RobotoCondensed-Light.woff2
+    ./src\assets\RobotoCondensed-Regular.woff2
     ./src\Bears3D\BearDance1.tsx
     ./src\Bears3D\BearDance2.tsx
     ./src\Bears3D\BearDance3.tsx
@@ -193,86 +196,73 @@
     ./src\hooks\useImagePreloader.ts
     ./src\hooks\useTelegram.ts
     ./src\Services\UserService.ts
-    ./src\utils\consts.ts
     ./src\utils\helpers.ts
+    ./src\utils\consts.ts
     ./src\utils\types.ts
+    ./src\images\airdrop-logo.webp
+    ./src\images\default-coin.webp
+    ./src\images\daily-reward.png
+    ./src\images\gift-icon-low.webp
+    ./src\images\dollar-coin.webp
+    ./src\images\index.ts
+    ./src\images\gift-icon-high.webp
+    ./src\images\level-up.webp
+    ./src\images\little-bear-golden.png
+    ./src\images\little-bear-icon.png
+    ./src\images\loading screen.webp
+    ./src\images\orange-coin.webp
+    ./src\images\leaders\1.png
+    ./src\images\leaders\2.png
+    ./src\images\leaders\3.png
+    ./src\images\medals\bronze-avatar.webp
+    ./src\images\medals\gold-avatar.webp
+    ./src\images\medals\silver-avatar.webp
+    ./src\images\skins\aztron-opened.png
+    ./src\images\skins\brickn-opened.png
+    ./src\images\skins\aztron.png
+    ./src\images\skins\brizzy-opened.png
+    ./src\images\skins\brickn.png
+    ./src\images\skins\brizzy.png
+    ./src\images\skins\neyon-opened.png
+    ./src\images\skins\neyon.png
+    ./src\images\skins\timber.png
     ./src\icons\arrow.svg
     ./src\icons\Coins.tsx
+    ./src\icons\copy.svg
     ./src\icons\en.svg
     ./src\icons\frens.webp
-    ./src\icons\copy.svg
     ./src\icons\Hamster.tsx
     ./src\icons\Friends.tsx
     ./src\icons\Info.tsx
     ./src\icons\invite-user.svg
     ./src\icons\leadership.webp
-    ./src\icons\lock.svg
     ./src\icons\Mine.tsx
+    ./src\icons\lock.svg
     ./src\icons\play.webp
     ./src\icons\ru.svg
-    ./src\icons\Settings.tsx
     ./src\icons\settings-icon.PNG
+    ./src\icons\Settings.tsx
     ./src\icons\tasks.webp
     ./src\icons\turn-off-sound.svg
     ./src\icons\turn-on-sound.svg
     ./src\icons\levels\bronze.svg
     ./src\icons\levels\gold.svg
     ./src\icons\levels\silver.svg
-    ./src\images\airdrop-logo.png
-    ./src\images\ancient-border.svg
-    ./src\images\binance-logo.png
-    ./src\images\coin.png
-    ./src\images\daily-combo.png
-    ./src\images\daily-cipher.png
-    ./src\images\daily-reward.png
-    ./src\images\daily-reward-page.png
-    ./src\images\default-coin.png
-    ./src\images\dollar-coin.png
-    ./src\images\gift-icon-high.png
-    ./src\images\default-coin.webp
-    ./src\images\hamster-coin.png
-    ./src\images\hamster-exchange.png
-    ./src\images\gift-icon-low.png
-    ./src\images\index.ts
-    ./src\images\level-up.svg
-    ./src\images\little-bear-golden.png
-    ./src\images\little-bear-icon.png
-    ./src\images\main-character.png
-    ./src\images\loading screen.png
-    ./src\images\orange-coin.png
-    ./src\images\leaders\2.png
-    ./src\images\leaders\ishowspeed.webp
-    ./src\images\leaders\1.png
-    ./src\images\leaders\pewdiepie.webp
-    ./src\images\leaders\3.png
-    ./src\images\leaders\statham.webp
-    ./src\images\medals\bronze-avatar.webp
-    ./src\images\medals\gold-avatar.webp
-    ./src\images\medals\silver-avatar.webp
-    ./src\images\skins\aztron-opened.png
-    ./src\images\skins\aztron.png
-    ./src\images\skins\brickn.png
-    ./src\images\skins\brickn-opened.png
-    ./src\images\skins\brizzy-opened.png
-    ./src\images\skins\brizzy.png
-    ./src\images\skins\neyon-opened.png
-    ./src\images\skins\neyon.png
-    ./src\images\skins\timber.png
     ./src\Stores\AppStateContext.tsx
     ./src\Stores\store.ts
     ./src\Stores\slices\apiSlice.ts
-    ./src\Pages\Airdrop\Airdrop.module.css
-    ./src\Pages\Airdrop\Airdrop.tsx
-    ./src\Pages\DailyReward\DailyReward.module.css
-    ./src\Pages\DailyReward\DailyReward.tsx
-    ./src\Pages\Friends\Friends.module.css
-    ./src\Pages\Friends\Friends.tsx
-    ./src\Pages\Settings\Settings.module.css
-    ./src\Pages\Settings\Settings.tsx
     ./src\Pages\Leaders\Leaders.module.css
     ./src\Pages\Leaders\Leaders.tsx
-    ./src\Pages\LoadingScreen\LoadingScreen.module.css
+    ./src\Pages\Airdrop\Airdrop.module.css
+    ./src\Pages\Airdrop\Airdrop.tsx
+    ./src\Pages\Friends\Friends.module.css
+    ./src\Pages\Friends\Friends.tsx
     ./src\Pages\LoadingScreen\LoadingScreen.tsx
+    ./src\Pages\LoadingScreen\LoadingScreen.module.css
+    ./src\Pages\DailyReward\DailyReward.module.css
+    ./src\Pages\DailyReward\DailyReward.tsx
+    ./src\Pages\Settings\Settings.module.css
+    ./src\Pages\Settings\Settings.tsx
     ./src\Pages\StartBearVideo\StartBearVideo.module.css
     ./src\Pages\StartBearVideo\StartBearVideo.tsx
     ./src\Pages\Tasks\Tasks.module.css
@@ -285,27 +275,27 @@
     ./src\Pages\Main\Points\Points.module.css
     ./src\Pages\Skins\Skins.module.css
     ./src\Pages\Skins\Skins.tsx
-    ./src\Pages\Skins\SkinSlide\SkinSlide.tsx
     ./src\Pages\Skins\SkinSlide\SkinSlide.module.css
+    ./src\Pages\Skins\SkinSlide\SkinSlide.tsx
     ./src\Pages\Skins\Slider\Slider.module.css
     ./src\Pages\Skins\Slider\Slider.tsx
     ./src\SharedUI\Lights\Lights.tsx
     ./src\SharedUI\LevelUp\LevelUp.module.css
     ./src\SharedUI\LevelUp\LevelUp.tsx
+    ./src\SharedUI\LoadSpinning\LoadSpinning.module.css
+    ./src\SharedUI\LoadSpinning\LoadSpinning.tsx
     ./src\SharedUI\Menu\Menu.module.css
     ./src\SharedUI\Menu\Menu.tsx
-    ./src\SharedUI\LoadSpinning\LoadSpinning.tsx
-    ./src\SharedUI\LoadSpinning\LoadSpinning.module.css
-    ./src\SharedUI\RegisteredModal\RegisteredModal.module.css
-    ./src\SharedUI\RegisteredModal\RegisteredModal.tsx
     ./src\SharedUI\Select\Select.module.css
     ./src\SharedUI\Select\Select.tsx
+    ./src\SharedUI\RegisteredModal\RegisteredModal.module.css
+    ./src\SharedUI\RegisteredModal\RegisteredModal.tsx
     ./src\SharedUI\Stands\Stand1.tsx
     ./src\SharedUI\Stands\Stand3.tsx
     ./src\SharedUI\Stands\Stand2.tsx
     ./src\SharedUI\Header\Header.module.css
     ./src\SharedUI\Header\Header.tsx
-    ./src\SharedUI\Header\DailyRewardHeader\DailyRewardHeader.css
     ./src\SharedUI\Header\DailyRewardHeader\DailyRewardHeader.tsx
+    ./src\SharedUI\Header\DailyRewardHeader\DailyRewardHeader.css
     ./src\SharedUI\Header\ProgressBar\ProgressBar.module.css
     ./src\SharedUI\Header\ProgressBar\ProgressBar.tsx
