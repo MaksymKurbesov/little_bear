@@ -39,8 +39,6 @@ const App = () => {
   const backgroundClassName = BACKGROUND_MAP[location.pathname];
   const bearBackgroundCN = BEAR_BACKGROUNDS[state.level - 1];
 
-  const [isLevelSpecified, setIsLevelSpecified] = useState(false);
-
   const [isLoadingScreen, setIsLoadingScreen] = useState(true);
   const [videoIsEnd, setVideoIsEnd] = useState(false);
 
@@ -51,7 +49,6 @@ const App = () => {
 
     if (userData) {
       userService.setUserData(userData).then(() => {
-        setIsLevelSpecified(true);
         setUserIsRegistered(true);
       });
     }
@@ -69,10 +66,7 @@ const App = () => {
     return <LoadingScreen setIsLoadingScreen={setIsLoadingScreen} />;
   }
 
-  console.log(userIsRegistered, "do usloviya userIsRegistered");
-  console.log(isLoadingScreen, "isLoadingScreen");
-
-  if (!userIsRegistered) {
+  if (!userIsRegistered && !userData) {
     return (
       <StartBearVideo
         setUserIsRegistered={setUserIsRegistered}
@@ -80,8 +74,6 @@ const App = () => {
       />
     );
   }
-
-  console.log(userIsRegistered, "posle usloviya userIsRegistered");
 
   return (
     <div

@@ -1,7 +1,7 @@
 import styles from "./Airdrop.module.css";
-import BearCoin from "../../images/default-coin.png";
-import OrangeBearCoin from "../../images/orange-coin.png";
-import AirdropLogo from "../../images/airdrop-logo.png";
+import BearCoin from "../../images/default-coin.webp";
+import OrangeBearCoin from "../../images/orange-coin.webp";
+import AirdropLogo from "../../images/airdrop-logo.webp";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
 import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";
 import BackgroundImage from "/airdrop-bg.png";

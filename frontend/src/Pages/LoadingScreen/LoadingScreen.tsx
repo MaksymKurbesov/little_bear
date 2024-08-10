@@ -1,12 +1,11 @@
 import styles from "./LoadingScreen.module.css";
-import LoadingScreenImage from "../../images/loading screen.png";
-import MainBG from "/bg-light.webp";
+import LoadingScreenImage from "../../images/loading screen.webp";
 import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
 import { useEffect, useRef, useState } from "react";
 import { simulateLoadingProgress } from "../../utils/helpers.ts";
 
 const LoadingScreen = ({ setIsLoadingScreen }) => {
-  const imagesLoaded = useImagePreloader([LoadingScreenImage, MainBG]);
+  const imagesLoaded = useImagePreloader([LoadingScreenImage]);
   const [progress, setProgress] = useState(0);
   const wrapperRef = useRef(null);
   const mounted = useRef(false);

@@ -1,7 +1,19 @@
 import styles from "./LevelUp.module.css";
-import LevelUpIcon from "../../images/level-up.svg";
+import LevelUpIcon from "../../images/level-up.webp";
+import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
+import LoadSpinning from "../LoadSpinning/LoadSpinning.tsx";
 
 const LevelUp = ({ level, onCollectHandler }) => {
+  const imagesLoaded = useImagePreloader([LevelUpIcon]);
+
+  if (!imagesLoaded) {
+    return (
+      <div className={"suspense"}>
+        <LoadSpinning />
+      </div>
+    );
+  }
+
   return (
     <div className={styles["level-up"]}>
       <h2>You've just reached Level {level}</h2>

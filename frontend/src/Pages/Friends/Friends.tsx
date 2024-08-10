@@ -1,8 +1,8 @@
 import styles from "./Friends.module.css";
 import CopyIcon from "../../icons/copy.svg";
 import InviteUserIcon from "../../icons/invite-user.svg";
-import HighGiftIcon from "../../images/gift-icon-high.png";
-import LowGiftIcon from "../../images/gift-icon-low.png";
+import HighGiftIcon from "../../images/gift-icon-high.webp";
+import LowGiftIcon from "../../images/gift-icon-low.webp";
 import { useTelegram } from "../../hooks/useTelegram.ts";
 import { ScrollRestoration, useOutletContext } from "react-router-dom";
 import { getLevelByPoints } from "../../utils/helpers.ts";

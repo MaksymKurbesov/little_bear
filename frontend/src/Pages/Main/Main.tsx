@@ -1,30 +1,25 @@
 import styles from "./Main.module.css";
 import { useCallback } from "react";
-import BearIcon from "../../images/default-coin.png";
 import { useAppState } from "../../Stores/AppStateContext.tsx";
 import Bear from "./Bear/Bear.tsx";
 import { POINTS_TO_ADD } from "../../utils/consts.ts";
-
-import LoadSpinning from "../../SharedUI/LoadSpinning/LoadSpinning.tsx";
-import { useImagePreloader } from "../../hooks/useImagePreloader.ts";
-import BackgroundImage from "/bg-light.webp";
 import Points from "./Points/Points.tsx";
 
 const Main = () => {
   const { state, dispatch } = useAppState();
-  const imagesLoaded = useImagePreloader([BackgroundImage, BearIcon]);
+  // const imagesLoaded = useImagePreloader([BackgroundImage, BearIcon]);
 
   const handleAnimationEnd = useCallback((id: number) => {
     dispatch({ type: "REMOVE_CLICK", payload: id });
   }, []);
 
-  if (!imagesLoaded) {
-    return (
-      <div className={"suspense"}>
-        <LoadSpinning />
-      </div>
-    );
-  }
+  // if (!imagesLoaded) {
+  //   return (
+  //     <div className={"suspense"}>
+  //       <LoadSpinning />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className={styles["main"]}>

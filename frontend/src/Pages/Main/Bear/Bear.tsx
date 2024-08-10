@@ -1,13 +1,6 @@
 import styles from "./Bear.module.css";
 import { Canvas } from "@react-three/fiber";
-import React, {
-  lazy,
-  Suspense,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { lazy, Suspense, useCallback, useRef, useState } from "react";
 import { useAppState } from "../../../Stores/AppStateContext.tsx";
 import LoadSpinning from "../../../SharedUI/LoadSpinning/LoadSpinning.tsx";
 import { useTelegram } from "../../../hooks/useTelegram.ts";
@@ -27,8 +20,6 @@ const Stand2 = lazy(() => import("../../../SharedUI/Stands/Stand2.tsx"));
 const Stand3 = lazy(() => import("../../../SharedUI/Stands/Stand3.tsx"));
 import { v4 as uuidv4 } from "uuid";
 import LevelUp from "../../../SharedUI/LevelUp/LevelUp.tsx";
-import { useImagePreloader } from "../../../hooks/useImagePreloader.ts";
-import LevelUpIcon from "../../../images/level-up.svg";
 import { POINTS_TO_ADD } from "../../../utils/consts.ts";
 
 const danceBearComponents = [
@@ -44,7 +35,6 @@ const Bear = ({}) => {
   const [levelUpModal, setLevelUpModal] = useState(false);
 
   const clickedPointsRef = useRef(0);
-  const imagesLoaded = useImagePreloader([LevelUpIcon]);
 
   const handleActionReady = useCallback((action) => {
     setAction(action);
@@ -112,7 +102,7 @@ const Bear = ({}) => {
 
   return (
     <>
-      {levelUpModal && imagesLoaded ? (
+      {levelUpModal ? (
         <LevelUp
           onCollectHandler={() => {
             dispatch({
@@ -125,7 +115,13 @@ const Bear = ({}) => {
         />
       ) : null}
       <div className={styles["main-image-wrapper"]} onClick={handleCardClick}>
-        <Suspense fallback={<LoadSpinning />}>
+        <Suspense
+          fallback={
+            <div className={"suspense"}>
+              <LoadSpinning />
+            </div>
+          }
+        >
           <Canvas shadows camera={{ position: [0, 1.1, 5] }}>
             <Lights>
               <group position={[0, -0.4, 3.2]} scale={0.47}>
