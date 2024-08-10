@@ -1,9 +1,9 @@
-name: Build and Deploy
+name: Deploy to Server
 
 on:
   push:
     branches:
-      - main
+      - main  # Убедитесь, что это нужная вам ветка
 
 jobs:
   build-and-deploy:
@@ -11,32 +11,25 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v2
       with:
-        node-version: '16'
+        node-version: '18.x' # Укажите версию Node.js, которую вы используете
 
     - name: Install dependencies
-      run: cd frontend && npm install
+      run: npm ci
 
-    - name: Build project
-      run: cd frontend && npm run build
-
-    - name: Start SSH agent and add key
-      run: |
-        eval $(ssh-agent -s)
-        ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY_LITTLEBEAR }}"
-
-    - name: Add server to known_hosts
-      run: |
-        mkdir -p ~/.ssh
-        ssh-keyscan 69.57.163.156 >> ~/.ssh/known_hosts
+    - name: Build the project
+      run: npm run build
 
     - name: Deploy to server
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY_LITTLEBEAR }}
+        SERVER_HOST: ${{ secrets.SERVER_HOST }}
+        SERVER_USER: ${{ secrets.SERVER_USER }}
       run: |
-        rsync -avz --delete frontend/dist/ root@69.57.163.156:/var/www/littlebear-app.online/
-
-    - name: Clean up local build
-      run: rm -rf frontend/dist/
+        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+        ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "rm -rf /var/www/littlebear-app.online/*"
+        scp -r ./dist/* $SERVER_USER@$SERVER_HOST:/var/www/littlebear-app.online/
